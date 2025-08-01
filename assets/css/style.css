@@ -406,6 +406,20 @@ h3 {
     .nav-menu ul {
         margin-top: 1rem;
         justify-content: center;
+
+        /* Tambahan untuk scroll horizontal di HP */
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .nav-menu ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav-menu ul li {
+        flex: 0 0 auto;
     }
 
     #hero .container {
