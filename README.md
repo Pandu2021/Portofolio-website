@@ -16,6 +16,4 @@ The purpose of this website is to present my technical and creative capabilities
 
 Currently hosted on GitHub Pages. Future enhancements may include back-end integration and analytics tools.
 
-## Credits
 
-Designed and developed by Pandu Wicaksono.
