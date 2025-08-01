@@ -403,23 +403,33 @@ h3 {
         text-align: center;
     }
 
-    .nav-menu ul {
-        margin-top: 1rem;
-        justify-content: center;
-
-        /* Tambahan untuk scroll horizontal di HP */
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+    .logo {
+        margin-bottom: 1rem;
     }
 
-    .nav-menu ul::-webkit-scrollbar {
-        display: none;
+    .nav-menu {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 5px;
+    }
+
+    .nav-menu ul {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
     }
 
     .nav-menu ul li {
         flex: 0 0 auto;
+        white-space: nowrap;
+    }
+    
+    .nav-menu ul li a {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+        display: none;
     }
 
     #hero .container {
