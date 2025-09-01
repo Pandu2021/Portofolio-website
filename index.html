@@ -3,47 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Pandu Wicaksono – Digital Solutions Architect & Multidisciplinary Technologist. Explore projects, skills, certifications, and contact information.">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Pandu Wicaksono | Digital Solutions Architect">
+    <meta property="og:description" content="Explore projects, skills, certifications, and contact information.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/img/your-photo.png">
+    <meta property="og:url" content="">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pandu Wicaksono | Digital Solutions Architect">
+    <meta name="twitter:description" content="Explore projects, skills, certifications, and contact information.">
+    <meta name="twitter:image" content="assets/img/your-photo.png">
+    <meta name="theme-color" content="#007bff">
+    <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
     <title>Pandu Wicaksono | Digital Solutions Architect</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
 </head>
 <body>
+    <a href="#hero" class="skip-link">Skip to content</a>
 
     <header class="header">
         <div class="container">
-            <a href="#" class="logo">Pandu Wicaksono</a>
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+            <a href="#hero" class="logo" aria-label="Go to home">Pandu Wicaksono</a>
+            <div class="header-actions">
+                <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <nav id="primary-nav" class="nav-menu">
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#certifications">Certifications</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </div>
     </header>
+    <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
 
     <main>
-        <section id="hero" class="hero-section">
+    <section id="hero" class="hero-section reveal">
             <div class="container">
                 <div class="hero-content">
                     <h1>Hello, I am Pandu</h1>
                     <p>Digital Solutions Architect & Multidisciplinary Technologies.</p>
                     <div class="hero-cta">
                         <a href="#portfolio" class="cta-button primary">View My Portfolio</a>
+                        <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" class="cta-button secondary">Hire me on Upwork</a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/img/your-photo.png" alt="A photo of Pandu Wicaksono, a multidisciplinary professional.">
+                    <img src="assets/img/your-photo.png" alt="A photo of Pandu Wicaksono, a multidisciplinary professional." width="200" height="200">
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about-section">
+    <section id="about" class="about-section reveal">
             <div class="container">
                 <h2>About Me</h2>
                 <div class="about-content">
@@ -78,13 +108,13 @@
             </div>
         </section>
 
-        <section id="portfolio" class="portfolio-section">
+    <section id="portfolio" class="portfolio-section reveal">
             <div class="container">
                 <h2>Portfolio</h2>
                 <div class="portfolio-grid">
                     <div class="portfolio-item">
-                        <a href="https://github.com/Pandu2021/Salifort-Motors-project-lab-" target="_blank">
-                            <img src="assets/img/project-1-thumbnail.png" alt="Thumbnail of the Salifort Motors project.">
+                        <a href="https://github.com/Pandu2021/Salifort-Motors-project-lab-" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/project-1-thumbnail.png" alt="Thumbnail of the Salifort Motors project." loading="lazy" decoding="async" width="600" height="338">
                             <div class="portfolio-info">
                                 <h3>Salifort-Motors-project-lab</h3>
                                 <p>The models and the feature importances extracted from the models confirm that employees at the company are overworked.</p>
@@ -110,70 +140,71 @@
             </div>
         </section>
 
-        <section id="certifications" class="certifications-section">
+    <section id="certifications" class="certifications-section reveal">
             <div class="container">
                 <h2>Certification</h2>
                 <div class="certification-grid">
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/6JD47YHV3NUB" target="_blank">
-                            <img src="assets/img/Amazon Junior Software Developer.jpeg" alt="Certifications Junior Software Developer">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/6JD47YHV3NUB" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Amazon Junior Software Developer.jpeg" alt="Certifications Junior Software Developer" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Junior Software Developer</h3>
                             <p>Amazon</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/10G55LPP9IPQ" target="_blank">
-                            <img src="assets/img/IBM Full Stack Software Developer.jpeg" alt="Certifications Full Stack Software Developer">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/10G55LPP9IPQ" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/IBM Full Stack Software Developer.jpeg" alt="Certifications Full Stack Software Developer" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Full Stack Software Developer</h3>
                             <p>IBM</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/UTOGM442O8CC" target="_blank">
-                            <img src="assets/img/Google Advanced Data Analytics.jpeg" alt="Certifications Advanced Data Analytics">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/UTOGM442O8CC" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google Advanced Data Analytics.jpeg" alt="Certifications Advanced Data Analytics" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Advanced Data Analytics</h3>
                             <p>Google</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/A6HI34IB1S4U" target="_blank">
-                            <img src="assets/img/Google Business Intelligence.jpeg" alt="Certifications Business Intelligence">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/A6HI34IB1S4U" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google Business Intelligence.jpeg" alt="Certifications Business Intelligence" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Google Business Intelligence</h3>
                             <p>Google</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/S3815ENWHNXB" target="_blank">
-                            <img src="assets/img/Google Cybersecurity.jpeg" alt="Certifications Cybersecurity">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/S3815ENWHNXB" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google Cybersecurity.jpeg" alt="Certifications Cybersecurity" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Google Cybersecurity</h3>
                             <p>Google</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/G5UFTMVOMFCD" target="_blank">
-                            <img src="assets/img/Google Data Analytics.jpeg" alt="Certifications Data Analytics">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/G5UFTMVOMFCD" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google Data Analytics.jpeg" alt="Certifications Data Analytics" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Google Data Analytics</h3>
                             <p>Google</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/HEQ0TWH1CGIU" target="_blank">
-                            <img src="assets/img/Google UX Design.jpeg" alt="Certifications UX Design">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/HEQ0TWH1CGIU" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google UX Design.jpeg" alt="Certifications UX Design" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Google UX Design</h3>
                             <p>Google</p>
                         </a>
                     </div>
                     <div class="certification-item">
-                        <a href="https://www.coursera.org/account/accomplishments/professional-cert/2D05FXBRMV43" target="_blank">
-                            <img src="assets/img/Google Digital Marketing & E-commerce.jpeg" alt="Certifications Digital Marketing & E-commerce">
+            <a href="https://www.coursera.org/account/accomplishments/professional-cert/2D05FXBRMV43" target="_blank" rel="noopener noreferrer">
+                            <img src="assets/img/Google Digital Marketing & E-commerce.jpeg" alt="Certifications Digital Marketing & E-commerce" loading="lazy" decoding="async" width="600" height="400">
                             <h3>Certifications Google Digital Marketing & E-commerce</h3>
                             <p>Google</p>
                         </a>
                     </div>
-            </div>
+        </div>
+        </div>
         </section>
 
-        <section id="contact" class="contact-section">
+    <section id="contact" class="contact-section reveal">
             <div class="container">
                 <h2>Contact Me</h2>
                 <form id="contact-form" class="contact-form" novalidate>
@@ -184,11 +215,12 @@
                     <label for="message" class="sr-only">Your Message</label>
                     <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
                     <button type="submit" class="cta-button primary">Send Message</button>
-                    <p id="form-status" class="form-status"></p>
+                    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
                 </form>
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://github.com/Pandu2021" target="_blank" aria-label="GitHub"><i class="fab fa-github-square fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+                    <a href="https://www.kaggle.com/panduwicaksono2025" target="_blank" rel="noopener noreferrer" aria-label="Kaggle"><i class="fa-brands fa-kaggle fa-2x"></i></a>
+                    <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork fa-2x"></i></a>
                 </div>
             </div>
         </section>
@@ -196,11 +228,33 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Pandu Wicaksono. All rights reserved.</p>
+            <p>&copy; <span id="year">2025</span> Pandu Wicaksono. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="assets/js/script.js"></script>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Pandu Wicaksono",
+            "jobTitle": "Digital Solutions Architect",
+            "url": "",
+            "image": "assets/img/your-photo.png",
+            "sameAs": [
+                "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/",
+                "https://www.kaggle.com/panduwicaksono2025",
+                "https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share"
+            ],
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Freelance"
+            }
+        }
+        </script>
+    <script src="js/script.js" defer></script>
 
 </body>
 </html>
