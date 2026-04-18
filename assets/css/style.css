@@ -541,6 +541,14 @@ h3 {
     border-radius: 40px;
 }
 
+.resume-download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
 .portfolio-item {
     background: linear-gradient(var(--white-color), var(--white-color)) padding-box,
                 linear-gradient(135deg, rgba(37, 99, 235, 0.25), rgba(14, 165, 233, 0.25)) border-box;
