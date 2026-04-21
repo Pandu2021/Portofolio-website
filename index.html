@@ -16,7 +16,7 @@
     <meta name="twitter:description" content="Explore projects, skills, certifications, and contact information.">
     <meta name="twitter:image" content="assets/img/your-photo.png">
     <meta name="color-scheme" content="light dark">
-    <meta name="msapplication-navbutton-color" content="#007bff">
+    <meta name="msapplication-navbutton-color" content="#0f172a">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Pandu Wicaksono | Digital Solutions Architect</title>
     <link rel="stylesheet" href="assets/css/style.css">
@@ -24,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
@@ -32,6 +32,8 @@
 </head>
 <body>
     <a href="#hero" class="skip-link">Skip to content</a>
+    <div class="page-orb page-orb-one" aria-hidden="true"></div>
+    <div class="page-orb page-orb-two" aria-hidden="true"></div>
 
     <header class="header">
         <div class="container">
@@ -44,9 +46,11 @@
                     <ul>
                         <li><a href="#hero">Home</a></li>
                         <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
                         <li><a href="#work-experience">Work Experience</a></li>
                         <li><a href="#employment-history">Employment History</a></li>
                         <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#education">Education</a></li>
                         <li><a href="#certifications">Certifications</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
@@ -60,34 +64,70 @@
     <div id="navOverlay" class="nav-overlay" aria-hidden="true"></div>
 
     <main>
-    <section id="hero" class="hero-section reveal">
+        <section id="hero" class="hero-section reveal">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="hero-title">Hello, I am Pandu</h1>
-                    <p class="hero-subtitle">Digital Solutions Architect & Multidisciplinary Technologies.</p>
+                    <p class="hero-kicker">Available for freelance and collaboration</p>
+                    <h1 class="hero-title">I design and build <span id="hero-typed" class="typed-text">scalable digital products</span>.</h1>
+                    <p class="hero-subtitle">Digital Solutions Architect with multidisciplinary strengths in software development, analytics, cybersecurity, and UX. I turn complex workflows into clean and profitable systems.</p>
+                    <div class="hero-badges" aria-label="Core strengths">
+                        <span>Full Stack Engineering</span>
+                        <span>Data Intelligence</span>
+                        <span>Security Mindset</span>
+                        <span>UX-Driven Delivery</span>
+                    </div>
                     <div class="hero-cta hero-actions">
                         <a href="#portfolio" class="cta-button primary">View My Portfolio</a>
                         <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" class="cta-button secondary">Hire me on Upwork</a>
-                        <a href="assets/CV.pdf" download class="cta-button secondary">Download CV (PDF)</a>
-                        <a href="assets/Resume.pdf" download class="cta-button secondary">Download Resume (PDF)</a>
+                    </div>
+                    <div class="hero-socials" aria-label="Quick social links">
+                        <a href="https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.kaggle.com/panduwicaksono2025" target="_blank" rel="noopener noreferrer" aria-label="Kaggle"><i class="fa-brands fa-kaggle"></i></a>
+                        <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork"></i></a>
+                    </div>
+                    <div class="hero-metrics" aria-label="Portfolio highlights">
+                        <article class="metric-card">
+                            <strong data-count="3">0</strong>
+                            <span>Featured Projects</span>
+                        </article>
+                        <article class="metric-card">
+                            <strong data-count="8">0</strong>
+                            <span>Certifications Displayed</span>
+                        </article>
+                        <article class="metric-card">
+                            <strong data-count="4">0</strong>
+                            <span>Core Expertise Areas</span>
+                        </article>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="assets/img/your-photo.png" alt="A photo of Pandu Wicaksono, a multidisciplinary professional." width="200" height="200">
+                    <div class="hero-image-shell">
+                        <img src="assets/img/your-photo.png" alt="A photo of Pandu Wicaksono, a multidisciplinary professional." width="200" height="200">
+                        <span class="image-ring" aria-hidden="true"></span>
+                    </div>
                 </div>
             </div>
         </section>
 
-    <section id="about" class="about-section reveal">
+        <section id="about" class="about-section reveal">
             <div class="container">
                 <h2>About Me</h2>
                 <div class="about-content">
-                    <p>I am a certified multidisciplinary professional passionate about transforming data, design, and technology into meaningful solutions.
-                        With expertise spanning Data Analytics, Cybersecurity, UX/UI Design, Digital Marketing, Software Development,
-                        and AI Innovation, I take a full-spectrum approach to problem-solving. My strengths include building secure, data-driven,
-                        and user-friendly digital experiences across business and creative domains. As a Junior Software Developer and Full Stack Technologist,
-                        I specialize in frontend and backend development, software lifecycle understanding,
-                        and scalable project delivery using modern frameworks and deployment tools.</p>
+                    <p>I am a certified multidisciplinary professional who transforms data, design, and technology into practical solutions.
+                        My strengths span software development, data analytics, cybersecurity, UX/UI, digital marketing, and AI-assisted workflows.
+                        I focus on building secure, user-centered, and scalable products with a clear delivery process from planning to deployment.</p>
+                    <div class="about-tools" aria-label="Tools and stack">
+                        <span>React</span>
+                        <span>NestJS</span>
+                        <span>Node.js</span>
+                        <span>PostgreSQL</span>
+                        <span>MongoDB</span>
+                        <span>Python</span>
+                        <span>Tableau</span>
+                        <span>Google BigQuery</span>
+                        <span>Figma</span>
+                        <span>GitHub</span>
+                    </div>
                     <div class="skills-grid">
                         <div class="skill-item">
                             <h3><i class="fas fa-chart-line"></i> Data Analytics & Business Intelligence</h3>
@@ -103,17 +143,42 @@
                                 digital marketing strategies (SEO, SEM, social media, email campaigns), and structured thinking.</p>
                         </div>
                         <div class="skill-item">
-                            <h3><i class="fas fa-laptop-code"></i> Junior Software Developer & Full Stack Software Development</h3>
-                            <p>Frontend: HTML, CSS, JavaScript, React, Backend: Node.js, Express.js, PostgreSQL, MongoDB, APIs: RESTful APIs, JSON, Tools: Git, GitHub, VS Code, Postman,
-                                Deployment: Render, Vercel, Version Control: Git workflows, Basic programming in Java, JavaScript, Python, Debugging: responsive design, and code optimization,
-                                Automation via AI tools (Microsoft Copilot, Google Gemini, Amazon Q Developer), IDEs: Visual Studio Code, IntelliJ IDEA..</p>
+                            <h3><i class="fas fa-laptop-code"></i> Software Development & Engineering Delivery</h3>
+                            <p>Frontend: HTML, CSS, JavaScript, React. Backend: Node.js, Express.js, PostgreSQL, MongoDB.
+                                APIs: RESTful APIs and JSON integration. Tools: Git, GitHub, VS Code, Postman.
+                                Deployment: Render and Vercel. Additional strengths include debugging, responsive optimization,
+                                and AI-assisted development using Microsoft Copilot, Google Gemini, and Amazon Q Developer.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-    <section id="work-experience" class="experience-section reveal">
+        <section id="services" class="services-section reveal">
+            <div class="container">
+                <h2>What I Can Build For You</h2>
+                <p class="section-lead">From idea to deployment, I help teams build digital products that are secure, measurable, and ready for scale.</p>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h3>End-to-End Product Development</h3>
+                        <p>Build complete web applications with clean architecture, resilient APIs, and production-focused frontend performance.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-chart-simple"></i>
+                        <h3>Analytics & Automation</h3>
+                        <p>Transform operational data into dashboards and workflows that reduce manual tasks and improve business decisions.</p>
+                    </article>
+                    <article class="service-card">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h3>Secure Digital Operations</h3>
+                        <p>Apply practical security controls, role-based access, and auditability so systems stay reliable under real usage.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="work-experience" class="experience-section reveal">
             <div class="container">
                 <h2>Work Experience</h2>
                 <div class="experience-grid">
@@ -160,7 +225,7 @@
             </div>
         </section>
 
-    <section id="employment-history" class="experience-section reveal">
+        <section id="employment-history" class="experience-section reveal">
             <div class="container">
                 <h2>Employment History</h2>
                 <div class="experience-grid">
@@ -169,47 +234,64 @@
                             <h3>NestJS, React | Specialized in Automated E-commerce Ecosystems</h3>
                             <p class="experience-meta">Upwork · September 2025 - Present</p>
                         </div>
-                        <p class="experience-summary">I build robust, production-ready platforms that bridge the gap between complex backend logic and seamless user experiences. Recently, I architected a high-traffic F&amp;B platform featuring real-time order tracking via SSE, automated financial ledgers with Google Sheets, and multi-provider email orchestration. My focus is on creating secure, scalable systems leveraging NestJS and PostgreSQL that handle everything from payment webhooks (Omise/PromptPay) to automated fulfillment printing.</p>
-                        <p class="experience-summary">Do you need a system that does not just look good, but runs your entire business? I specialize in developing end-to-end applications that automate the heavy lifting. From implementing secure JWT authentication and reCAPTCHA protection to building custom Admin Dashboards that manage finance rules and audit logs, I ensure your operations are transparent and efficient. I use a modern stack (React 18, Vite, NestJS) to deliver fast, localized (i18n), and reliable solutions tailored to your specific workflow.</p>
+                        <p class="experience-summary">Built production-ready F&amp;B platforms with NestJS, PostgreSQL, React, and Vite, focused on automation and reliability. Delivered real-time order tracking via SSE, Google Sheets financial ledger automation, multi-provider email orchestration, secure authentication (JWT and reCAPTCHA), and admin dashboards for finance controls and audit logs. Integrated payment workflows including Omise and PromptPay webhooks, plus operational printing support.</p>
                     </article>
                     <article class="experience-card">
                         <div class="experience-header">
                             <h3>Software Developer</h3>
                             <p class="experience-meta">Upwork · August 2025 - Present</p>
                         </div>
-                        <p class="experience-summary">Designed and developed a full-stack e-commerce platform for a restaurant business, delivering a complex online ordering system tailored to food service operations. Implemented secure checkout with multiple payment gateways and automated tax calculations. Built an operations dashboard to manage orders, payments, refunds, and performance metrics, enabling staff to monitor results with detailed reporting.</p>
-                        <p class="experience-summary">Integrated live chat to improve engagement and streamline service. Optimized backend workflows for order tracking, delivery updates, and audit logs, ensuring reliability and transparency. Delivered a scalable solution with modern UI/UX, responsive layouts, and bilingual support. Applied data analytics to generate insights on sales trends, customer behavior, and efficiency.</p>
+                        <p class="experience-summary">Designed and developed a full-stack restaurant e-commerce platform with secure checkout, multi-gateway payment support, and automated tax calculation. Built an operations dashboard for orders, payments, refunds, and performance metrics, integrated live chat, and improved backend workflows for tracking, delivery updates, and audit logging. Delivered a scalable bilingual experience with responsive UI and analytics for sales and customer behavior.</p>
                         <p class="experience-highlight"><strong>Key Achievement:</strong> Launched a complex restaurant e-commerce system that boosted online sales, reduced workload, and improved customer satisfaction.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-    <section id="portfolio" class="portfolio-section reveal">
+        <section id="portfolio" class="portfolio-section reveal">
             <div class="container">
                 <h2>Portfolio</h2>
+                <p class="section-lead">Selected projects with real business impact across data analytics and full stack development.</p>
+                <div class="portfolio-filters" role="group" aria-label="Filter portfolio projects">
+                    <button class="filter-btn active" data-filter="all" type="button">All</button>
+                    <button class="filter-btn" data-filter="fullstack" type="button">Full Stack</button>
+                    <button class="filter-btn" data-filter="data" type="button">Data & AI</button>
+                </div>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-category="data">
                         <a href="https://github.com/Pandu2021/Salifort-Motors-project-lab-" target="_blank" rel="noopener noreferrer">
                             <img src="assets/img/project-1-thumbnail.png" alt="Thumbnail of the Salifort Motors project." loading="lazy" decoding="async" width="600" height="338">
                             <div class="portfolio-info">
                                 <h3>Salifort-Motors-project-lab</h3>
                                 <p>The models and the feature importances extracted from the models confirm that employees at the company are overworked.</p>
+                                <div class="project-tags"><span>ML</span><span>Analytics</span><span>Python</span></div>
                                 <span class="cta-button secondary">View Project</span>
                             </div>
                         </a>
                     </div>
-                    <div class="portfolio-item">
+                    <div class="portfolio-item" data-category="fullstack">
                         <a href="https://github.com/Pandu2021/Portofolio-website" target="_blank" rel="noopener noreferrer">
                             <img src="assets/img/Portofolio.png" alt="Screenshot of the Portofolio website." loading="lazy" decoding="async" width="600" height="338">
                             <div class="portfolio-info">
                                 <h3>Portofolio Website</h3>
                                 <p>A personal portfolio site showcasing projects, certifications, and contact details with responsive design and dark mode.</p>
+                                <div class="project-tags"><span>Frontend</span><span>Responsive</span><span>UI/UX</span></div>
                                 <span class="cta-button secondary">View Project</span>
                             </div>
                         </a>
                     </div>
+                    <div class="portfolio-item" data-category="fullstack data">
+                        <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80" alt="A high-definition restaurant scene representing a modern dining brand page." loading="lazy" decoding="async" width="1600" height="900" referrerpolicy="no-referrer">
+                            <div class="portfolio-info">
+                                <h3>Restaurant E-commerce Ecosystem</h3>
+                                <p>Full-stack restaurant ordering platform built with NestJS and React, featuring secure checkout, payment integration, real-time order tracking, operations dashboard, and business analytics.</p>
+                                <div class="project-tags"><span>NestJS</span><span>React</span><span>Dashboard</span></div>
+                            </div>
+                        </a>
                     </div>
+                </div>
+                <p id="portfolio-empty" class="portfolio-empty" hidden>No project found for this filter yet.</p>
             </div>
         </section>
 
@@ -292,23 +374,35 @@
         </div>
         </section>
 
-    <section id="contact" class="contact-section reveal">
+        <section id="contact" class="contact-section reveal">
             <div class="container">
                 <h2>Contact Me</h2>
-                <form id="contact-form" class="contact-form" novalidate>
-                    <label for="name" class="sr-only">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    <label for="email" class="sr-only">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                    <label for="message" class="sr-only">Your Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="cta-button primary">Send Message</button>
-                    <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
-                </form>
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-2x"></i></a>
-                    <a href="https://www.kaggle.com/panduwicaksono2025" target="_blank" rel="noopener noreferrer" aria-label="Kaggle"><i class="fa-brands fa-kaggle fa-2x"></i></a>
-                    <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork fa-2x"></i></a>
+                <p class="section-lead">Have a project idea, system challenge, or collaboration opportunity? Let us talk.</p>
+                <div class="contact-layout">
+                    <div class="contact-card">
+                        <h3>Let us build something impactful.</h3>
+                        <p>I am open to freelance projects and collaborations in product engineering, data-driven systems, and secure digital transformation.</p>
+                        <div class="contact-points">
+                            <p><i class="fa-solid fa-location-dot"></i> Indonesia</p>
+                            <p><i class="fa-solid fa-briefcase"></i> Open for remote work</p>
+                            <p><i class="fa-solid fa-clock"></i> Fast response for project inquiries</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-2x"></i></a>
+                            <a href="https://www.kaggle.com/panduwicaksono2025" target="_blank" rel="noopener noreferrer" aria-label="Kaggle"><i class="fa-brands fa-kaggle fa-2x"></i></a>
+                            <a href="https://www.upwork.com/freelancers/~01425a1034f64aff57?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork"><i class="fa-brands fa-upwork fa-2x"></i></a>
+                        </div>
+                    </div>
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <label for="name" class="sr-only">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        <label for="email" class="sr-only">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        <label for="message" class="sr-only">Your Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me about your project" required></textarea>
+                        <button type="submit" class="cta-button primary">Send Message</button>
+                        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+                    </form>
                 </div>
             </div>
         </section>
