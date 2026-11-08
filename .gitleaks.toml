@@ -1,0 +1,44 @@
+# =============================================================================
+# .gitleaks.toml — secret & privacy scanning rules.
+#
+# Used by:
+#   - .githooks/pre-commit          (local, before every commit)
+#   - .github/workflows/secret-scan.yml (CI, on every push / pull request)
+#
+# Extends the built-in gitleaks ruleset (API keys, tokens, private keys, ...)
+# with project-specific PRIVACY rules for personal data.
+# =============================================================================
+title = "Portofolio-website gitleaks config"
+
+[extend]
+useDefault = true
+
+# --- Privacy: files that look like private personal documents ----------------
+[[rules]]
+id = "private-document-filename"
+description = "File name suggests a private personal document (transcript, ID card, raw data, QR contact)"
+path = '''(?i)(transkrip|transcript|ktp|passport|paspor|data[ _-]?mentah|qr[ _-]?code)'''
+
+# --- Privacy: Indonesian mobile phone numbers ----------------------------------
+[[rules]]
+id = "indonesian-phone-number"
+description = "Indonesian mobile phone number (+62 / 62 / 08...)"
+regex = '''(?:\+62|\b62|\b0)8[1-9][0-9][\s.-]?[0-9]{3,4}[\s.-]?[0-9]{3,5}\b'''
+keywords = ["+62", "62", "08"]
+
+# --- Privacy: WhatsApp / LINE direct contact links ------------------------------
+[[rules]]
+id = "direct-messaging-link"
+description = "Direct personal messaging link (WhatsApp / LINE)"
+regex = '''(?i)\b(?:wa\.me/[0-9]+|api\.whatsapp\.com/send|line\.me/(?:ti/p|R/ti/p)/[\w~@-]+)'''
+keywords = ["wa.me", "whatsapp", "line.me"]
+
+# --- Allowlist: generated / vendored output is never scanned -------------------
+[allowlist]
+description = "Ignore build output, lockfiles and binary assets"
+paths = [
+  '''(^|/)node_modules/''',
+  '''(^|/)(dist|out|_site|\.next|\.angular)/''',
+  '''pnpm-lock\.yaml$''',
+  '''\.(png|jpe?g|webp|avif|ico|woff2?|pdf)$''',
+]

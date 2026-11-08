@@ -1,0 +1,60 @@
+#!/usr/bin/env sh
+# =============================================================================
+# .githooks/pre-commit — blocks commits that contain secrets or private data.
+#
+# Enable once per clone:   git config core.hooksPath .githooks
+# (Phase 1 automates this through the root package.json "prepare" script.)
+#
+# Layer 1: gitleaks (if installed) — full secret + privacy scan of staged changes.
+#          Install on Windows:  winget install --id Gitleaks.Gitleaks -e
+# Layer 2: built-in fallback — always runs, needs no extra tools.
+#          Blocks private-looking file names and obvious secret patterns.
+#
+# Emergency bypass (NOT recommended): git commit --no-verify
+# =============================================================================
+set -eu
+
+fail=0
+red() { printf '\033[31m%s\033[0m\n' "$1"; }
+yellow() { printf '\033[33m%s\033[0m\n' "$1"; }
+
+# ---- Layer 1: gitleaks ---------------------------------------------------------
+if command -v gitleaks >/dev/null 2>&1; then
+  if ! gitleaks git --pre-commit --staged --redact --no-banner --config .gitleaks.toml; then
+    red "✖ gitleaks found a potential secret or private data in staged changes."
+    fail=1
+  fi
+else
+  yellow "⚠ gitleaks is not installed — running the built-in fallback scan only."
+  yellow "  Install it: winget install --id Gitleaks.Gitleaks -e"
+fi
+
+# ---- Layer 2: built-in fallback -------------------------------------------------
+# 2a. Forbidden file names (private documents, env files, keys).
+staged_files=$(git diff --cached --name-only --diff-filter=ACMR)
+bad_names=$(printf '%s\n' "$staged_files" | grep -iE \
+  '(transkrip|transcript|ktp|passport|data[ _-]?mentah|qr[ _-]?code|(^|/)\.env($|\.)|\.(pem|key|p12|pfx|jks|keystore)$|id_rsa|id_ed25519)' \
+  | grep -vE '(^|/)\.env\.example$' || true)
+if [ -n "$bad_names" ]; then
+  red "✖ Private or sensitive file(s) staged:"
+  printf '   %s\n' $bad_names
+  fail=1
+fi
+
+# 2b. Obvious secret patterns in added lines (text files only).
+secret_hits=$(git diff --cached -U0 --no-color --diff-filter=ACMR -- . \
+  ':(exclude)pnpm-lock.yaml' ':(exclude).gitleaks.toml' ':(exclude).githooks/*' \
+  | grep -E '^\+' \
+  | grep -nE '(-----BEGIN [A-Z ]*PRIVATE KEY-----|AKIA[0-9A-Z]{16}|ghp_[A-Za-z0-9]{36}|github_pat_[A-Za-z0-9_]{50,}|xox[baprs]-[A-Za-z0-9-]{10,}|sk_live_[A-Za-z0-9]{16,}|AIza[0-9A-Za-z_-]{35}|wa\.me/[0-9]+|(\+628|(^|[^0-9])628|(^|[^0-9])08)[1-9][0-9]{7,10}([^0-9]|$))' \
+  || true)
+if [ -n "$secret_hits" ]; then
+  red "✖ Possible secret / private contact found in staged lines (values hidden)."
+  fail=1
+fi
+
+if [ "$fail" -ne 0 ]; then
+  red "Commit blocked. Remove the data above, then commit again."
+  exit 1
+fi
+
+printf '\033[32m%s\033[0m\n' "✔ pre-commit: no secrets or private data detected."

@@ -1,0 +1,96 @@
+# =============================================================================
+# .gitignore — Portofolio-website (pnpm monorepo, deployed to GitHub Pages)
+#
+# Security note: this file is a SAFETY NET, not the primary control.
+# Private documents must live OUTSIDE this folder. Also note that .gitignore
+# does not untrack files that were already committed (use `git rm --cached`).
+# =============================================================================
+
+# ----- 1. PRIVATE & SENSITIVE DATA — never commit -------------------------------
+# Raw personal documents (transcripts, IDs, raw notes)
+**/Data mentah/
+**/data-mentah/
+**/raw-data/
+**/private/
+**/personal/
+**/*[Tt]ranskrip*
+**/*TRANSKRIP*
+**/*[Tt]ranscript*
+**/*KTP*
+**/*[Pp]assport*
+# (No "*NIM*" pattern on purpose: Git on Windows matches case-insensitively,
+#  so it would also hide files such as "animation.css".)
+# Contact QR codes / phone screenshots
+**/*qrcode*
+**/*qr-code*
+# Private (non-public) CV/resume variants — only *_Public.pdf may be published
+**/CV_*.pdf
+**/Resume_*.pdf
+!**/CV_Public.pdf
+!**/Resume_Public.pdf
+
+# ----- 2. SECRETS & CREDENTIALS ----------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa*
+id_ed25519*
+secrets/
+credentials*.json
+service-account*.json
+.npmrc.local
+
+# ----- 3. DEPENDENCIES ------------------------------------------------------------
+node_modules/
+.pnpm-store/
+.yarn/
+bower_components/
+
+# ----- 4. BUILD & CACHE OUTPUT ---------------------------------------------------
+dist/
+out/
+build/
+_site/
+.next/
+.angular/
+.turbo/
+.vite/
+.cache/
+.eslintcache
+*.tsbuildinfo
+next-env.d.ts
+
+# ----- 5. TEST & QA REPORTS ------------------------------------------------------
+coverage/
+test-results/
+playwright-report/
+.lighthouseci/
+lighthouse-*.html
+lighthouse-*.json
+
+# ----- 6. LOGS -------------------------------------------------------------------
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ----- 7. OS / EDITOR / LOCAL TOOLS -------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+~$*
+*.tmp
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.claude/settings.local.json
