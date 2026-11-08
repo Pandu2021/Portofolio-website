@@ -1,0 +1,8 @@
+/**
+ * @file globals.css
+ * Global styles for the portfolio: shared tokens, self-hosted fonts, base styles.
+ * Imported once by each language root layout and by global-not-found.tsx.
+ */
+@import '@portfolio/design-tokens/tokens.css';
+@import '@portfolio/design-tokens/fonts.css';
+@import '@portfolio/design-tokens/base.css';

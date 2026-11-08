@@ -1,0 +1,36 @@
+{
+  "name": "portofolio-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pandu Wicaksono's portfolio — one pnpm monorepo, one GitHub Pages site, one complete app per front-end framework.",
+  "author": "Pandu Wicaksono",
+  "license": "SEE LICENSE IN README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Pandu2021/Portofolio-website.git"
+  },
+  "homepage": "https://pandu2021.github.io/Portofolio-website/",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=12"
+  },
+  "scripts": {
+    "prepare": "node scripts/setup-git-hooks.mjs",
+    "dev": "pnpm --filter @portfolio/web dev",
+    "dev:react": "pnpm --filter @portfolio/react-storefront dev",
+    "dev:angular": "pnpm --filter @portfolio/angular-dashboard start",
+    "build": "pnpm --recursive --filter \"./apps/*\" build",
+    "lint": "pnpm --recursive --parallel lint",
+    "typecheck": "pnpm --recursive --parallel typecheck",
+    "test": "pnpm --recursive test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "secrets:scan": "gitleaks dir . --config .gitleaks.toml --redact"
+  },
+  "devDependencies": {
+    "@portfolio/config": "workspace:*",
+    "prettier": "catalog:"
+  }
+}

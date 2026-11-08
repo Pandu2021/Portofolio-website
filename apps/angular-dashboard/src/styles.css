@@ -1,0 +1,7 @@
+/**
+ * @file styles.css
+ * Global styles for the Angular dashboard: shared design tokens, fonts and base.
+ */
+@import '@portfolio/design-tokens/tokens.css';
+@import '@portfolio/design-tokens/fonts.css';
+@import '@portfolio/design-tokens/base.css';

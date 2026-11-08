@@ -1,0 +1,24 @@
+/* Shared TypeScript settings for the Angular app (strict, extends the monorepo base). */
+/* Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options */
+{
+  "extends": "@portfolio/config/tsconfig.base.json",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "noEmit": false,
+    "verbatimModuleSyntax": false,
+    "noPropertyAccessFromIndexSignature": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true,
+    "strictStandalone": true
+  },
+  "files": [],
+  "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.spec.json" }]
+}

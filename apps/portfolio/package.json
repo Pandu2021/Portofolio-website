@@ -1,0 +1,31 @@
+{
+  "name": "@portfolio/web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Main portfolio site — Next.js static export, bilingual (EN at /, ID at /id/).",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@portfolio/content": "workspace:*",
+    "@portfolio/design-tokens": "workspace:*",
+    "next": "16.4.5",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@portfolio/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-next": "16.4.5",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

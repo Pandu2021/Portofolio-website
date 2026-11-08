@@ -1,0 +1,23 @@
+{
+  "name": "@portfolio/content",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Bilingual (EN/ID) website content, certifications and the Tech Lab showcase registry.",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@portfolio/config": "workspace:*",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,8 @@
+/* TypeScript settings for unit tests (Vitest via @angular/build:unit-test). */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["vitest/globals"]
+  },
+  "include": ["src/**/*.d.ts", "src/**/*.spec.ts"]
+}

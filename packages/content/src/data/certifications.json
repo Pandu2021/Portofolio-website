@@ -1,0 +1,90 @@
+[
+  {
+    "id": "google-data-analytics",
+    "name": "Google Data Analytics",
+    "issuer": "Google",
+    "date": "2026-11-04",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/5NTXDWDTS3GC",
+    "image": "certificates/google-data-analytics.jpg"
+  },
+  {
+    "id": "ibm-skillup-ios-apps-swift",
+    "name": "Developing iOS Apps with Swift",
+    "issuer": "IBM & SkillUp",
+    "date": "2026-08-29",
+    "verifyUrl": "https://coursera.org/verify/specialization/42Y70WC1MYG1",
+    "image": "certificates/ibm-skillup-ios-apps-swift.jpg"
+  },
+  {
+    "id": "microsoft-full-stack-developer",
+    "name": "Microsoft Full-Stack Developer",
+    "issuer": "Microsoft",
+    "date": "2026-08-19",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/LETMGCJEDKZ5",
+    "image": "certificates/microsoft-full-stack-developer.jpg"
+  },
+  {
+    "id": "google-advanced-data-analytics",
+    "name": "Google Advanced Data Analytics",
+    "issuer": "Google",
+    "date": "2026-06-01",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/HQXEI1E5QVXK",
+    "image": "certificates/google-advanced-data-analytics.jpg"
+  },
+  {
+    "id": "amazon-junior-software-developer",
+    "name": "Amazon Junior Software Developer",
+    "issuer": "Amazon",
+    "date": "2025-08-01",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/6JD47YHV3NUB",
+    "image": "certificates/amazon-junior-software-developer.jpg"
+  },
+  {
+    "id": "ibm-full-stack-software-developer",
+    "name": "IBM Full Stack Software Developer",
+    "issuer": "IBM",
+    "date": "2025-07-24",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/10G55LPP9IPQ",
+    "image": "certificates/ibm-full-stack-software-developer.jpg"
+  },
+  {
+    "id": "google-cybersecurity",
+    "name": "Google Cybersecurity",
+    "issuer": "Google",
+    "date": "2025-06-26",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/J1IVP9N9DTY8",
+    "image": "certificates/google-cybersecurity.jpg"
+  },
+  {
+    "id": "google-ux-design",
+    "name": "Google UX Design",
+    "issuer": "Google",
+    "date": "2025-06-26",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/OZCGCY40KSAS",
+    "image": "certificates/google-ux-design.jpg"
+  },
+  {
+    "id": "google-digital-marketing-ecommerce",
+    "name": "Google Digital Marketing & E-commerce",
+    "issuer": "Google",
+    "date": "2025-06-26",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/LZW4EHP26GUL",
+    "image": "certificates/google-digital-marketing-ecommerce.jpg"
+  },
+  {
+    "id": "google-business-intelligence",
+    "name": "Google Business Intelligence",
+    "issuer": "Google",
+    "date": "2025-06-25",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/A6HI34IB1S4U",
+    "image": "certificates/google-business-intelligence.jpg"
+  },
+  {
+    "id": "capital-market-school-2020",
+    "name": "Capital Market School 2020 (Participant)",
+    "issuer": "Investor Club UKSW · IDX, KSEI, KPEI",
+    "date": "2020-07-21",
+    "verifyUrl": null,
+    "image": "certificates/capital-market-school-2020.jpg"
+  }
+]

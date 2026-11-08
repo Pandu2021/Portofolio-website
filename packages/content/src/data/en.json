@@ -1,0 +1,233 @@
+{
+  "locale": "en",
+  "meta": {
+    "title": "Pandu Wicaksono — Full-Stack Developer (React, Angular, TypeScript)",
+    "description": "Full-stack developer with a front-end focus: React, Next.js, Angular and TypeScript. Sole developer of a production e-commerce ordering platform. Certified by Google, IBM, Microsoft and Amazon.",
+    "keywords": [
+      "Full-Stack Developer",
+      "Front-End Developer",
+      "React",
+      "Next.js",
+      "Angular",
+      "TypeScript",
+      "JavaScript",
+      "Vite",
+      "Node.js",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "REST API",
+      "Server-Sent Events",
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "Web Security",
+      "E-commerce",
+      "Payment Integration"
+    ]
+  },
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "skills": "Skills",
+    "experience": "Experience",
+    "certifications": "Certifications",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "eyebrow": "Open to full-stack & front-end roles",
+    "name": "Pandu Wicaksono",
+    "role": "Full-Stack Developer · E-commerce & Business Systems",
+    "tagline": "I build fast, secure web apps with React, Angular and TypeScript — backed by a finance background that keeps business goals in focus.",
+    "availability": "Indonesia · Remote-ready",
+    "ctaPrimary": "View projects",
+    "ctaSecondary": "Download resume"
+  },
+  "about": {
+    "title": "About",
+    "body": [
+      "Full-stack developer with a Bachelor of Economics in Financial Management. I designed and built, as the sole developer, a production ordering and operations platform for an international food and beverage client.",
+      "I care about clean architecture, accessibility and security, and I am certified by Google, IBM, Microsoft and Amazon in full-stack development and data analytics."
+    ]
+  },
+  "highlights": [
+    { "value": "1", "label": "production e-commerce platform built as sole developer" },
+    { "value": "45+", "label": "pages across storefront, partner portal and admin console" },
+    { "value": "~95", "label": "automated test files with CI/CD and security scanning" },
+    { "value": "10", "label": "professional certificates from Google, IBM, Microsoft and Amazon" }
+  ],
+  "featuredProject": {
+    "title": "Featured project",
+    "name": "Restaurant Ordering & Operations Platform",
+    "context": "Confidential client · Food & beverage industry",
+    "role": "Freelance Full-Stack Developer (sole developer)",
+    "period": "2025 – Present",
+    "summary": "End-to-end ordering platform: customer storefront, B2B partner portal, 20-page admin console, REST API and Android/Windows print agents.",
+    "bullets": [
+      "Integrated QR-code and card payments through a third-party gateway with webhooks, automated reconciliation and refunds.",
+      "Built a configurable pricing engine for tax, fees, promotions and distance-based delivery.",
+      "Delivered real-time order tracking with Server-Sent Events, live chat and a bilingual React interface.",
+      "Hardened security with JWT rotation, OAuth 2.0, CSRF protection, rate limiting and role-based access; shipped CI/CD with automated tests and security scans."
+    ],
+    "stack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "TanStack Query",
+      "Zustand",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "SSE",
+      "Kotlin",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "confidentialityNote": "Client name and screenshots are not shown to respect a confidentiality agreement."
+  },
+  "techLab": {
+    "title": "Tech Lab",
+    "intro": "One portfolio, one link — each framework owns one complete app."
+  },
+  "skills": {
+    "title": "Skills",
+    "groups": [
+      {
+        "name": "Front-End",
+        "items": [
+          "React",
+          "Next.js",
+          "Angular",
+          "TypeScript",
+          "JavaScript",
+          "Vite",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "TanStack Query",
+          "Zustand",
+          "RxJS",
+          "i18n",
+          "Accessibility (WCAG)"
+        ]
+      },
+      {
+        "name": "Back-End",
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Express",
+          "Prisma",
+          "PostgreSQL",
+          "SQL",
+          "REST APIs",
+          "Server-Sent Events"
+        ]
+      },
+      {
+        "name": "Security & Payments",
+        "items": [
+          "Authentication & authorization",
+          "JWT",
+          "OAuth 2.0",
+          "Secure payment integration",
+          "Secure coding",
+          "Automated security scanning"
+        ]
+      },
+      {
+        "name": "DevOps & Quality",
+        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "Git"]
+      },
+      {
+        "name": "Mobile & Other",
+        "items": [
+          "Kotlin (Android)",
+          "Swift",
+          "SwiftUI",
+          "React Native",
+          "Java",
+          "C#",
+          "ASP.NET Core"
+        ]
+      },
+      {
+        "name": "Data & Business",
+        "items": [
+          "Python",
+          "Tableau",
+          "BigQuery",
+          "Data visualization",
+          "Financial management",
+          "Project management"
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "title": "Experience",
+    "items": [
+      {
+        "role": "Freelance Full-Stack Developer (Independent)",
+        "organization": "Confidential Client, Food & Beverage Industry",
+        "location": "Remote",
+        "period": "2025 – Present",
+        "bullets": [
+          "Designed and built, as the sole developer, a production ordering and operations platform: customer storefront, B2B partner portal, admin console and REST API (React, TypeScript, NestJS, Prisma, PostgreSQL).",
+          "Integrated online payments through a third-party gateway with automated reconciliation, and built a configurable pricing engine for tax, fees, promotions and delivery.",
+          "Launched a B2B ordering channel with role-based access and separate retail and wholesale pricing, replacing manual ordering.",
+          "Delivered real-time order tracking, live chat, back-office automation and automatic receipt printing through Android and Windows print agents.",
+          "Applied secure development practices and shipped CI/CD with Docker, GitHub Actions and automated tests."
+        ]
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Certifications",
+    "intro": "Every certificate links to its official verification page."
+  },
+  "education": {
+    "title": "Education",
+    "items": [
+      {
+        "degree": "Bachelor of Economics (S.E.), Management – Financial Management",
+        "school": "Universitas Kristen Satya Wacana",
+        "location": "Salatiga, Indonesia",
+        "period": "2015 – 2021"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "intro": "Let's build something useful together.",
+    "body": "The fastest way to reach me is a message on LinkedIn.",
+    "links": [
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" },
+      { "label": "GitHub", "href": "https://github.com/Pandu2021" },
+      { "label": "Kaggle", "href": "https://www.kaggle.com/panduwicaksono2025" }
+    ],
+    "resumeLabel": "Download resume (1 page)",
+    "cvLabel": "Download CV (2 pages)"
+  },
+  "ui": {
+    "skipToContent": "Skip to content",
+    "themeToggle": "Change color theme",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "themeSystem": "System",
+    "languageSwitch": "Language",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "verify": "Verify",
+    "viewCertificate": "View certificate",
+    "close": "Close",
+    "liveDemo": "Live demo",
+    "sourceCode": "Source code",
+    "statusLive": "Live",
+    "statusInProgress": "In progress",
+    "statusPlanned": "Planned",
+    "backToTop": "Back to top",
+    "footerBuiltWith": "Built with Next.js, React and Angular in one pnpm monorepo."
+  }
+}

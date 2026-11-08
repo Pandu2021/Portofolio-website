@@ -1,0 +1,236 @@
+{
+  "locale": "id",
+  "meta": {
+    "title": "Pandu Wicaksono — Full-Stack Developer (React, Angular, TypeScript)",
+    "description": "Full-stack developer dengan fokus front-end: React, Next.js, Angular dan TypeScript. Satu-satunya developer sebuah platform pemesanan e-commerce produksi. Bersertifikat Google, IBM, Microsoft dan Amazon.",
+    "keywords": [
+      "Full-Stack Developer",
+      "Front-End Developer",
+      "React",
+      "Next.js",
+      "Angular",
+      "TypeScript",
+      "JavaScript",
+      "Vite",
+      "Node.js",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "REST API",
+      "Server-Sent Events",
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "Keamanan Web",
+      "E-commerce",
+      "Integrasi Pembayaran"
+    ]
+  },
+  "nav": {
+    "about": "Tentang",
+    "projects": "Proyek",
+    "skills": "Keahlian",
+    "experience": "Pengalaman",
+    "certifications": "Sertifikasi",
+    "contact": "Kontak",
+    "resume": "Resume"
+  },
+  "hero": {
+    "eyebrow": "Terbuka untuk posisi full-stack & front-end",
+    "name": "Pandu Wicaksono",
+    "role": "Full-Stack Developer · E-commerce & Sistem Bisnis",
+    "tagline": "Saya membangun aplikasi web yang cepat dan aman dengan React, Angular dan TypeScript — didukung latar belakang keuangan yang menjaga fokus pada tujuan bisnis.",
+    "availability": "Indonesia · Siap kerja remote",
+    "ctaPrimary": "Lihat proyek",
+    "ctaSecondary": "Unduh resume"
+  },
+  "about": {
+    "title": "Tentang",
+    "body": [
+      "Full-stack developer bergelar Sarjana Ekonomi bidang Manajemen Keuangan. Saya merancang dan membangun, sebagai satu-satunya developer, platform pemesanan dan operasional untuk klien internasional di industri makanan dan minuman.",
+      "Saya peduli pada arsitektur yang rapi, aksesibilitas dan keamanan, serta bersertifikat Google, IBM, Microsoft dan Amazon di bidang full-stack development dan analisis data."
+    ]
+  },
+  "highlights": [
+    {
+      "value": "1",
+      "label": "platform e-commerce produksi, dibangun sebagai satu-satunya developer"
+    },
+    { "value": "45+", "label": "halaman: toko online, portal mitra B2B dan konsol admin" },
+    { "value": "~95", "label": "file tes otomatis dengan CI/CD dan pemindaian keamanan" },
+    { "value": "10", "label": "sertifikat profesional dari Google, IBM, Microsoft dan Amazon" }
+  ],
+  "featuredProject": {
+    "title": "Proyek unggulan",
+    "name": "Platform Pemesanan & Operasional Restoran",
+    "context": "Klien rahasia · Industri makanan & minuman",
+    "role": "Freelance Full-Stack Developer (satu-satunya developer)",
+    "period": "2025 – Sekarang",
+    "summary": "Platform pemesanan end-to-end: toko online pelanggan, portal mitra B2B, konsol admin 20 halaman, REST API serta agen printer Android/Windows.",
+    "bullets": [
+      "Mengintegrasikan pembayaran QR dan kartu melalui payment gateway pihak ketiga dengan webhook, rekonsiliasi otomatis dan refund.",
+      "Membangun mesin harga yang dapat dikonfigurasi untuk pajak, biaya, promo dan ongkir berbasis jarak.",
+      "Menghadirkan pelacakan pesanan real-time dengan Server-Sent Events, live chat dan antarmuka React dua bahasa.",
+      "Memperkuat keamanan dengan rotasi JWT, OAuth 2.0, proteksi CSRF, rate limiting dan akses berbasis peran; CI/CD dengan tes otomatis dan pemindaian keamanan."
+    ],
+    "stack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "TanStack Query",
+      "Zustand",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
+      "SSE",
+      "Kotlin",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "confidentialityNote": "Nama klien dan tangkapan layar tidak ditampilkan demi menjaga perjanjian kerahasiaan."
+  },
+  "techLab": {
+    "title": "Tech Lab",
+    "intro": "Satu portofolio, satu link — setiap framework memegang satu aplikasi utuh."
+  },
+  "skills": {
+    "title": "Keahlian",
+    "groups": [
+      {
+        "name": "Front-End",
+        "items": [
+          "React",
+          "Next.js",
+          "Angular",
+          "TypeScript",
+          "JavaScript",
+          "Vite",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "TanStack Query",
+          "Zustand",
+          "RxJS",
+          "i18n",
+          "Aksesibilitas (WCAG)"
+        ]
+      },
+      {
+        "name": "Back-End",
+        "items": [
+          "Node.js",
+          "NestJS",
+          "Express",
+          "Prisma",
+          "PostgreSQL",
+          "SQL",
+          "REST APIs",
+          "Server-Sent Events"
+        ]
+      },
+      {
+        "name": "Keamanan & Pembayaran",
+        "items": [
+          "Autentikasi & otorisasi",
+          "JWT",
+          "OAuth 2.0",
+          "Integrasi pembayaran yang aman",
+          "Secure coding",
+          "Pemindaian keamanan otomatis"
+        ]
+      },
+      {
+        "name": "DevOps & Kualitas",
+        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "Git"]
+      },
+      {
+        "name": "Mobile & Lainnya",
+        "items": [
+          "Kotlin (Android)",
+          "Swift",
+          "SwiftUI",
+          "React Native",
+          "Java",
+          "C#",
+          "ASP.NET Core"
+        ]
+      },
+      {
+        "name": "Data & Bisnis",
+        "items": [
+          "Python",
+          "Tableau",
+          "BigQuery",
+          "Visualisasi data",
+          "Manajemen keuangan",
+          "Manajemen proyek"
+        ]
+      }
+    ]
+  },
+  "experience": {
+    "title": "Pengalaman",
+    "items": [
+      {
+        "role": "Freelance Full-Stack Developer (Independen)",
+        "organization": "Klien Rahasia, Industri Makanan & Minuman",
+        "location": "Remote",
+        "period": "2025 – Sekarang",
+        "bullets": [
+          "Merancang dan membangun, sebagai satu-satunya developer, platform pemesanan dan operasional produksi: toko online pelanggan, portal mitra B2B, konsol admin dan REST API (React, TypeScript, NestJS, Prisma, PostgreSQL).",
+          "Mengintegrasikan pembayaran online melalui payment gateway pihak ketiga dengan rekonsiliasi otomatis, serta membangun mesin harga untuk pajak, biaya, promo dan pengiriman.",
+          "Meluncurkan kanal pemesanan B2B dengan akses berbasis peran serta harga eceran dan grosir terpisah, menggantikan pemesanan manual.",
+          "Menghadirkan pelacakan pesanan real-time, live chat, otomasi back-office dan cetak struk otomatis melalui agen printer Android dan Windows.",
+          "Menerapkan praktik pengembangan yang aman serta CI/CD dengan Docker, GitHub Actions dan tes otomatis."
+        ]
+      }
+    ]
+  },
+  "certifications": {
+    "title": "Sertifikasi",
+    "intro": "Setiap sertifikat terhubung ke halaman verifikasi resminya."
+  },
+  "education": {
+    "title": "Pendidikan",
+    "items": [
+      {
+        "degree": "Sarjana Ekonomi (S.E.), Manajemen – Manajemen Keuangan",
+        "school": "Universitas Kristen Satya Wacana",
+        "location": "Salatiga, Indonesia",
+        "period": "2015 – 2021"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontak",
+    "intro": "Mari membangun sesuatu yang bermanfaat bersama.",
+    "body": "Cara tercepat menghubungi saya adalah melalui pesan LinkedIn.",
+    "links": [
+      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" },
+      { "label": "GitHub", "href": "https://github.com/Pandu2021" },
+      { "label": "Kaggle", "href": "https://www.kaggle.com/panduwicaksono2025" }
+    ],
+    "resumeLabel": "Unduh resume (1 halaman)",
+    "cvLabel": "Unduh CV (2 halaman)"
+  },
+  "ui": {
+    "skipToContent": "Langsung ke konten",
+    "themeToggle": "Ganti tema warna",
+    "themeLight": "Terang",
+    "themeDark": "Gelap",
+    "themeSystem": "Sistem",
+    "languageSwitch": "Bahasa",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu",
+    "verify": "Verifikasi",
+    "viewCertificate": "Lihat sertifikat",
+    "close": "Tutup",
+    "liveDemo": "Demo langsung",
+    "sourceCode": "Kode sumber",
+    "statusLive": "Aktif",
+    "statusInProgress": "Dikerjakan",
+    "statusPlanned": "Direncanakan",
+    "backToTop": "Kembali ke atas",
+    "footerBuiltWith": "Dibangun dengan Next.js, React dan Angular dalam satu monorepo pnpm."
+  }
+}

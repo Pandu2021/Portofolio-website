@@ -1,0 +1,130 @@
+/**
+ * @file tokens.css
+ * Design tokens shared by every app (Next.js, React, Angular, ...).
+ *
+ * Theming
+ * - Each color is declared ONCE with `light-dark(<light>, <dark>)`.
+ * - The browser picks the value from `color-scheme`:
+ *     default            → follows the visitor's OS setting (light dark)
+ *     [data-theme=light] → forced light (set by the theme toggle)
+ *     [data-theme=dark]  → forced dark  (set by the theme toggle)
+ *
+ * Contrast (WCAG 2.2 AA ≥ 4.5:1, computed against the page background):
+ *   light: text 17.0 · muted 7.2 · accent 4.9 · secondary 5.2 · focus 6.4 · white-on-accent 5.2
+ *   dark : text 15.2 · muted 7.3 · accent 8.3 · secondary 10.1 · focus 10.4 · ink-on-accent 8.3
+ */
+
+:root {
+  color-scheme: light dark;
+
+  /* ---- Color: surfaces ------------------------------------------------- */
+  --color-bg: light-dark(#fff8f1, #0b1220); /* warm cream / deep ink */
+  --color-surface: light-dark(#ffffff, #111a2e);
+  --color-surface-2: light-dark(#fdeee2, #16213a); /* alternate sections */
+  --color-border: light-dark(#ecdccd, #24314d);
+  --color-border-strong: light-dark(#cdb8a5, #3a4a6b);
+
+  /* ---- Color: text ------------------------------------------------------ */
+  --color-text: light-dark(#0f172a, #e2e8f0); /* ink navy */
+  --color-text-muted: light-dark(#475569, #94a3b8);
+
+  /* ---- Color: brand ----------------------------------------------------- */
+  --color-accent: light-dark(#c2410c, #fb923c); /* orange — matches the CV */
+  --color-accent-hover: light-dark(#9a3412, #fdba74);
+  --color-on-accent: light-dark(#ffffff, #0b1220);
+  --color-accent-soft: light-dark(#ffedd5, rgb(251 146 60 / 0.14));
+  --color-secondary: light-dark(#0f766e, #2dd4bf); /* teal */
+  --color-secondary-soft: light-dark(#ccfbf1, rgb(45 212 191 / 0.14));
+  --color-focus: light-dark(#1d4ed8, #93c5fd);
+
+  /* ---- Color: framework badges (text-safe: ≥ 4.8:1 in both themes) ------ */
+  --brand-react: light-dark(#0a7090, #61dafb);
+  --brand-angular: light-dark(#dd0031, #ff5c7a);
+  --brand-next: light-dark(#0f172a, #e2e8f0);
+  --brand-vue: light-dark(#257a52, #42b883);
+
+  /* ---- Gradients -------------------------------------------------------- */
+  --gradient-hero:
+    radial-gradient(
+      60% 80% at 10% 10%,
+      light-dark(#ffd9bf, rgb(251 146 60 / 0.18)) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      50% 70% at 90% 20%,
+      light-dark(#d6ecff, rgb(56 189 248 / 0.14)) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      60% 60% at 50% 100%,
+      light-dark(#d9f7ef, rgb(45 212 191 / 0.1)) 0%,
+      transparent 70%
+    );
+
+  /* ---- Typography ------------------------------------------------------- */
+  --font-sans:
+    'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+  --font-mono:
+    'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.2vw, 3rem);
+  --text-4xl: clamp(2.5rem, 1.6rem + 4vw, 4.25rem);
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.6;
+
+  /* ---- Spacing (4px grid) ---------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --container-max: 72rem;
+  --container-gutter: clamp(1rem, 4vw, 2rem);
+
+  /* ---- Shape & elevation ------------------------------------------------ */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px light-dark(rgb(15 23 42 / 0.06), rgb(0 0 0 / 0.4));
+  --shadow-md: 0 8px 24px -8px light-dark(rgb(15 23 42 / 0.14), rgb(0 0 0 / 0.55));
+  --shadow-lg: 0 20px 48px -16px light-dark(rgb(194 65 12 / 0.22), rgb(0 0 0 / 0.65));
+
+  /* ---- Motion ----------------------------------------------------------- */
+  --duration-fast: 150ms;
+  --duration-base: 250ms;
+  --duration-slow: 700ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Forced themes chosen with the theme toggle. */
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+/* Accessibility: visitors who ask for less motion get none. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+  }
+}

@@ -1,0 +1,10 @@
+/**
+ * @file fonts.css
+ * Self-hosted variable fonts (no Google Fonts / CDN requests).
+ *
+ * The bundler of each app copies the .woff2 files from the @fontsource
+ * packages into its own build output, so fonts are served from our origin.
+ * Unicode-range subsets mean browsers only download the characters they need.
+ */
+@import '@fontsource-variable/plus-jakarta-sans/index.css';
+@import '@fontsource-variable/jetbrains-mono/index.css';

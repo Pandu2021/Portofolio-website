@@ -1,0 +1,12 @@
+# Generated output and lockfiles are never formatted.
+node_modules
+dist
+out
+_site
+.next
+.angular
+coverage
+pnpm-lock.yaml
+*.pdf
+*.jpg
+*.png

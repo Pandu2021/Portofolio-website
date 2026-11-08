@@ -39,19 +39,19 @@
 
 ## Certifications (Coursera verify IDs; verify URL = `https://coursera.org/verify/<type>/<id>`)
 
-| Certificate | Issuer | Date | Type | ID |
-|---|---|---|---|---|
-| Google Data Analytics | Google | 2026-11-04 | professional-cert | 5NTXDWDTS3GC |
-| Developing iOS Apps with Swift | IBM & SkillUp | 2026-08-29 | specialization | 42Y70WC1MYG1 |
-| Microsoft Full-Stack Developer | Microsoft | 2026-08-19 | professional-cert | LETMGCJEDKZ5 |
-| Google Advanced Data Analytics | Google | 2026-06-01 | professional-cert | HQXEI1E5QVXK |
-| Amazon Junior Software Developer | Amazon | 2025-08-01 | professional-cert | 6JD47YHV3NUB |
-| IBM Full Stack Software Developer | IBM | 2025-07-24 | professional-cert | 10G55LPP9IPQ |
-| Google Cybersecurity | Google | 2025-06-26 | professional-cert | J1IVP9N9DTY8 |
-| Google UX Design | Google | 2025-06-26 | professional-cert | OZCGCY40KSAS |
-| Google Digital Marketing & E-commerce | Google | 2025-06-26 | professional-cert | LZW4EHP26GUL |
-| Google Business Intelligence | Google | 2025-06-25 | professional-cert | A6HI34IB1S4U |
-| Capital Market School 2020 (participant) | Investor Club UKSW with IDX, KSEI, KPEI | 2020-07-21 | image only | – |
+| Certificate                              | Issuer                                  | Date       | Type              | ID           |
+| ---------------------------------------- | --------------------------------------- | ---------- | ----------------- | ------------ |
+| Google Data Analytics                    | Google                                  | 2026-11-04 | professional-cert | 5NTXDWDTS3GC |
+| Developing iOS Apps with Swift           | IBM & SkillUp                           | 2026-08-29 | specialization    | 42Y70WC1MYG1 |
+| Microsoft Full-Stack Developer           | Microsoft                               | 2026-08-19 | professional-cert | LETMGCJEDKZ5 |
+| Google Advanced Data Analytics           | Google                                  | 2026-06-01 | professional-cert | HQXEI1E5QVXK |
+| Amazon Junior Software Developer         | Amazon                                  | 2025-08-01 | professional-cert | 6JD47YHV3NUB |
+| IBM Full Stack Software Developer        | IBM                                     | 2025-07-24 | professional-cert | 10G55LPP9IPQ |
+| Google Cybersecurity                     | Google                                  | 2025-06-26 | professional-cert | J1IVP9N9DTY8 |
+| Google UX Design                         | Google                                  | 2025-06-26 | professional-cert | OZCGCY40KSAS |
+| Google Digital Marketing & E-commerce    | Google                                  | 2025-06-26 | professional-cert | LZW4EHP26GUL |
+| Google Business Intelligence             | Google                                  | 2025-06-25 | professional-cert | A6HI34IB1S4U |
+| Capital Market School 2020 (participant) | Investor Club UKSW with IDX, KSEI, KPEI | 2020-07-21 | image only        | –            |
 
 Certificate images live in `apps/portfolio/public/certificates/<slug>.jpg`
 (trimmed, max 1600 px wide, progressive JPG q82, metadata stripped; ~130–170 KB each).
@@ -59,7 +59,8 @@ Slugs: google-data-analytics, ibm-skillup-ios-apps-swift, microsoft-full-stack-d
 google-advanced-data-analytics, amazon-junior-software-developer, ibm-full-stack-software-developer,
 google-cybersecurity, google-ux-design, google-digital-marketing-ecommerce,
 google-business-intelligence, capital-market-school-2020.
-Note: the capital-market certificate image shows the student ID next to the name — see open decision.
+The capital-market certificate was rendered from the original PDF with the student ID **redacted**
+(text removed, name re-centred); the original PDF is not stored in this repository.
 
 ## Education
 
