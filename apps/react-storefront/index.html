@@ -2,8 +2,10 @@
 <!--
   index.html — entry document of the React storefront demo.
   All scripts are bundled by Vite and served from our own origin (no CDN).
-  The theme boot script is injected into <head> by vite.config.ts, and a strict
-  Content-Security-Policy is added after the build by `apply-csp`.
+  The theme boot script is injected into the document head by vite.config.ts,
+  and a strict Content-Security-Policy is added after the build by `apply-csp`.
+  NOTE: never write a literal head or body tag in this comment — Vite matches
+  those tags as text and would inject its scripts inside the comment.
 -->
 <html lang="en">
   <head>

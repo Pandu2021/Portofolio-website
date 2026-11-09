@@ -74,7 +74,13 @@ and extend the `brand` union in `packages/content/src/types.ts`.
 Add **one entry** to [`scripts/site-apps.mjs`](../scripts/site-apps.mjs):
 
 ```js
-{ id: 'vue-invoice', from: 'apps/vue-invoice/dist', to: 'vue' },
+{
+  id: 'vue-invoice',
+  from: 'apps/vue-invoice/dist',
+  to: 'vue',
+  // `pnpm dev` serves it at http://localhost:3000/vue/ (dev server base must be '/vue/')
+  dev: { port: 5174, package: '@portfolio/vue-invoice', args: ['dev', '--port', '5174', '--strictPort'] },
+},
 ```
 
 `to` must match the `path` in `showcase.json` (`vue/`). `pnpm assemble` refuses to build the site if a

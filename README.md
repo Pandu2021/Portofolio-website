@@ -38,9 +38,12 @@ Requirements: **Node.js 24** (see `.nvmrc`), **pnpm 12**, optional [gitleaks](ht
 
 ```bash
 pnpm install          # installs everything and enables the pre-commit hook
-pnpm dev              # portfolio  → http://localhost:3000/  (no base path in dev)
-pnpm dev:react        # storefront → http://localhost:5173/
-pnpm dev:angular      # dashboard  → http://localhost:4200/
+pnpm dev              # every app behind one URL (same layout as the live site):
+                      #   http://localhost:3000/          portfolio (EN), /id/ (ID)
+                      #   http://localhost:3000/react/    React storefront
+                      #   http://localhost:3000/angular/  Angular dashboard
+pnpm dev -- --only=react-storefront   # gateway + selected apps only
+pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 ```
 
 | Command             | What it does                              |

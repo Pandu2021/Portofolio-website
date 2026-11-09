@@ -18,7 +18,8 @@
   },
   "scripts": {
     "prepare": "node scripts/setup-git-hooks.mjs",
-    "dev": "pnpm --filter @portfolio/web dev",
+    "dev": "node scripts/dev-gateway.mjs",
+    "dev:portfolio": "pnpm --filter @portfolio/web dev",
     "dev:react": "pnpm --filter @portfolio/react-storefront dev",
     "dev:angular": "pnpm --filter @portfolio/angular-dashboard start",
     "build": "pnpm --recursive --filter \"./apps/*\" build",

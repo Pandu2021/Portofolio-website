@@ -2,8 +2,10 @@
  * @file vite.config.ts
  * Vite + Vitest configuration for the React storefront demo.
  *
- * - `base: './'` emits relative asset URLs, so the same build works at
+ * - Build: `base: './'` emits relative asset URLs, so the same build works at
  *   /Portofolio-website/react/ on GitHub Pages and in local preview.
+ * - Dev: `base: '/react/'`, because `pnpm dev` (scripts/dev-gateway.mjs) serves
+ *   this app at http://localhost:3000/react/ — the same layout as the live site.
  * - Routing uses the URL hash (#/cart), so no server rewrites are needed.
  * - The shared theme boot script is injected at the top of <head>, so a saved
  *   light/dark choice applies before the first paint (no flash). Its SHA-256
@@ -24,9 +26,10 @@ function themeBoot(): Plugin {
   };
 }
 
-export default defineConfig({
-  base: './',
+export default defineConfig(({ command }) => ({
+  base: command === 'serve' ? '/react/' : './',
   plugins: [react(), themeBoot()],
+  server: { strictPort: true },
   build: {
     outDir: 'dist',
     sourcemap: false,
@@ -39,4 +42,4 @@ export default defineConfig({
     include: ['src/**/*.test.{ts,tsx}'],
     setupFiles: ['src/test/setup.ts'],
   },
-});
+}));

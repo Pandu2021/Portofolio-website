@@ -79,11 +79,16 @@ GitHub Actions → actions/deploy-pages → GitHub Pages
 
 ### URLs in development vs. production
 
-| Command                           | URL                                             | Base path                                       |
-| --------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| `pnpm dev`                        | http://localhost:3000/                          | none (fast local work)                          |
-| `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/       | `/Portofolio-website` — identical to production |
-| Live                              | https://pandu2021.github.io/Portofolio-website/ | `/Portofolio-website`                           |
+| Command                           | URL                                               | Base path                                       |
+| --------------------------------- | ------------------------------------------------- | ----------------------------------------------- |
+| `pnpm dev`                        | http://localhost:3000/ (+ `/react/`, `/angular/`) | none (fast local work)                          |
+| `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/         | `/Portofolio-website` — identical to production |
+| Live                              | https://pandu2021.github.io/Portofolio-website/   | `/Portofolio-website`                           |
+
+`pnpm dev` runs `scripts/dev-gateway.mjs`: it starts each app's own dev server on an internal port (from
+`scripts/site-apps.mjs`) and a small reverse proxy on port 3000 that also forwards WebSocket upgrades, so hot
+reload works for every framework. Running only `next dev` would answer `/react/` with a 404, because the demos are
+separate apps.
 
 A GitHub **project site** always lives under `/<repository-name>/`. The domain root
 `https://pandu2021.github.io/` belongs to a separate _user site_ repository (`Pandu2021.github.io`).
