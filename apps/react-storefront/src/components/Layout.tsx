@@ -3,6 +3,7 @@
  * Page frame: skip link, demo notice, header with navigation and controls,
  * main content (router outlet) and footer.
  */
+import type { MouseEvent } from 'react';
 import { Link, NavLink, Outlet } from 'react-router';
 import { useCart } from '../cart/CartContext';
 import { useI18n } from '../i18n/I18nContext';
@@ -19,9 +20,18 @@ export function Layout() {
   // The portfolio lives one level up: /Portofolio-website/ (EN) or /Portofolio-website/id/.
   const portfolioHref = locale === 'id' ? '../id/' : '../';
 
+  /**
+   * Hash routing uses the URL fragment for routes, so a plain `#main` link
+   * would navigate to a "main" route (404). Move focus to <main> instead.
+   */
+  const skipToMain = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    document.getElementById('main')?.focus();
+  };
+
   return (
     <>
-      <a href="#main" className="skip-link">
+      <a href="#main" className="skip-link" onClick={skipToMain}>
         {t.skipToContent}
       </a>
       <p className="demo-banner">{t.demoBanner}</p>

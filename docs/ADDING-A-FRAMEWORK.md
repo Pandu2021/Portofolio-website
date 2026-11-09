@@ -33,6 +33,8 @@ pnpm create vue@latest apps/vue-invoice     # or the framework's official genera
 - `eslint.config.js` → spread `baseConfig` from `@portfolio/config/eslint`, then add the framework preset.
 - Theme: inject `themeBootScript` from `@portfolio/design-tokens/theme` into `<head>` and use the shared
   `setThemePreference` / `subscribeTheme` helpers for the toggle.
+- If the framework's dev server serves workspace packages as prebuilt dependencies (Angular does), map the
+  TypeScript entry with `compilerOptions.paths` so it is compiled as app source.
 - Security: add `@portfolio/security` as a dev dependency and run `apply-csp dist` after the framework build
   (e.g. `"build": "vite build && apply-csp dist"`). Avoid inline `style` attributes and inline event handlers.
 

@@ -139,4 +139,11 @@ describe('language and theme', () => {
     renderApp('/nowhere');
     expect(screen.getByRole('heading', { level: 1, name: 'Page not found' })).toBeTruthy();
   });
+
+  it('skip link focuses <main> without changing the (hash) route', () => {
+    const { router } = renderApp('/cart');
+    fireEvent.click(screen.getByRole('link', { name: 'Skip to content' }));
+    expect(document.activeElement?.id).toBe('main');
+    expect(router.state.location.pathname).toBe('/cart');
+  });
 });

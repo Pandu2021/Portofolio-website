@@ -1,7 +1,13 @@
 /**
  * @file styles.css
- * Global styles for the Angular dashboard: shared design tokens, fonts and base.
+ * Global styles for the Angular dashboard: shared design tokens, fonts and
+ * base, then the dashboard's own styles.
+ *
+ * All component styles live in global CSS on purpose: Angular injects
+ * component `styles` as <style> tags at runtime, which the strict
+ * Content-Security-Policy (style-src 'self') would block.
  */
 @import '@portfolio/design-tokens/tokens.css';
 @import '@portfolio/design-tokens/fonts.css';
 @import '@portfolio/design-tokens/base.css';
+@import './styles/dashboard.css';

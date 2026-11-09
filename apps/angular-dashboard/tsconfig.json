@@ -10,7 +10,13 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    // Compile the shared theme module as app source. Without this, the Angular
+    // dev server treats the workspace package as a prebuilt dependency and
+    // serves its raw TypeScript to the browser ("Unexpected token 'export'").
+    "paths": {
+      "@portfolio/design-tokens/theme": ["../../packages/design-tokens/src/theme.ts"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,20 +1,27 @@
 <!doctype html>
 <!--
-  index.html — entry document of the Angular dashboard demo.
+  index.html - entry document of the Angular dashboard demo.
   The base URL is set by angular.json ("./") so the build works under any path.
-  NOTE: never write literal tags in this comment — build tools match tags as text.
+  The inline theme script must stay identical to themeBootScript in
+  packages/design-tokens/src/theme.ts (a unit test checks this); its SHA-256
+  hash is allowed by the CSP that apply-csp adds after the build.
+  NOTE: never write literal tags in this comment - build tools match tags as text.
 -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Admin dashboard demo — Angular | Pandu Wicaksono</title>
+    <!-- prettier-ignore -->
+    <script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('portfolio-theme');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t)}}catch(e){}})();</script>
+    <title>Ops Dashboard - Angular demo | Pandu Wicaksono</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Angular admin dashboard demo with mock data, by Pandu Wicaksono."
+      content="Angular admin dashboard demo with mock orders, Signals, RxJS, reactive forms and SVG charts — by Pandu Wicaksono."
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#fff8f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   </head>
   <body>

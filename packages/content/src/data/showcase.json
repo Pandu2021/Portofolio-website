@@ -39,16 +39,16 @@
     "brand": "angular",
     "path": "angular/",
     "sourcePath": "apps/angular-dashboard",
-    "status": "in-progress",
+    "status": "live",
     "title": {
       "en": "Admin dashboard demo",
       "id": "Demo dashboard admin"
     },
     "description": {
-      "en": "Order and finance back-office with mock sign-in, reactive forms and charts.",
-      "id": "Back-office pesanan dan keuangan dengan login tiruan, reactive forms dan grafik."
+      "en": "Order back office with mock sign-in, live RxJS order feed, typed reactive forms and accessible SVG charts.",
+      "id": "Back office pesanan dengan login tiruan, feed pesanan RxJS real-time, reactive forms bertipe dan grafik SVG yang aksesibel."
     },
-    "stack": ["Angular", "Signals", "RxJS", "Reactive Forms", "Vitest"]
+    "stack": ["Angular", "Signals", "RxJS", "Reactive Forms", "Zoneless", "Vitest"]
   },
   {
     "id": "vue-invoice",

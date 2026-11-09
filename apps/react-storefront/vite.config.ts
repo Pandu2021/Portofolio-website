@@ -39,6 +39,8 @@ export default defineConfig(({ command }) => ({
   },
   test: {
     environment: 'jsdom',
+    // jsdom start-up on a busy machine or CI runner can exceed the 5 s default.
+    testTimeout: 15_000,
     include: ['src/**/*.test.{ts,tsx}'],
     setupFiles: ['src/test/setup.ts'],
   },

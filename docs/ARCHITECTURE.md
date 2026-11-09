@@ -100,6 +100,19 @@ A GitHub **project site** always lives under `/<repository-name>/`. The domain r
   handler (`onload="…"`) appears.
 - Demos use **relative** asset URLs (`base: './'` in Vite, `baseHref: "./"` in Angular), so they work under any path.
 
+### Angular-specific rules
+
+- **No component `styles`**: Angular injects component CSS as runtime `<style>` tags, which the strict CSP
+  (`style-src 'self'`) blocks. All dashboard styles live in `src/styles/dashboard.css` (an external file).
+- `optimization.styles.inlineCritical: false`: critical-CSS inlining adds `onload="…"` handlers, which the CSP
+  forbids (and `apply-csp` rejects).
+- The theme boot script is copied into `src/index.html`; `scripts/boot-script.test.mjs` fails if it drifts from
+  `packages/design-tokens/src/theme.ts`.
+- `tsconfig.json` maps `@portfolio/design-tokens/theme` to its source file with `paths`, so the Angular dev server
+  compiles it as app code instead of serving raw TypeScript from the workspace package.
+- Subresource Integrity is on; Angular adds an inline integrity import map, which `apply-csp` hashes like any
+  other inline script.
+
 ## Dependency policy
 
 - Versions shared by several packages are pinned once in the **pnpm catalog** (`pnpm-workspace.yaml`).
