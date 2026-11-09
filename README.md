@@ -37,7 +37,7 @@ Requirements: **Node.js 24** (see `.nvmrc`), **pnpm 12**, optional [gitleaks](ht
 
 ```bash
 pnpm install          # installs everything and enables the pre-commit hook
-pnpm dev              # portfolio  → http://localhost:3000/Portofolio-website/
+pnpm dev              # portfolio  → http://localhost:3000/  (no base path in dev)
 pnpm dev:react        # storefront → http://localhost:5173/
 pnpm dev:angular      # dashboard  → http://localhost:4200/
 ```
