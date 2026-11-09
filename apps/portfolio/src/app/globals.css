@@ -5,6 +5,15 @@
  * Imported once by each language root layout and by global-not-found.tsx.
  */
 @import '@portfolio/design-tokens/tokens.css';
-@import '@portfolio/design-tokens/fonts.css';
 @import '@portfolio/design-tokens/base.css';
 @import '../styles/site.css';
+
+/*
+ * Fonts come from next/font (src/app/fonts.ts) instead of the shared
+ * fonts.css: preloaded, with size-adjusted fallbacks (no layout shift).
+ * The variables are defined on <body> by RootDocument.
+ */
+body {
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, 'Cascadia Code', monospace;
+}

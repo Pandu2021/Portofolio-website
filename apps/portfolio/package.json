@@ -12,6 +12,8 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "catalog:",
+    "@fontsource-variable/plus-jakarta-sans": "catalog:",
     "@portfolio/content": "workspace:*",
     "@portfolio/design-tokens": "workspace:*",
     "next": "16.4.5",

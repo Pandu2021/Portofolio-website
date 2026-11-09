@@ -6,6 +6,8 @@
 # minimumReleaseAge. Versions pinned on purpose are ignored:
 #   - TypeScript < 6.1 (Angular 22 and typescript-eslint support up to 6.0)
 #   - ESLint < 10     (plugins inside eslint-config-next do not support 10 yet)
+#   - @types/node 24.x (must match the Node.js 24 runtime in .nvmrc; newer
+#     typings would allow APIs that do not exist at runtime)
 # =============================================================================
 version: 2
 
@@ -30,6 +32,8 @@ updates:
         versions: ['>=10.0.0']
       - dependency-name: '@eslint/js'
         versions: ['>=10.0.0']
+      - dependency-name: '@types/node'
+        versions: ['>=25.0.0']
     groups:
       angular:
         patterns: ['@angular/*', '@angular-devkit/*', 'angular-eslint', 'rxjs', 'tslib']

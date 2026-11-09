@@ -10,6 +10,7 @@
  */
 import type { ReactNode } from 'react';
 import { localeTag, type Locale } from '@portfolio/content';
+import { jakarta, jetbrainsMono } from '@/app/fonts';
 import { themeBootScript } from '@/lib/theme';
 
 interface RootDocumentProps {
@@ -27,7 +28,10 @@ export function RootDocument({ locale, children }: RootDocumentProps) {
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
       </head>
-      <body id="top">{children}</body>
+      {/* Font classes define --font-jakarta / --font-jetbrains (used by site.css). */}
+      <body id="top" className={`${jakarta.variable} ${jetbrainsMono.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }

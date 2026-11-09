@@ -30,12 +30,20 @@
     "typecheck": "pnpm --recursive --parallel typecheck",
     "test": "pnpm --recursive test && pnpm test:scripts",
     "test:scripts": "node --test \"scripts/**/*.test.mjs\"",
+    "e2e": "node scripts/e2e/run.mjs",
+    "e2e:live": "node scripts/e2e/run.mjs --live",
+    "e2e:dev": "node scripts/e2e/run.mjs --dev",
+    "lighthouse": "node scripts/lighthouse.mjs",
+    "pagespeed": "node scripts/pagespeed.mjs",
+    "links": "node scripts/check-links.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "secrets:scan": "gitleaks dir . --config .gitleaks.toml --redact"
   },
   "devDependencies": {
     "@portfolio/config": "workspace:*",
-    "prettier": "catalog:"
+    "lighthouse": "13.6.0",
+    "prettier": "catalog:",
+    "puppeteer-core": "25.16.0"
   }
 }

@@ -71,11 +71,11 @@ pnpm assemble  (scripts/assemble-site.mjs, app list in scripts/site-apps.mjs)
 GitHub Actions → actions/deploy-pages → GitHub Pages
 ```
 
-| Workflow                       | Trigger                                                        | What it does                                                                                              |
-| ------------------------------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `.github/workflows/ci.yml`     | pull requests, pushes to non-`main` branches, called by deploy | format, lint, typecheck, tests, `pnpm audit` (high), build + assemble, gitleaks over the **full history** |
-| `.github/workflows/deploy.yml` | push to `main`, manual                                         | runs `ci.yml` (uploading `_site/`), then deploys to GitHub Pages only if every check passed               |
-| `.github/dependabot.yml`       | weekly                                                         | grouped npm and GitHub Actions updates with a 3-day cooldown                                              |
+| Workflow                       | Trigger                                                        | What it does                                                                                                                                    |
+| ------------------------------ | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `.github/workflows/ci.yml`     | pull requests, pushes to non-`main` branches, called by deploy | format, lint, typecheck, tests, `pnpm audit` (high), build + assemble, browser E2E + Lighthouse on `_site/`, gitleaks over the **full history** |
+| `.github/workflows/deploy.yml` | push to `main`, manual                                         | runs `ci.yml` (uploading `_site/`), then deploys to GitHub Pages only if every check passed                                                     |
+| `.github/dependabot.yml`       | weekly                                                         | grouped npm and GitHub Actions updates with a 3-day cooldown                                                                                    |
 
 ### URLs in development vs. production
 
@@ -112,6 +112,33 @@ A GitHub **project site** always lives under `/<repository-name>/`. The domain r
   compiles it as app code instead of serving raw TypeScript from the workspace package.
 - Subresource Integrity is on; Angular adds an inline integrity import map, which `apply-csp` hashes like any
   other inline script.
+
+### Fonts
+
+- Fonts are self-hosted (`@fontsource-variable/*`, Latin subset only). The demos import
+  `@portfolio/design-tokens/fonts.css`.
+- The portfolio loads the same files through **`next/font/local`** (`apps/portfolio/src/app/fonts.ts`): Next.js
+  preloads the body font and generates a size-adjusted fallback (`adjustFontFallback`), so swapping from the
+  fallback to Plus Jakarta Sans does not shift the layout (CLS ≈ 0).
+
+## Testing & QA tooling
+
+```
+scripts/lib/site-server.mjs   static server that behaves like GitHub Pages (base path, trailing-slash
+                              redirects, 404.html) — shared by `pnpm preview`, E2E and Lighthouse
+scripts/e2e/browser.mjs       finds an installed Chrome/Edge (or BROWSER_PATH) for puppeteer-core
+scripts/e2e/harness.mjs       per-test isolated browser context; collects console errors, failed requests
+                              and CSP violations
+scripts/e2e/suites/*.mjs      portfolio, react, angular, layout (375/768 px + keyboard), dev-gateway
+scripts/e2e/run.mjs           `pnpm e2e` (_site/), `--live` (GitHub Pages), `--dev` (localhost:3000, read-only)
+scripts/lighthouse.mjs        `pnpm lighthouse` — mobile + desktop, HTML reports in .lighthouseci/
+scripts/check-links.mjs       `pnpm links` — internal files/anchors + external URLs
+```
+
+No browser is downloaded: `puppeteer-core` drives the browser that is already installed (the CI runner ships
+Google Chrome). In CI the `e2e` job downloads the `_site/` artifact built by the `build` job, so the tests run
+against exactly the files that will be published. Lighthouse runs in the same job, is informational
+(`continue-on-error`), and writes its score table to the run summary.
 
 ## Dependency policy
 
