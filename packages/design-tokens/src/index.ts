@@ -4,11 +4,7 @@
  * Keep these values in sync with tokens.css.
  */
 
-/** Supported color themes. `system` follows the visitor's OS preference. */
-export type ThemePreference = 'light' | 'dark' | 'system';
-
-/** localStorage key used by every app's theme toggle. */
-export const THEME_STORAGE_KEY = 'portfolio-theme';
+export * from './theme';
 
 /** Browser UI colors (address bar on mobile) for each theme. */
 export const themeColor = {

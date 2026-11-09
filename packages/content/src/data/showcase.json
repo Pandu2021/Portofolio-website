@@ -22,16 +22,16 @@
     "brand": "react",
     "path": "react/",
     "sourcePath": "apps/react-storefront",
-    "status": "in-progress",
+    "status": "live",
     "title": {
       "en": "Storefront demo",
       "id": "Demo toko online"
     },
     "description": {
-      "en": "Product catalog, filters and a persistent cart built with mock data.",
-      "id": "Katalog produk, filter dan keranjang belanja tersimpan dengan data tiruan."
+      "en": "Café menu with search, filters, a saved cart, promo codes and an accessible demo checkout.",
+      "id": "Menu kafe dengan pencarian, filter, keranjang tersimpan, kode promo dan checkout demo yang aksesibel."
     },
-    "stack": ["React", "TypeScript", "Vite", "React Router", "Vitest"]
+    "stack": ["React", "TypeScript", "Vite", "React Router", "useReducer", "Vitest"]
   },
   {
     "id": "angular-dashboard",

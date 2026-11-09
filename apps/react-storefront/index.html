@@ -2,6 +2,8 @@
 <!--
   index.html — entry document of the React storefront demo.
   All scripts are bundled by Vite and served from our own origin (no CDN).
+  The theme boot script is injected into <head> by vite.config.ts, and a strict
+  Content-Security-Policy is added after the build by `apply-csp`.
 -->
 <html lang="en">
   <head>
@@ -9,10 +11,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="React + TypeScript storefront demo with mock data, by Pandu Wicaksono."
+      content="React + TypeScript storefront demo with a fictional café menu, cart and checkout — by Pandu Wicaksono."
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Storefront demo — React | Pandu Wicaksono</title>
+    <meta name="theme-color" content="#fff8f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Kedai Demo — React storefront | Pandu Wicaksono</title>
   </head>
   <body>
     <div id="root"></div>

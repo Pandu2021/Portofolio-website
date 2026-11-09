@@ -20,16 +20,16 @@ vulnerable dependencies, and supply-chain risks in the build pipeline.
 
 ## Controls in place
 
-| Layer           | Control                                                                                                                                                                                                                 |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Before commit   | `.githooks/pre-commit`: gitleaks + fallback scanner (secrets, private file names, phone numbers)                                                                                                                        |
-| Repository      | `.gitignore` blocks private documents, env files, keys and build output                                                                                                                                                 |
-| Content         | Unit tests reject e-mail addresses, phone numbers and ID-like numbers in content files                                                                                                                                  |
-| CI              | gitleaks (checksum-verified binary) scans the full history on every push and pull request; deploy only after all checks pass                                                                                            |
-| Dependencies    | Pinned versions (pnpm catalog), install scripts blocked, 24 h minimum release age, `pnpm audit` in CI, Dependabot with 3-day cooldown                                                                                   |
-| GitHub Actions  | Least-privilege `permissions`, third-party actions pinned to commit SHAs                                                                                                                                                |
-| Browser         | No third-party CDNs; self-hosted fonts; Subresource Integrity on Angular bundles; strict CSP `<meta>` with SHA-256 script hashes (no `unsafe-inline`), `referrer` policy, `rel="noopener noreferrer"` on external links |
-| Commit metadata | Commits use the GitHub `noreply` e-mail address                                                                                                                                                                         |
+| Layer           | Control                                                                                                                                                                                                                                                       |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Before commit   | `.githooks/pre-commit`: gitleaks + fallback scanner (secrets, private file names, phone numbers)                                                                                                                                                              |
+| Repository      | `.gitignore` blocks private documents, env files, keys and build output                                                                                                                                                                                       |
+| Content         | Unit tests reject e-mail addresses, phone numbers and ID-like numbers in content files                                                                                                                                                                        |
+| CI              | gitleaks (checksum-verified binary) scans the full history on every push and pull request; deploy only after all checks pass                                                                                                                                  |
+| Dependencies    | Pinned versions (pnpm catalog), install scripts blocked, 24 h minimum release age, `pnpm audit` in CI, Dependabot with 3-day cooldown                                                                                                                         |
+| GitHub Actions  | Least-privilege `permissions`, third-party actions pinned to commit SHAs                                                                                                                                                                                      |
+| Browser         | No third-party CDNs; self-hosted fonts; Subresource Integrity on Angular bundles; strict CSP `<meta>` with SHA-256 script hashes in every app (no `unsafe-inline`, shared `apply-csp` tool), `referrer` policy, `rel="noopener noreferrer"` on external links |
+| Commit metadata | Commits use the GitHub `noreply` e-mail address                                                                                                                                                                                                               |
 
 ## Recommended GitHub settings
 

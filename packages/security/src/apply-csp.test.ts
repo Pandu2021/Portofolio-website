@@ -1,13 +1,13 @@
 /**
  * @file apply-csp.test.ts
- * Unit tests for the post-build Content-Security-Policy step.
+ * Unit tests for the shared post-build Content-Security-Policy step.
  */
 import { createHash } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { applyCsp, buildPolicy, sha256Source } from './apply-csp';
+import { applyCsp, buildPolicy, sha256Source } from './apply-csp.mjs';
 
-const page = (body: string) =>
-  `<!DOCTYPE html><html><head><meta charSet="utf-8"/><script>var a=1;</script></head><body>${body}<script src="/x.js"></script></body></html>`;
+const page = (body: string, charset = '<meta charSet="utf-8"/>') =>
+  `<!DOCTYPE html><html><head>${charset}<script>var a=1;</script></head><body>${body}<script src="/x.js"></script></body></html>`;
 
 describe('apply-csp', () => {
   it('hashes inline scripts with SHA-256 (base64)', () => {
@@ -15,11 +15,14 @@ describe('apply-csp', () => {
     expect(sha256Source('var a=1;')).toBe(`'sha256-${expected}'`);
   });
 
-  it('inserts the CSP meta right after <meta charset>, before any script', () => {
-    const { html, scripts } = applyCsp(page('<p>Hi</p>'));
+  it.each([
+    ['Next.js style', '<meta charSet="utf-8"/>'],
+    ['Vite / Angular style', '<meta charset="UTF-8" />'],
+  ])('inserts the CSP right after <meta charset> (%s), before any script', (_label, charset) => {
+    const { html, scripts } = applyCsp(page('<p>Hi</p>', charset));
     expect(scripts).toBe(1);
     const csp = html.indexOf('Content-Security-Policy');
-    expect(csp).toBeGreaterThan(html.indexOf('charSet'));
+    expect(csp).toBeGreaterThan(html.toLowerCase().indexOf('charset'));
     expect(csp).toBeLessThan(html.indexOf('<script'));
     expect(html).toContain(sha256Source('var a=1;'));
   });
@@ -41,7 +44,13 @@ describe('apply-csp', () => {
     expect(() => applyCsp(page('<div style="color:red">x</div>'))).toThrow(/Inline style/);
   });
 
-  it('ignores the word style="…" inside script bodies', () => {
+  it('rejects inline event handlers', () => {
+    expect(() => applyCsp(page('<link rel="stylesheet" href="a.css" onload="x()">'))).toThrow(
+      /event handler/,
+    );
+  });
+
+  it('ignores style="…" text inside script bodies', () => {
     const html = page('<script>var s=\'<b style="x">\';</script>');
     expect(() => applyCsp(html)).not.toThrow();
   });

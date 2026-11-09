@@ -13,7 +13,14 @@ export default [
     files: ['src/**/*.{ts,tsx}'],
     plugins: { 'react-refresh': reactRefresh },
     rules: {
-      'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+      'react-refresh/only-export-components': [
+        'warn',
+        {
+          allowConstantExport: true,
+          // Provider + hook in one file is intentional (context stays private).
+          allowExportNames: ['useI18n', 'useCart', 'useAnnounce', 'detectLocale'],
+        },
+      ],
     },
   },
 ];

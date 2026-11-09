@@ -23,6 +23,7 @@
         │ EN/ID JSON,     │        │ tokens.css (light/dark), fonts, base │
         │ showcase.json   │        └──────────────────────────────────────┘
         └─────────────────┘        packages/config: ESLint, Prettier, tsconfig
+                                   packages/security: apply-csp (strict CSP for every build)
 ```
 
 ## Page model
@@ -43,8 +44,11 @@
 
 ## Theming (light / dark)
 
+- Theme logic lives once in `packages/design-tokens/src/theme.ts` and is shared by every app. Because all apps are
+  served from the same origin, a visitor's light/dark choice follows them from the portfolio into the demos.
 - A tiny inline boot script in `<head>` applies the stored theme before the first paint (no flash) and marks
-  `<html class="js">`, which enables the scroll-reveal animation only when JavaScript runs.
+  `<html class="js">`, which enables the scroll-reveal animation only when JavaScript runs. Next.js renders it in the
+  root layout; Vite injects it with a small `transformIndexHtml` plugin.
 
 - Every color is defined once in `packages/design-tokens/src/tokens.css` using CSS `light-dark()`.
 - Default follows the operating system (`color-scheme: light dark`); the theme toggle sets `data-theme="light|dark"` on `<html>`.
@@ -85,9 +89,10 @@ A GitHub **project site** always lives under `/<repository-name>/`. The domain r
 `https://pandu2021.github.io/` belongs to a separate _user site_ repository (`Pandu2021.github.io`).
 
 - The portfolio uses `basePath: '/Portofolio-website'` in production builds (none in `next dev`) and `trailingSlash: true`.
-- After `next build`, `apps/portfolio/scripts/apply-csp.ts` adds a strict Content-Security-Policy `<meta>` to every
-  exported HTML file. Each inline script (Next.js page data, the theme boot script, JSON-LD) is allowed by its SHA-256
-  hash; `unsafe-inline` is never used, and the step fails the build if an inline `style` attribute appears.
+- After every app build, the shared `apply-csp` command (`packages/security`) adds a strict Content-Security-Policy
+  `<meta>` to every HTML file. Each inline script (Next.js page data, the theme boot script, JSON-LD) is allowed by its
+  SHA-256 hash; `unsafe-inline` is never used, and the build fails if an inline `style` attribute or an inline event
+  handler (`onload="…"`) appears.
 - Demos use **relative** asset URLs (`base: './'` in Vite, `baseHref: "./"` in Angular), so they work under any path.
 
 ## Dependency policy

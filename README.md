@@ -23,6 +23,7 @@ packages/
   content/              Bilingual content (JSON) + Tech Lab registry + privacy tests
   design-tokens/        Colors (light/dark), type, spacing, motion, self-hosted fonts
   config/               Shared ESLint, Prettier and tsconfig
+  security/             apply-csp: strict Content-Security-Policy for every static build
 docs/                   Architecture, how to add a framework, ADRs
 scripts/                Repository tooling (git hook setup)
 .githooks/              pre-commit secret & privacy scan (gitleaks)
