@@ -34,7 +34,8 @@ export interface NavContent {
   experience: string;
   certifications: string;
   contact: string;
-  resume: string;
+  /** Label of the header download button (two-page CV). */
+  cv: string;
 }
 
 export interface HeroContent {

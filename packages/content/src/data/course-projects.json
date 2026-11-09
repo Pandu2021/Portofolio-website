@@ -18,7 +18,10 @@
   },
   {
     "id": "data-analytics-case-study",
-    "title": { "en": "Data Analytics Case Study", "id": "Studi Kasus Analisis Data" },
+    "title": {
+      "en": "Data Analytics Case Study",
+      "id": "Studi Kasus Analisis Data"
+    },
     "certificationId": "google-data-analytics",
     "program": null,
     "course": "Capstone",
@@ -32,7 +35,10 @@
   },
   {
     "id": "smart-travel-journal",
-    "title": { "en": "SmartTravelJournal (iOS app)", "id": "SmartTravelJournal (aplikasi iOS)" },
+    "title": {
+      "en": "SmartTravelJournal (iOS app)",
+      "id": "SmartTravelJournal (aplikasi iOS)"
+    },
     "certificationId": "ibm-skillup-ios-apps-swift",
     "program": null,
     "course": null,
@@ -45,25 +51,11 @@
     "stack": ["Swift", "SwiftUI", "SwiftData", "On-device AI"]
   },
   {
-    "id": "local-events-explorer",
-    "title": {
-      "en": "Local Events Explorer (iOS app)",
-      "id": "Local Events Explorer (aplikasi iOS)"
-    },
-    "certificationId": "ibm-skillup-ios-apps-swift",
-    "program": null,
-    "course": "Creating iOS Apps Using Swift",
-    "year": "2026",
-    "status": "completed",
-    "summary": {
-      "en": "Event discovery app with MapKit pins and category filters, Swift Charts, SwiftData offline storage and a concept AI event-tips widget.",
-      "id": "Aplikasi pencarian acara dengan pin MapKit dan filter kategori, Swift Charts, penyimpanan offline SwiftData dan konsep widget tips acara berbasis AI."
-    },
-    "stack": ["Swift", "SwiftUI", "SwiftData"]
-  },
-  {
     "id": "full-stack-developer-capstone",
-    "title": { "en": "Full-Stack Developer Capstone", "id": "Capstone Full-Stack Developer" },
+    "title": {
+      "en": "Full-Stack Developer Capstone",
+      "id": "Capstone Full-Stack Developer"
+    },
     "certificationId": "microsoft-full-stack-developer",
     "program": null,
     "course": "Capstone",
@@ -77,7 +69,10 @@
   },
   {
     "id": "salifort-motors",
-    "title": { "en": "Salifort Motors Project Lab", "id": "Salifort Motors Project Lab" },
+    "title": {
+      "en": "Salifort Motors Project Lab",
+      "id": "Salifort Motors Project Lab"
+    },
     "certificationId": "google-advanced-data-analytics",
     "program": null,
     "course": "Capstone",
@@ -91,7 +86,10 @@
   },
   {
     "id": "java-desktop-application",
-    "title": { "en": "Java Desktop Application", "id": "Aplikasi Desktop Java" },
+    "title": {
+      "en": "Java Desktop Application",
+      "id": "Aplikasi Desktop Java"
+    },
     "certificationId": "amazon-junior-software-developer",
     "program": null,
     "course": "Capstone",
@@ -105,7 +103,10 @@
   },
   {
     "id": "full-stack-application",
-    "title": { "en": "Full Stack Application", "id": "Aplikasi Full Stack" },
+    "title": {
+      "en": "Full Stack Application",
+      "id": "Aplikasi Full Stack"
+    },
     "certificationId": "ibm-full-stack-software-developer",
     "program": null,
     "course": "Capstone",
@@ -119,7 +120,10 @@
   },
   {
     "id": "business-intelligence-dashboard",
-    "title": { "en": "Business Intelligence Dashboard", "id": "Dasbor Business Intelligence" },
+    "title": {
+      "en": "Business Intelligence Dashboard",
+      "id": "Dasbor Business Intelligence"
+    },
     "certificationId": "google-business-intelligence",
     "program": null,
     "course": null,

@@ -188,6 +188,10 @@ export async function run({ browser, results, base }) {
         ),
         coursework: document.querySelectorAll('.coursework__group').length,
         activities: document.querySelectorAll('.activity-list > li').length,
+        headerDownload:
+          document.querySelector('.site-header a[download]')?.getAttribute('href') ?? '',
+        headerDownloadName:
+          document.querySelector('.site-header a[download]')?.getAttribute('download') ?? '',
         skipped,
       };
     });
@@ -205,12 +209,17 @@ export async function run({ browser, results, base }) {
     );
     results.check(facts.languages === 2, `${label} spoken languages listed`);
     results.check(
-      facts.courseCards === 9 && facts.courseTitles === 9 && facts.inProgress === 1,
-      `${label} 9 course projects (1 in progress)`,
+      facts.courseCards === 8 && facts.courseTitles === 8 && facts.inProgress === 1,
+      `${label} 8 course projects (1 in progress)`,
       `cards=${facts.courseCards} h4=${facts.courseTitles} inProgress=${facts.inProgress}`,
     );
     results.check(
-      facts.verifyLinks === 8 && facts.safeLinks,
+      facts.headerDownload.endsWith('/CV_Public.pdf') && facts.headerDownloadName.includes('CV'),
+      `${label} header button downloads the CV`,
+      `${facts.headerDownload} (${facts.headerDownloadName})`,
+    );
+    results.check(
+      facts.verifyLinks === 7 && facts.safeLinks,
       `${label} course projects link to certificate verification (new tab, noopener)`,
       `links=${facts.verifyLinks}`,
     );

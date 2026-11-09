@@ -1,13 +1,13 @@
 /**
  * @file SiteHeader.tsx
  * Sticky site header: brand, primary navigation, language switch,
- * theme toggle and résumé download.
+ * theme toggle and CV download (the full two-page CV).
  */
 import type { SiteContent } from '@portfolio/content';
 import { Icon } from '@/components/ui/Icon';
 import { LanguageSwitch } from '@/components/ui/LanguageSwitch';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { RESUME_FILE, RESUME_DOWNLOAD_NAME, withBasePath } from '@/lib/site';
+import { CV_DOWNLOAD_NAME, CV_FILE, withBasePath } from '@/lib/site';
 import { SiteNav } from './SiteNav';
 
 /** Renders the header for one language. */
@@ -48,12 +48,12 @@ export function SiteHeader({ content }: { content: SiteContent }) {
             }}
           />
           <a
-            href={withBasePath(RESUME_FILE)}
-            download={RESUME_DOWNLOAD_NAME}
+            href={withBasePath(CV_FILE)}
+            download={CV_DOWNLOAD_NAME}
             className="btn btn--primary btn--sm"
           >
             <Icon name="download" size={16} />
-            {nav.resume}
+            {nav.cv}
           </a>
         </SiteNav>
       </div>

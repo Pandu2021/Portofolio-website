@@ -77,7 +77,8 @@ The capital-market certificate was rendered from the original PDF with the stude
 
 ## Course projects
 
-Nine hands-on projects from the certificate programs (CV section "Certification Projects") live in
+Eight hands-on projects from the certificate programs (CV section "Certification Projects"; Local Events
+Explorer is intentionally left out) live in
 `packages/content/src/data/course-projects.json`. Each one references its certificate by `certificationId`
 (name, issuer and verify link come from `certifications.json`); only the unfinished Meta React Native program
 has `certificationId: null`, a `program` name and `status: "in-progress"`. Links to the matching GitHub
