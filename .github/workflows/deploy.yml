@@ -1,0 +1,48 @@
+# =============================================================================
+# deploy.yml — publishes the site to GitHub Pages.
+#
+#   push to main ─▶ ci.yml (quality + build + secret scan, uploads _site/)
+#                      └─▶ deploy job (only if every CI job passed)
+#
+# One-time setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
+# Live URL: https://pandu2021.github.io/Portofolio-website/
+# =============================================================================
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# No permissions by default; each job asks only for what it needs.
+permissions: {}
+
+# Never run two deployments at once, and never cancel one that is in progress.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI
+    uses: ./.github/workflows/ci.yml
+    with:
+      upload-pages-artifact: true
+    permissions:
+      contents: read
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: ci
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write # publish to Pages
+      id-token: write # prove the deployment comes from this workflow (OIDC)
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

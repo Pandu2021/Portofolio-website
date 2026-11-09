@@ -1,0 +1,142 @@
+# =============================================================================
+# ci.yml — quality gate for every change.
+#
+# Runs on pull requests and on pushes to branches other than `main`.
+# Pushes to `main` run this same workflow through deploy.yml (workflow_call),
+# so the code is checked exactly once before it is published.
+#
+# Jobs
+#   quality  format, lint, typecheck, unit tests, dependency audit
+#   build    builds every app and assembles _site/ (optionally uploads it for Pages)
+#   secret-scan  gitleaks scan of the FULL git history (custom privacy rules)
+#
+# Security: read-only token, actions pinned to commit SHAs (tag in comment),
+# credentials not persisted after checkout, gitleaks binary verified by SHA-256.
+# =============================================================================
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      upload-pages-artifact:
+        description: Upload _site/ as the GitHub Pages artifact (used by deploy.yml)
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CI: 'true'
+  NEXT_TELEMETRY_DISABLED: '1'
+  NG_CLI_ANALYTICS: 'false'
+
+jobs:
+  quality:
+    name: Format, lint, typecheck, test, audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up pnpm (version from package.json "packageManager")
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Set up Node.js (version from .nvmrc)
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies (exact lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Dependency audit (fail on high or critical)
+        run: pnpm audit --audit-level high
+
+  build:
+    name: Build site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies (exact lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all apps
+        run: pnpm build
+
+      - name: Assemble _site/
+        run: pnpm assemble
+
+      - name: Show site structure
+        run: find _site -maxdepth 2 -name index.html | sort
+
+      - name: Upload GitHub Pages artifact
+        if: ${{ inputs.upload-pages-artifact }}
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: _site/
+          include-hidden-files: true # keeps .nojekyll
+
+  secret-scan:
+    name: Secret & privacy scan (full history)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      GITLEAKS_VERSION: 8.30.1
+      # SHA-256 of gitleaks_8.30.1_linux_x64.tar.gz (from the official release).
+      GITLEAKS_SHA256: 551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Install gitleaks (checksum verified)
+        run: |
+          archive="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
+          curl -fsSL --retry 3 -o "$RUNNER_TEMP/$archive" \
+            "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/${archive}"
+          echo "${GITLEAKS_SHA256}  $RUNNER_TEMP/$archive" | sha256sum --check --strict
+          tar -xzf "$RUNNER_TEMP/$archive" -C "$RUNNER_TEMP" gitleaks
+
+      - name: Scan every commit
+        run: '"$RUNNER_TEMP/gitleaks" git . --config .gitleaks.toml --redact --no-banner --verbose'

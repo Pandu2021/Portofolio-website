@@ -59,14 +59,32 @@ pnpm build
   ├─ apps/portfolio          → apps/portfolio/out/
   ├─ apps/react-storefront   → apps/react-storefront/dist/
   └─ apps/angular-dashboard  → apps/angular-dashboard/dist/
-scripts/assemble-site.mjs (Phase 3)
+pnpm assemble  (scripts/assemble-site.mjs, app list in scripts/site-apps.mjs)
   → _site/              (portfolio)
   → _site/react/        (storefront)
   → _site/angular/      (dashboard)
+  → _site/.nojekyll
 GitHub Actions → actions/deploy-pages → GitHub Pages
 ```
 
-- The portfolio uses `basePath: '/Portofolio-website'` and `trailingSlash: true`.
+| Workflow                       | Trigger                                                        | What it does                                                                                              |
+| ------------------------------ | -------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `.github/workflows/ci.yml`     | pull requests, pushes to non-`main` branches, called by deploy | format, lint, typecheck, tests, `pnpm audit` (high), build + assemble, gitleaks over the **full history** |
+| `.github/workflows/deploy.yml` | push to `main`, manual                                         | runs `ci.yml` (uploading `_site/`), then deploys to GitHub Pages only if every check passed               |
+| `.github/dependabot.yml`       | weekly                                                         | grouped npm and GitHub Actions updates with a 3-day cooldown                                              |
+
+### URLs in development vs. production
+
+| Command                           | URL                                             | Base path                                       |
+| --------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| `pnpm dev`                        | http://localhost:3000/                          | none (fast local work)                          |
+| `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/       | `/Portofolio-website` — identical to production |
+| Live                              | https://pandu2021.github.io/Portofolio-website/ | `/Portofolio-website`                           |
+
+A GitHub **project site** always lives under `/<repository-name>/`. The domain root
+`https://pandu2021.github.io/` belongs to a separate _user site_ repository (`Pandu2021.github.io`).
+
+- The portfolio uses `basePath: '/Portofolio-website'` in production builds (none in `next dev`) and `trailingSlash: true`.
 - After `next build`, `apps/portfolio/scripts/apply-csp.ts` adds a strict Content-Security-Policy `<meta>` to every
   exported HTML file. Each inline script (Next.js page data, the theme boot script, JSON-LD) is allowed by its SHA-256
   hash; `unsafe-inline` is never used, and the step fails the build if an inline `style` attribute appears.

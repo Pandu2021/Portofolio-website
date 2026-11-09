@@ -67,8 +67,22 @@ and extend the `brand` union in `packages/content/src/types.ts`.
 
 ## 5. Publish it
 
-Add the app's output folder to the mapping in `scripts/assemble-site.mjs` (Phase 3), e.g.
-`apps/vue-invoice/dist → _site/vue/`. Run `pnpm build && pnpm test`, commit, and open a pull request.
+Add **one entry** to [`scripts/site-apps.mjs`](../scripts/site-apps.mjs):
+
+```js
+{ id: 'vue-invoice', from: 'apps/vue-invoice/dist', to: 'vue' },
+```
+
+`to` must match the `path` in `showcase.json` (`vue/`). `pnpm assemble` refuses to build the site if a
+non-planned showcase app has no published folder, or if two apps would write to the same folder.
+
+Check locally, then commit and open a pull request (CI runs on every pull request; merging to `main` deploys):
+
+```bash
+pnpm build:site   # build every app + assemble _site/
+pnpm preview      # http://localhost:4173/Portofolio-website/vue/
+pnpm test
+```
 
 ## Checklist
 
@@ -76,4 +90,4 @@ Add the app's output folder to the mapping in `scripts/assemble-site.mjs` (Phase
 - [ ] Shared tokens and fonts imported (no CDN links)
 - [ ] `build`, `lint`, `typecheck`, `test` scripts pass
 - [ ] Mock data only — no real client data, keys or personal contact details
-- [ ] Entry added to `showcase.json` and `assemble-site.mjs`
+- [ ] Entry added to `showcase.json` and `scripts/site-apps.mjs`

@@ -26,7 +26,7 @@ packages/
 docs/                   Architecture, how to add a framework, ADRs
 scripts/                Repository tooling (git hook setup)
 .githooks/              pre-commit secret & privacy scan (gitleaks)
-.github/workflows/      CI (secret scan; full CI/CD added in Phase 3)
+.github/workflows/      ci.yml (quality gate) and deploy.yml (GitHub Pages)
 ```
 
 More detail: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/ADDING-A-FRAMEWORK.md](docs/ADDING-A-FRAMEWORK.md) · [docs/adr/](docs/adr/)
@@ -45,6 +45,8 @@ pnpm dev:angular      # dashboard  → http://localhost:4200/
 | Command             | What it does                              |
 | ------------------- | ----------------------------------------- |
 | `pnpm build`        | Builds every app in `apps/`               |
+| `pnpm build:site`   | Builds every app and assembles `_site/`   |
+| `pnpm preview`      | Serves `_site/` exactly like GitHub Pages |
 | `pnpm lint`         | ESLint in every package                   |
 | `pnpm typecheck`    | TypeScript strict checks in every package |
 | `pnpm test`         | Unit tests (Vitest) in every package      |

@@ -1,0 +1,61 @@
+# =============================================================================
+# dependabot.yml — weekly, grouped dependency updates (few, reviewable PRs).
+#
+# Supply-chain hardening: a 3-day cooldown skips brand-new releases (most
+# malicious versions are pulled within hours), matching pnpm's
+# minimumReleaseAge. Versions pinned on purpose are ignored:
+#   - TypeScript < 6.1 (Angular 22 and typescript-eslint support up to 6.0)
+#   - ESLint < 10     (plugins inside eslint-config-next do not support 10 yet)
+# =============================================================================
+version: 2
+
+updates:
+  - package-ecosystem: npm # pnpm workspace (pnpm-lock.yaml + catalog)
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: 'chore(deps)'
+    labels: [dependencies]
+    ignore:
+      - dependency-name: typescript
+        versions: ['>=6.1.0']
+      - dependency-name: eslint
+        versions: ['>=10.0.0']
+      - dependency-name: '@eslint/js'
+        versions: ['>=10.0.0']
+    groups:
+      angular:
+        patterns: ['@angular/*', '@angular-devkit/*', 'angular-eslint', 'rxjs', 'tslib']
+      react-next:
+        patterns:
+          ['next', 'eslint-config-next', 'react', 'react-dom', 'react-router', '@types/react*']
+      build-and-test:
+        patterns: ['vite', '@vitejs/*', 'vitest', 'jsdom', '@testing-library/*']
+      lint-and-format:
+        patterns: ['eslint*', '@eslint/*', 'typescript-eslint', 'prettier', 'globals', 'typescript']
+      everything-else:
+        patterns: ['*']
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '06:00'
+      timezone: Asia/Jakarta
+    cooldown:
+      default-days: 3
+    commit-message:
+      prefix: 'ci(deps)'
+    labels: [dependencies, ci]
+    groups:
+      actions:
+        patterns: ['*']
