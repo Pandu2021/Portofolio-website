@@ -16,6 +16,22 @@ export const SITE_URL = `${SITE_ORIGIN}${BASE_PATH}/`;
 /** Public source repository. */
 export const REPO_URL = 'https://github.com/Pandu2021/Portofolio-website';
 
+/** One-page résumé in `public/`, and the friendly name used when downloading it. */
+export const RESUME_FILE = 'Resume_Public.pdf';
+export const RESUME_DOWNLOAD_NAME = 'Pandu-Wicaksono-Resume.pdf';
+
+/** Two-page CV in `public/`, and its download name. */
+export const CV_FILE = 'CV_Public.pdf';
+export const CV_DOWNLOAD_NAME = 'Pandu-Wicaksono-CV.pdf';
+
+/**
+ * Link to a folder of this repository on GitHub.
+ * @example repoTreeUrl('apps/portfolio')
+ */
+export function repoTreeUrl(path: string): string {
+  return `${REPO_URL}/tree/main/${path}`;
+}
+
 /**
  * Prefixes a public-folder asset path with the base path.
  * Needed for plain `<a href>` / `<img src>` (Next.js `<Link>` adds it automatically).

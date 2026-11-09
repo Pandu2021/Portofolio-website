@@ -1,11 +1,16 @@
 /**
  * @file RootDocument.tsx
  * The `<html>`/`<body>` shell shared by both language root layouts.
- * Each language has its own root layout so `<html lang>` is correct in the
- * static HTML (important for screen readers, search engines and ATS parsers).
+ *
+ * - Each language has its own root layout, so `<html lang>` is correct in the
+ *   static HTML (screen readers, search engines and ATS parsers rely on it).
+ * - The theme boot script runs before first paint (no theme flash).
+ *   `suppressHydrationWarning` is needed because that script may add
+ *   `data-theme` / `class` to `<html>` before React hydrates.
  */
 import type { ReactNode } from 'react';
 import { localeTag, type Locale } from '@portfolio/content';
+import { themeBootScript } from '@/lib/theme';
 
 interface RootDocumentProps {
   /** Page language. */
@@ -16,8 +21,13 @@ interface RootDocumentProps {
 /** Renders the document shell for one language. */
 export function RootDocument({ locale, children }: RootDocumentProps) {
   return (
-    <html lang={localeTag[locale]}>
-      <body>{children}</body>
+    <html lang={localeTag[locale]} suppressHydrationWarning>
+      {/* App Router root layouts render <head> directly; next/head is Pages Router only. */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+      </head>
+      <body id="top">{children}</body>
     </html>
   );
 }

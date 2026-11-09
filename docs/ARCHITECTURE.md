@@ -43,6 +43,9 @@
 
 ## Theming (light / dark)
 
+- A tiny inline boot script in `<head>` applies the stored theme before the first paint (no flash) and marks
+  `<html class="js">`, which enables the scroll-reveal animation only when JavaScript runs.
+
 - Every color is defined once in `packages/design-tokens/src/tokens.css` using CSS `light-dark()`.
 - Default follows the operating system (`color-scheme: light dark`); the theme toggle sets `data-theme="light|dark"` on `<html>`.
 - Palette — light: cream `#FFF8F1`, ink `#0F172A`, orange `#C2410C`, teal `#0F766E`;
@@ -64,6 +67,9 @@ GitHub Actions → actions/deploy-pages → GitHub Pages
 ```
 
 - The portfolio uses `basePath: '/Portofolio-website'` and `trailingSlash: true`.
+- After `next build`, `apps/portfolio/scripts/apply-csp.ts` adds a strict Content-Security-Policy `<meta>` to every
+  exported HTML file. Each inline script (Next.js page data, the theme boot script, JSON-LD) is allowed by its SHA-256
+  hash; `unsafe-inline` is never used, and the step fails the build if an inline `style` attribute appears.
 - Demos use **relative** asset URLs (`base: './'` in Vite, `baseHref: "./"` in Angular), so they work under any path.
 
 ## Dependency policy

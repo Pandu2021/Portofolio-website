@@ -40,6 +40,24 @@ function shapeOf(value: unknown): unknown {
   return typeof value;
 }
 
+/**
+ * Reads the pixel size of a JPEG from its Start-Of-Frame marker, so declared
+ * width/height in certifications.json can never drift from the real image.
+ */
+function jpegSize(buffer: Buffer): { width: number; height: number } {
+  let offset = 2; // skip SOI marker (FFD8)
+  while (offset < buffer.length) {
+    const marker = buffer.readUInt16BE(offset);
+    const length = buffer.readUInt16BE(offset + 2);
+    // SOF0..SOF15 except DHT (C4), JPG (C8) and DAC (CC)
+    if (marker >= 0xffc0 && marker <= 0xffcf && ![0xffc4, 0xffc8, 0xffcc].includes(marker)) {
+      return { height: buffer.readUInt16BE(offset + 5), width: buffer.readUInt16BE(offset + 7) };
+    }
+    offset += 2 + length;
+  }
+  throw new Error('Not a valid JPEG');
+}
+
 describe('translations', () => {
   it('English and Indonesian content have the same structure', () => {
     expect(shapeOf(getContent('id'))).toEqual(shapeOf(getContent('en')));
@@ -67,7 +85,9 @@ describe('certifications', () => {
   });
 
   it.each(certifications)('$id has an existing image and a safe verify link', (cert) => {
-    expect(existsSync(join(portfolioPublic, cert.image))).toBe(true);
+    const file = join(portfolioPublic, cert.image);
+    expect(existsSync(file)).toBe(true);
+    expect(jpegSize(readFileSync(file))).toEqual({ width: cert.width, height: cert.height });
     expect(cert.image).toMatch(/^certificates\/[a-z0-9-]+\.jpg$/);
     if (cert.verifyUrl !== null) {
       expect(cert.verifyUrl).toMatch(/^https:\/\/coursera\.org\/verify\/[a-z-]+\/[A-Z0-9]+$/);

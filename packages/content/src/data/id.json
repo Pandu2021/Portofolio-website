@@ -56,9 +56,18 @@
       "value": "1",
       "label": "platform e-commerce produksi, dibangun sebagai satu-satunya developer"
     },
-    { "value": "45+", "label": "halaman: toko online, portal mitra B2B dan konsol admin" },
-    { "value": "~95", "label": "file tes otomatis dengan CI/CD dan pemindaian keamanan" },
-    { "value": "10", "label": "sertifikat profesional dari Google, IBM, Microsoft dan Amazon" }
+    {
+      "value": "45+",
+      "label": "halaman: toko online, portal mitra B2B dan konsol admin"
+    },
+    {
+      "value": "~95",
+      "label": "file tes otomatis dengan CI/CD dan pemindaian keamanan"
+    },
+    {
+      "value": "10",
+      "label": "sertifikat profesional dari Google, IBM, Microsoft dan Amazon"
+    }
   ],
   "featuredProject": {
     "title": "Proyek unggulan",
@@ -206,9 +215,18 @@
     "intro": "Mari membangun sesuatu yang bermanfaat bersama.",
     "body": "Cara tercepat menghubungi saya adalah melalui pesan LinkedIn.",
     "links": [
-      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" },
-      { "label": "GitHub", "href": "https://github.com/Pandu2021" },
-      { "label": "Kaggle", "href": "https://www.kaggle.com/panduwicaksono2025" }
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Pandu2021"
+      },
+      {
+        "label": "Kaggle",
+        "href": "https://www.kaggle.com/panduwicaksono2025"
+      }
     ],
     "resumeLabel": "Unduh resume (1 halaman)",
     "cvLabel": "Unduh CV (2 halaman)"
@@ -231,6 +249,12 @@
     "statusInProgress": "Dikerjakan",
     "statusPlanned": "Direncanakan",
     "backToTop": "Kembali ke atas",
-    "footerBuiltWith": "Dibangun dengan Next.js, React dan Angular dalam satu monorepo pnpm."
+    "footerBuiltWith": "Dibangun dengan Next.js, React dan Angular dalam satu monorepo pnpm.",
+    "mainNav": "Navigasi utama",
+    "highlightsLabel": "Sorotan",
+    "youAreHere": "Anda di sini",
+    "opensInNewTab": "(membuka tab baru)",
+    "certificateOf": "Sertifikat:",
+    "issuedBy": "Diterbitkan oleh"
   }
 }

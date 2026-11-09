@@ -37,6 +37,8 @@ export function buildMetadata(locale: Locale): Metadata {
       siteName: 'Pandu Wicaksono',
     },
     robots: { index: true, follow: true },
+    // Send only the origin to other sites (no full URLs leak via Referer).
+    referrer: 'strict-origin-when-cross-origin',
     formatDetection: { telephone: false, email: false, address: false },
   };
 }

@@ -115,6 +115,17 @@ export interface UiStrings {
   statusPlanned: string;
   backToTop: string;
   footerBuiltWith: string;
+  /** aria-label of the primary `<nav>`. */
+  mainNav: string;
+  /** aria-label of the highlights section (it has no visible heading). */
+  highlightsLabel: string;
+  /** Shown on the Tech Lab card of the page the visitor is on. */
+  youAreHere: string;
+  /** Screen-reader hint appended to links that open a new tab. */
+  opensInNewTab: string;
+  /** Prefix of the certificate dialog title, e.g. "Certificate:". */
+  certificateOf: string;
+  issuedBy: string;
 }
 
 /** Everything that is translated, for one language. */
@@ -146,6 +157,9 @@ export interface Certification {
   verifyUrl: string | null;
   /** Image path relative to the portfolio's public folder. */
   image: string;
+  /** Intrinsic image size in pixels (prevents layout shift). */
+  width: number;
+  height: number;
 }
 
 /** Release state of a showcase app. */

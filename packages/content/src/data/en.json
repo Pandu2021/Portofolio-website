@@ -52,10 +52,22 @@
     ]
   },
   "highlights": [
-    { "value": "1", "label": "production e-commerce platform built as sole developer" },
-    { "value": "45+", "label": "pages across storefront, partner portal and admin console" },
-    { "value": "~95", "label": "automated test files with CI/CD and security scanning" },
-    { "value": "10", "label": "professional certificates from Google, IBM, Microsoft and Amazon" }
+    {
+      "value": "1",
+      "label": "production e-commerce platform built as sole developer"
+    },
+    {
+      "value": "45+",
+      "label": "pages across storefront, partner portal and admin console"
+    },
+    {
+      "value": "~95",
+      "label": "automated test files with CI/CD and security scanning"
+    },
+    {
+      "value": "10",
+      "label": "professional certificates from Google, IBM, Microsoft and Amazon"
+    }
   ],
   "featuredProject": {
     "title": "Featured project",
@@ -203,9 +215,18 @@
     "intro": "Let's build something useful together.",
     "body": "The fastest way to reach me is a message on LinkedIn.",
     "links": [
-      { "label": "LinkedIn", "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/" },
-      { "label": "GitHub", "href": "https://github.com/Pandu2021" },
-      { "label": "Kaggle", "href": "https://www.kaggle.com/panduwicaksono2025" }
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Pandu2021"
+      },
+      {
+        "label": "Kaggle",
+        "href": "https://www.kaggle.com/panduwicaksono2025"
+      }
     ],
     "resumeLabel": "Download resume (1 page)",
     "cvLabel": "Download CV (2 pages)"
@@ -228,6 +249,12 @@
     "statusInProgress": "In progress",
     "statusPlanned": "Planned",
     "backToTop": "Back to top",
-    "footerBuiltWith": "Built with Next.js, React and Angular in one pnpm monorepo."
+    "footerBuiltWith": "Built with Next.js, React and Angular in one pnpm monorepo.",
+    "mainNav": "Main navigation",
+    "highlightsLabel": "Highlights",
+    "youAreHere": "You are here",
+    "opensInNewTab": "(opens in a new tab)",
+    "certificateOf": "Certificate:",
+    "issuedBy": "Issued by"
   }
 }

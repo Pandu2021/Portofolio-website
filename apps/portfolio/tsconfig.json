@@ -5,6 +5,11 @@
     "allowJs": false,
     "jsx": "react-jsx",
     "incremental": true,
+    // Next.js type-checks its own generated files in .next/ (which contain unused
+    // imports). Unused code in *our* files is still an error via ESLint
+    // (@typescript-eslint/no-unused-vars), so these two compiler checks are off here.
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "types": ["node"],
     "plugins": [{ "name": "next" }],
     "paths": {

@@ -5,7 +5,9 @@
     "issuer": "Google",
     "date": "2026-11-04",
     "verifyUrl": "https://coursera.org/verify/professional-cert/5NTXDWDTS3GC",
-    "image": "certificates/google-data-analytics.jpg"
+    "image": "certificates/google-data-analytics.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "ibm-skillup-ios-apps-swift",
@@ -13,7 +15,9 @@
     "issuer": "IBM & SkillUp",
     "date": "2026-08-29",
     "verifyUrl": "https://coursera.org/verify/specialization/42Y70WC1MYG1",
-    "image": "certificates/ibm-skillup-ios-apps-swift.jpg"
+    "image": "certificates/ibm-skillup-ios-apps-swift.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "microsoft-full-stack-developer",
@@ -21,7 +25,9 @@
     "issuer": "Microsoft",
     "date": "2026-08-19",
     "verifyUrl": "https://coursera.org/verify/professional-cert/LETMGCJEDKZ5",
-    "image": "certificates/microsoft-full-stack-developer.jpg"
+    "image": "certificates/microsoft-full-stack-developer.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "google-advanced-data-analytics",
@@ -29,7 +35,9 @@
     "issuer": "Google",
     "date": "2026-06-01",
     "verifyUrl": "https://coursera.org/verify/professional-cert/HQXEI1E5QVXK",
-    "image": "certificates/google-advanced-data-analytics.jpg"
+    "image": "certificates/google-advanced-data-analytics.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "amazon-junior-software-developer",
@@ -37,7 +45,9 @@
     "issuer": "Amazon",
     "date": "2025-08-01",
     "verifyUrl": "https://coursera.org/verify/professional-cert/6JD47YHV3NUB",
-    "image": "certificates/amazon-junior-software-developer.jpg"
+    "image": "certificates/amazon-junior-software-developer.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "ibm-full-stack-software-developer",
@@ -45,7 +55,9 @@
     "issuer": "IBM",
     "date": "2025-07-24",
     "verifyUrl": "https://coursera.org/verify/professional-cert/10G55LPP9IPQ",
-    "image": "certificates/ibm-full-stack-software-developer.jpg"
+    "image": "certificates/ibm-full-stack-software-developer.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "google-cybersecurity",
@@ -53,7 +65,9 @@
     "issuer": "Google",
     "date": "2025-06-26",
     "verifyUrl": "https://coursera.org/verify/professional-cert/J1IVP9N9DTY8",
-    "image": "certificates/google-cybersecurity.jpg"
+    "image": "certificates/google-cybersecurity.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "google-ux-design",
@@ -61,7 +75,9 @@
     "issuer": "Google",
     "date": "2025-06-26",
     "verifyUrl": "https://coursera.org/verify/professional-cert/OZCGCY40KSAS",
-    "image": "certificates/google-ux-design.jpg"
+    "image": "certificates/google-ux-design.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "google-digital-marketing-ecommerce",
@@ -69,7 +85,9 @@
     "issuer": "Google",
     "date": "2025-06-26",
     "verifyUrl": "https://coursera.org/verify/professional-cert/LZW4EHP26GUL",
-    "image": "certificates/google-digital-marketing-ecommerce.jpg"
+    "image": "certificates/google-digital-marketing-ecommerce.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "google-business-intelligence",
@@ -77,7 +95,9 @@
     "issuer": "Google",
     "date": "2025-06-25",
     "verifyUrl": "https://coursera.org/verify/professional-cert/A6HI34IB1S4U",
-    "image": "certificates/google-business-intelligence.jpg"
+    "image": "certificates/google-business-intelligence.jpg",
+    "width": 1188,
+    "height": 928
   },
   {
     "id": "capital-market-school-2020",
@@ -85,6 +105,8 @@
     "issuer": "Investor Club UKSW · IDX, KSEI, KPEI",
     "date": "2020-07-21",
     "verifyUrl": null,
-    "image": "certificates/capital-market-school-2020.jpg"
+    "image": "certificates/capital-market-school-2020.jpg",
+    "width": 1600,
+    "height": 1131
   }
 ]

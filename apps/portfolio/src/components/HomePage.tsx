@@ -1,33 +1,51 @@
 /**
  * @file HomePage.tsx
- * Home page for one language.
- *
- * Phase 1 scaffold: proves the wiring between Next.js, @portfolio/content and
- * @portfolio/design-tokens. The full one-page design is built in Phase 2.
+ * The one-page portfolio for one language. Rendered to static HTML at build
+ * time; only the small interactive pieces (menu, theme, dialogs, back-to-top,
+ * scroll reveal) hydrate as client components.
  */
-import { getContent, showcase, type Locale } from '@portfolio/content';
-import styles from './HomePage.module.css';
+import { getContent, type Locale } from '@portfolio/content';
+import { SiteFooter } from './layout/SiteFooter';
+import { SiteHeader } from './layout/SiteHeader';
+import { About } from './sections/About';
+import { Certifications } from './sections/Certifications';
+import { Contact } from './sections/Contact';
+import { Education } from './sections/Education';
+import { Experience } from './sections/Experience';
+import { FeaturedProject } from './sections/FeaturedProject';
+import { Hero } from './sections/Hero';
+import { Highlights } from './sections/Highlights';
+import { Skills } from './sections/Skills';
+import { TechLab } from './sections/TechLab';
+import { JsonLd } from './seo/JsonLd';
+import { BackToTop } from './ui/BackToTop';
+import { RevealObserver } from './ui/RevealObserver';
 
-interface HomePageProps {
-  locale: Locale;
-}
-
-/** Renders the (scaffold) home page in the given language. */
-export function HomePage({ locale }: HomePageProps) {
+/** Renders the complete home page in the given language. */
+export function HomePage({ locale }: { locale: Locale }) {
   const content = getContent(locale);
   return (
-    <main id="main" className={styles.main}>
-      <p className={styles.eyebrow}>{content.hero.eyebrow}</p>
-      <h1 className={styles.title}>{content.hero.name}</h1>
-      <p className={styles.role}>{content.hero.role}</p>
-      <h2>{content.techLab.title}</h2>
-      <ul>
-        {showcase.map((app) => (
-          <li key={app.id}>
-            <strong>{app.framework}</strong> — {app.title[locale]}
-          </li>
-        ))}
-      </ul>
-    </main>
+    <>
+      <a href="#main" className="skip-link">
+        {content.ui.skipToContent}
+      </a>
+      <SiteHeader content={content} />
+      <main id="main" tabIndex={-1}>
+        <Hero content={content} />
+        <Highlights content={content} />
+        <About content={content} />
+        <FeaturedProject content={content} />
+        <TechLab content={content} />
+        <Skills content={content} />
+        <Experience content={content} />
+        <Certifications content={content} />
+        <Education content={content} />
+        <Contact content={content} />
+      </main>
+      <SiteFooter content={content} />
+      <BackToTop label={content.ui.backToTop} />
+      <RevealObserver />
+      <JsonLd locale={locale} />
+    </>
   );
 }

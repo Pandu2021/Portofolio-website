@@ -5,8 +5,11 @@
     "brand": "next",
     "path": "",
     "sourcePath": "apps/portfolio",
-    "status": "in-progress",
-    "title": { "en": "This portfolio", "id": "Portofolio ini" },
+    "status": "live",
+    "title": {
+      "en": "This portfolio",
+      "id": "Portofolio ini"
+    },
     "description": {
       "en": "Statically generated, bilingual and accessible site with light/dark themes.",
       "id": "Situs statis dua bahasa yang aksesibel dengan tema terang/gelap."
@@ -20,7 +23,10 @@
     "path": "react/",
     "sourcePath": "apps/react-storefront",
     "status": "in-progress",
-    "title": { "en": "Storefront demo", "id": "Demo toko online" },
+    "title": {
+      "en": "Storefront demo",
+      "id": "Demo toko online"
+    },
     "description": {
       "en": "Product catalog, filters and a persistent cart built with mock data.",
       "id": "Katalog produk, filter dan keranjang belanja tersimpan dengan data tiruan."
@@ -34,7 +40,10 @@
     "path": "angular/",
     "sourcePath": "apps/angular-dashboard",
     "status": "in-progress",
-    "title": { "en": "Admin dashboard demo", "id": "Demo dashboard admin" },
+    "title": {
+      "en": "Admin dashboard demo",
+      "id": "Demo dashboard admin"
+    },
     "description": {
       "en": "Order and finance back-office with mock sign-in, reactive forms and charts.",
       "id": "Back-office pesanan dan keuangan dengan login tiruan, reactive forms dan grafik."
@@ -48,7 +57,10 @@
     "path": "vue/",
     "sourcePath": "apps/vue-invoice",
     "status": "planned",
-    "title": { "en": "Invoice & pricing tool", "id": "Alat invoice & harga" },
+    "title": {
+      "en": "Invoice & pricing tool",
+      "id": "Alat invoice & harga"
+    },
     "description": {
       "en": "Planned: tax, discount and invoice calculator with Vue 3 and Pinia.",
       "id": "Rencana: kalkulator pajak, diskon dan invoice dengan Vue 3 dan Pinia."
