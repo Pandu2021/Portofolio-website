@@ -15,6 +15,10 @@ describe('JSON-LD', () => {
     expect(data['sameAs']).toContain('https://github.com/Pandu2021');
     expect(Array.isArray(data['hasCredential'])).toBe(true);
     expect(data['url']).toBe('https://pandu2021.github.io/Portofolio-website/');
+    expect(data['knowsLanguage']).toEqual([
+      { '@type': 'Language', name: 'Bahasa Indonesia', alternateName: 'id' },
+      { '@type': 'Language', name: 'English', alternateName: 'en' },
+    ]);
   });
 
   it('uses the Indonesian URL for the Indonesian page', () => {

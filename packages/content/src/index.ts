@@ -6,10 +6,19 @@
  * showcase status fails the build instead of shipping a broken page.
  */
 import certificationsRaw from './data/certifications.json';
+import courseProjectsRaw from './data/course-projects.json';
 import enRaw from './data/en.json';
 import idRaw from './data/id.json';
 import showcaseRaw from './data/showcase.json';
-import type { Certification, Locale, ShowcaseApp, ShowcaseStatus, SiteContent } from './types';
+import type {
+  Certification,
+  CourseProject,
+  CourseProjectStatus,
+  Locale,
+  ShowcaseApp,
+  ShowcaseStatus,
+  SiteContent,
+} from './types';
 
 export type * from './types';
 
@@ -80,6 +89,46 @@ export const showcase: readonly ShowcaseApp[] = showcaseRaw.map((app) => ({
   brand: assertOneOf(app.brand, SHOWCASE_BRANDS, `showcase[${app.id}].brand`),
   status: assertOneOf(app.status, SHOWCASE_STATUSES, `showcase[${app.id}].status`),
 }));
+
+const COURSE_PROJECT_STATUSES: readonly CourseProjectStatus[] = ['completed', 'in-progress'];
+
+/**
+ * Hands-on projects from the certificate programs, in CV order.
+ * A project must reference an existing certificate, or name its program
+ * while the certificate is not earned yet.
+ */
+export const courseProjects: readonly CourseProject[] = courseProjectsRaw.map((project) => {
+  const { certificationId, program } = project;
+  if (certificationId !== null && !certifications.some((cert) => cert.id === certificationId)) {
+    throw new Error(
+      `[content] course project "${project.id}": unknown certificationId "${certificationId}"`,
+    );
+  }
+  if ((certificationId === null) === (program === null)) {
+    throw new Error(
+      `[content] course project "${project.id}": set exactly one of certificationId or program`,
+    );
+  }
+  return {
+    ...project,
+    status: assertOneOf(
+      project.status,
+      COURSE_PROJECT_STATUSES,
+      `courseProjects[${project.id}].status`,
+    ),
+  };
+});
+
+/**
+ * Normalizes a skill keyword for comparisons: case-insensitive and without a
+ * trailing qualifier, so "Kotlin" and "Kotlin (Android)" count as one keyword.
+ */
+export function skillKey(keyword: string): string {
+  return keyword
+    .replace(/\s*\([^)]*\)\s*$/, '')
+    .trim()
+    .toLowerCase();
+}
 
 /**
  * Formats an ISO date (`YYYY-MM-DD`) as "Nov 2026" / "Nov 2026" for the given language.

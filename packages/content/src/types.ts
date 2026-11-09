@@ -68,9 +68,39 @@ export interface FeaturedProject extends SectionIntro {
   confidentialityNote: string;
 }
 
+/**
+ * One group of the Skills section.
+ *
+ * Rule "one keyword, one home": every keyword appears in exactly ONE group
+ * (checked case-insensitively by content.test.ts). Project chips may only use
+ * keywords that exist here, so a recruiter never reads two spellings of the
+ * same skill.
+ */
 export interface SkillGroup {
   name: string;
   items: string[];
+  /** Optional sentence shown under the chips (e.g. how AI tools are used). */
+  note?: string;
+}
+
+/** A spoken language and the honest proficiency level from the CV. */
+export interface SpokenLanguage {
+  /** BCP 47 code, used for JSON-LD `knowsLanguage`. */
+  code: string;
+  name: string;
+  level: string;
+}
+
+/** A course or academic activity in the Education section. */
+export interface CourseworkArea {
+  area: string;
+  courses: string[];
+}
+
+export interface AcademicActivity {
+  name: string;
+  period: string;
+  description: string;
 }
 
 export interface ExperienceItem {
@@ -86,6 +116,8 @@ export interface EducationItem {
   school: string;
   location: string;
   period: string;
+  /** Relevant courses, grouped by area (course names, not skill keywords). */
+  coursework: CourseworkArea[];
 }
 
 export interface ContactContent extends SectionIntro {
@@ -134,14 +166,23 @@ export interface SiteContent {
   meta: MetaContent;
   nav: NavContent;
   hero: HeroContent;
-  about: SectionIntro & { body: string[] };
+  about: SectionIntro & {
+    body: string[];
+    languages: { title: string; items: SpokenLanguage[] };
+  };
   highlights: Highlight[];
   featuredProject: FeaturedProject;
   techLab: SectionIntro;
+  /** Heading and intro of the course-project list (items: data/course-projects.json). */
+  courseProjects: SectionIntro;
   skills: SectionIntro & { groups: SkillGroup[] };
   experience: SectionIntro & { items: ExperienceItem[] };
   certifications: SectionIntro;
-  education: SectionIntro & { items: EducationItem[] };
+  education: SectionIntro & {
+    items: EducationItem[];
+    courseworkTitle: string;
+    activities: { title: string; items: AcademicActivity[] };
+  };
   contact: ContactContent;
   ui: UiStrings;
 }
@@ -160,6 +201,30 @@ export interface Certification {
   /** Intrinsic image size in pixels (prevents layout shift). */
   width: number;
   height: number;
+}
+
+/** State of a course project. */
+export type CourseProjectStatus = 'completed' | 'in-progress';
+
+/**
+ * A hands-on project from a certificate program (data/course-projects.json).
+ * The certificate itself is referenced by id — its name, issuer and verify
+ * link come from certifications.json, so nothing is written twice.
+ */
+export interface CourseProject {
+  id: string;
+  title: Localized;
+  /** Id in certifications.json, or `null` while the program is unfinished. */
+  certificationId: string | null;
+  /** Program name, only when there is no certificate yet (`certificationId: null`). */
+  program: string | null;
+  /** Single course inside a multi-course certificate, if the project belongs to one. */
+  course: string | null;
+  year: string;
+  status: CourseProjectStatus;
+  summary: Localized;
+  /** Up to 5 chips; each must be a keyword from the Skills section. */
+  stack: string[];
 }
 
 /** Release state of a showcase app. */

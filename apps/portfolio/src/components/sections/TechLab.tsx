@@ -1,12 +1,13 @@
 /**
  * @file TechLab.tsx
  * One card per framework app, generated from the showcase registry
- * (`packages/content/src/data/showcase.json`).
+ * (`packages/content/src/data/showcase.json`), followed by the course projects.
  */
 import { showcase, type ShowcaseStatus, type SiteContent } from '@portfolio/content';
 import { ExternalLink } from '@/components/ui/ExternalLink';
 import { Icon } from '@/components/ui/Icon';
 import { repoTreeUrl, withBasePath } from '@/lib/site';
+import { CourseProjects } from './CourseProjects';
 import { Section } from './Section';
 
 /** Renders the Tech Lab grid. */
@@ -71,6 +72,7 @@ export function TechLab({ content }: { content: SiteContent }) {
           );
         })}
       </ul>
+      <CourseProjects content={content} />
     </Section>
   );
 }

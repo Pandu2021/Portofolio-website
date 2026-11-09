@@ -23,7 +23,8 @@
       "CI/CD",
       "Keamanan Web",
       "E-commerce",
-      "Integrasi Pembayaran"
+      "Integrasi Pembayaran",
+      "Pengembangan dengan Bantuan AI"
     ]
   },
   "nav": {
@@ -49,7 +50,22 @@
     "body": [
       "Full-stack developer bergelar Sarjana Ekonomi bidang Manajemen Keuangan. Saya merancang dan membangun, sebagai satu-satunya developer, platform pemesanan dan operasional untuk klien internasional di industri makanan dan minuman.",
       "Saya peduli pada arsitektur yang rapi, aksesibilitas dan keamanan, serta bersertifikat Google, IBM, Microsoft dan Amazon di bidang full-stack development dan analisis data."
-    ]
+    ],
+    "languages": {
+      "title": "Bahasa",
+      "items": [
+        {
+          "code": "id",
+          "name": "Bahasa Indonesia",
+          "level": "Penutur asli"
+        },
+        {
+          "code": "en",
+          "name": "Bahasa Inggris",
+          "level": "Kemampuan kerja profesional dasar"
+        }
+      ]
+    }
   },
   "highlights": [
     {
@@ -91,7 +107,7 @@
       "NestJS",
       "Prisma",
       "PostgreSQL",
-      "SSE",
+      "Server-Sent Events",
       "Kotlin",
       "Docker",
       "GitHub Actions"
@@ -101,6 +117,10 @@
   "techLab": {
     "title": "Tech Lab",
     "intro": "Satu portofolio, satu link — setiap framework memegang satu aplikasi utuh."
+  },
+  "courseProjects": {
+    "title": "Proyek kursus",
+    "intro": "Proyek praktik dari program sertifikat saya. Masing-masing terhubung ke halaman verifikasi resminya."
   },
   "skills": {
     "title": "Keahlian",
@@ -150,19 +170,51 @@
       },
       {
         "name": "DevOps & Kualitas",
-        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "Git"]
+        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "TDD", "Git"]
       },
       {
-        "name": "Mobile & Lainnya",
+        "name": "Pengembangan dengan Bantuan AI",
+        "items": ["GitHub Copilot", "Claude Code", "ChatGPT", "Google Gemini", "Microsoft Copilot"],
+        "note": "Setiap perubahan yang dibantu AI selalu direview, dites dan dipindai keamanannya."
+      },
+      {
+        "name": "Mobile",
         "items": [
           "Kotlin (Android)",
           "Swift",
           "SwiftUI",
+          "SwiftData",
           "React Native",
-          "Java",
-          "C#",
-          "ASP.NET Core"
+          "AI on-device (Apple Foundation Models)"
         ]
+      },
+      {
+        "name": "Kursus bersertifikat",
+        "items": [
+          "Java",
+          "JUnit",
+          "OOP",
+          "Struktur data",
+          "C#",
+          "ASP.NET Core",
+          "Blazor",
+          "Entity Framework Core",
+          "Django",
+          "Kubernetes",
+          "Microservices",
+          "Agile",
+          "SDLC",
+          "Linux",
+          "SIEM",
+          "Keamanan jaringan",
+          "Deteksi ancaman",
+          "Figma",
+          "Riset pengguna",
+          "Prototyping",
+          "Pemasaran digital",
+          "Google Analytics"
+        ],
+        "note": "Dipelajari dan diuji dalam program sertifikat yang tercantum di bawah."
       },
       {
         "name": "Data & Bisnis",
@@ -170,9 +222,19 @@
           "Python",
           "Tableau",
           "BigQuery",
+          "ETL",
+          "Pemodelan data",
+          "Dasbor BI",
           "Visualisasi data",
+          "Regresi",
+          "Machine learning (decision tree, random forest, XGBoost)",
+          "Statistika",
           "Manajemen keuangan",
-          "Manajemen proyek"
+          "Penganggaran",
+          "Perencanaan bisnis",
+          "Riset pasar",
+          "Manajemen proyek",
+          "Komunikasi pemangku kepentingan"
         ]
       }
     ]
@@ -190,7 +252,7 @@
           "Mengintegrasikan pembayaran online melalui payment gateway pihak ketiga dengan rekonsiliasi otomatis, serta membangun mesin harga untuk pajak, biaya, promo dan pengiriman.",
           "Meluncurkan kanal pemesanan B2B dengan akses berbasis peran serta harga eceran dan grosir terpisah, menggantikan pemesanan manual.",
           "Menghadirkan pelacakan pesanan real-time, live chat, otomasi back-office dan cetak struk otomatis melalui agen printer Android dan Windows.",
-          "Menerapkan praktik pengembangan yang aman serta CI/CD dengan Docker, GitHub Actions dan tes otomatis."
+          "Menerapkan praktik pengembangan yang aman (autentikasi dan otorisasi, perlindungan input, pemindaian keamanan otomatis) serta CI/CD dengan Docker, GitHub Actions dan tes otomatis."
         ]
       }
     ]
@@ -206,9 +268,61 @@
         "degree": "Sarjana Ekonomi (S.E.), Manajemen – Manajemen Keuangan",
         "school": "Universitas Kristen Satya Wacana",
         "location": "Salatiga, Indonesia",
-        "period": "2015 – 2021"
+        "period": "2015 – 2021",
+        "coursework": [
+          {
+            "area": "Keuangan",
+            "courses": [
+              "Manajemen Keuangan",
+              "Manajemen Keuangan Lanjutan",
+              "Manajemen Keuangan Internasional",
+              "Bank & Lembaga Keuangan",
+              "Penganggaran",
+              "Akuntansi Manajerial",
+              "Manajemen Risiko"
+            ]
+          },
+          {
+            "area": "Analitik",
+            "courses": [
+              "Statistika Bisnis",
+              "Analisis Pengambilan Keputusan",
+              "Analisis Kinerja Perusahaan"
+            ]
+          },
+          {
+            "area": "Bisnis & Teknologi",
+            "courses": [
+              "Aplikasi Teknologi Informasi",
+              "Manajemen Proyek",
+              "Manajemen Strategik",
+              "Manajemen Pemasaran"
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "courseworkTitle": "Mata kuliah relevan",
+    "activities": {
+      "title": "Pengalaman akademik",
+      "items": [
+        {
+          "name": "Magang E-Business",
+          "period": "Agu – Des 2019",
+          "description": "Meriset peluang bisnis, segmen pelanggan dan pasar sasaran; ikut menyusun rencana bisnis dengan proyeksi keuangan dan strategi pemasaran."
+        },
+        {
+          "name": "Proyek Rencana Bisnis",
+          "period": "Jan – Apr 2019",
+          "description": "Riset pasar, proyeksi keuangan dan presentasi kepada pemangku kepentingan."
+        },
+        {
+          "name": "Panitia penyelenggara acara",
+          "period": "2018 – 2019",
+          "description": "Mengurus logistik dan koordinasi vendor, memantau pengeluaran terhadap anggaran dan mengoordinasikan relawan."
+        }
+      ]
+    }
   },
   "contact": {
     "title": "Kontak",

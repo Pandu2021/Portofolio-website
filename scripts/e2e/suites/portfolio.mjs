@@ -2,7 +2,8 @@
  * @file portfolio.mjs
  * E2E checks for the Next.js portfolio: both languages, strict CSP, fonts,
  * theme (toggle + restore before paint), scroll reveal, certificate dialog,
- * mobile menu, skip link and the 404 page.
+ * mobile menu, skip link, CV content sections (skills without duplicates,
+ * languages, course projects, coursework) and the 404 page.
  */
 import { horizontalOverflow, openPage, screenshot, sleep } from '../harness.mjs';
 
@@ -153,7 +154,79 @@ export async function run({ browser, results, base }) {
     await view.close();
   }
 
-  // 5. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
+  // 5. CV content in both languages: skills (no duplicates), languages, course
+  //    projects, coursework, academic experience and a clean heading outline.
+  for (const path of ['', 'id/']) {
+    const view = await openPage(browser, base + path);
+    const { page } = view;
+    const label = `/${path}`;
+    const facts = await page.evaluate(() => {
+      const text = (selector) =>
+        [...document.querySelectorAll(selector)].map((el) => el.textContent?.trim() ?? '');
+      const skills = text('.skill-group .chip').map((chip) =>
+        chip.replace(/\s*\([^)]*\)\s*$/, '').toLowerCase(),
+      );
+      // Heading levels in document order; a jump such as h2 → h4 is an error.
+      const levels = [...document.querySelectorAll('h1, h2, h3, h4, h5, h6')].map((h) =>
+        Number(h.tagName[1]),
+      );
+      const skipped = levels.filter((level, i) => i > 0 && level > levels[i - 1] + 1).length;
+      const verifyLinks = [...document.querySelectorAll('.course-card__links a')];
+      return {
+        groups: document.querySelectorAll('.skill-group').length,
+        skills,
+        aiChips: text('.skill-group:nth-child(5) .chip'),
+        notes: document.querySelectorAll('.skill-group__note').length,
+        languages: document.querySelectorAll('.languages__item').length,
+        courseCards: document.querySelectorAll('.course-card').length,
+        courseTitles: document.querySelectorAll('.course-card h4').length,
+        inProgress: document.querySelectorAll('.course-card .status[data-status="in-progress"]')
+          .length,
+        verifyLinks: verifyLinks.length,
+        safeLinks: verifyLinks.every(
+          (a) => a.target === '_blank' && /noopener/.test(a.rel) && a.href.startsWith('https://'),
+        ),
+        coursework: document.querySelectorAll('.coursework__group').length,
+        activities: document.querySelectorAll('.activity-list > li').length,
+        skipped,
+      };
+    });
+    results.check(facts.groups === 8, `${label} Skills has 8 groups`, `groups=${facts.groups}`);
+    const duplicates = facts.skills.filter((skill, i) => facts.skills.indexOf(skill) !== i);
+    results.check(
+      duplicates.length === 0,
+      `${label} no duplicate skill keywords`,
+      duplicates.join(', '),
+    );
+    results.check(
+      facts.aiChips.includes('Claude Code') && facts.notes === 2,
+      `${label} AI-assisted development group with its review note`,
+      facts.aiChips.join(', '),
+    );
+    results.check(facts.languages === 2, `${label} spoken languages listed`);
+    results.check(
+      facts.courseCards === 9 && facts.courseTitles === 9 && facts.inProgress === 1,
+      `${label} 9 course projects (1 in progress)`,
+      `cards=${facts.courseCards} h4=${facts.courseTitles} inProgress=${facts.inProgress}`,
+    );
+    results.check(
+      facts.verifyLinks === 8 && facts.safeLinks,
+      `${label} course projects link to certificate verification (new tab, noopener)`,
+      `links=${facts.verifyLinks}`,
+    );
+    results.check(
+      facts.coursework === 3 && facts.activities === 3,
+      `${label} coursework (3 areas) and academic experience (3 items)`,
+    );
+    results.check(
+      facts.skipped === 0,
+      `${label} heading levels never skip`,
+      `skips=${facts.skipped}`,
+    );
+    await view.close();
+  }
+
+  // 6. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
   {
     const view = await openPage(browser, `${base}does-not-exist/`);
     const heading = await view.page.$eval('h1', (el) => el.textContent ?? '');

@@ -23,7 +23,11 @@ export function buildPersonJsonLd(locale: Locale): Record<string, unknown> {
     address: { '@type': 'PostalAddress', addressCountry: 'ID' },
     sameAs: content.contact.links.map((link) => link.href),
     knowsAbout: content.meta.keywords,
-    knowsLanguage: ['id', 'en'],
+    knowsLanguage: content.about.languages.items.map((language) => ({
+      '@type': 'Language',
+      name: language.name,
+      alternateName: language.code,
+    })),
     ...(education && {
       alumniOf: { '@type': 'CollegeOrUniversity', name: education.school },
     }),

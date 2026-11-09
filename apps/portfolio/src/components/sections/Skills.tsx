@@ -22,6 +22,7 @@ export function Skills({ content }: { content: SiteContent }) {
                 </li>
               ))}
             </ul>
+            {group.note && <p className="skill-group__note">{group.note}</p>}
           </div>
         ))}
       </div>

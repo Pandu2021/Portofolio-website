@@ -1,0 +1,134 @@
+[
+  {
+    "id": "little-lemon",
+    "title": {
+      "en": "Little Lemon (React Native app)",
+      "id": "Little Lemon (aplikasi React Native)"
+    },
+    "certificationId": null,
+    "program": "Meta React Native",
+    "course": null,
+    "year": "2026",
+    "status": "in-progress",
+    "summary": {
+      "en": "Cross-platform mobile app with Stack, Tab and Drawer navigation, FlatList views, dynamic cart calculations and Jest unit tests.",
+      "id": "Aplikasi mobile lintas platform dengan navigasi Stack, Tab dan Drawer, tampilan FlatList, perhitungan keranjang dinamis dan unit test Jest."
+    },
+    "stack": ["React Native", "JavaScript", "Jest"]
+  },
+  {
+    "id": "data-analytics-case-study",
+    "title": { "en": "Data Analytics Case Study", "id": "Studi Kasus Analisis Data" },
+    "certificationId": "google-data-analytics",
+    "program": null,
+    "course": "Capstone",
+    "year": "2026",
+    "status": "completed",
+    "summary": {
+      "en": "Analyzed a business scenario end to end (Ask, Prepare, Process, Analyze, Share, Act) and presented data-driven recommendations.",
+      "id": "Menganalisis skenario bisnis dari awal sampai akhir (Ask, Prepare, Process, Analyze, Share, Act) dan menyajikan rekomendasi berbasis data."
+    },
+    "stack": []
+  },
+  {
+    "id": "smart-travel-journal",
+    "title": { "en": "SmartTravelJournal (iOS app)", "id": "SmartTravelJournal (aplikasi iOS)" },
+    "certificationId": "ibm-skillup-ios-apps-swift",
+    "program": null,
+    "course": null,
+    "year": "2026",
+    "status": "completed",
+    "summary": {
+      "en": "Journaling app with Swift 6, SwiftUI, MVVM and SwiftData, featuring on-device AI summaries, MapKit, live weather data and Swift Charts.",
+      "id": "Aplikasi jurnal dengan Swift 6, SwiftUI, MVVM dan SwiftData, dilengkapi ringkasan AI on-device, MapKit, data cuaca langsung dan Swift Charts."
+    },
+    "stack": ["Swift", "SwiftUI", "SwiftData", "On-device AI"]
+  },
+  {
+    "id": "local-events-explorer",
+    "title": {
+      "en": "Local Events Explorer (iOS app)",
+      "id": "Local Events Explorer (aplikasi iOS)"
+    },
+    "certificationId": "ibm-skillup-ios-apps-swift",
+    "program": null,
+    "course": "Creating iOS Apps Using Swift",
+    "year": "2026",
+    "status": "completed",
+    "summary": {
+      "en": "Event discovery app with MapKit pins and category filters, Swift Charts, SwiftData offline storage and a concept AI event-tips widget.",
+      "id": "Aplikasi pencarian acara dengan pin MapKit dan filter kategori, Swift Charts, penyimpanan offline SwiftData dan konsep widget tips acara berbasis AI."
+    },
+    "stack": ["Swift", "SwiftUI", "SwiftData"]
+  },
+  {
+    "id": "full-stack-developer-capstone",
+    "title": { "en": "Full-Stack Developer Capstone", "id": "Capstone Full-Stack Developer" },
+    "certificationId": "microsoft-full-stack-developer",
+    "program": null,
+    "course": "Capstone",
+    "year": "2026",
+    "status": "completed",
+    "summary": {
+      "en": "Integrated a Blazor front end with an ASP.NET Core Web API, Entity Framework Core and ASP.NET Identity in a full-stack .NET application, using Microsoft Copilot.",
+      "id": "Mengintegrasikan front end Blazor dengan Web API ASP.NET Core, Entity Framework Core dan ASP.NET Identity dalam aplikasi .NET full-stack, dengan bantuan Microsoft Copilot."
+    },
+    "stack": ["Blazor", "ASP.NET Core", "Entity Framework Core", "C#", "Microsoft Copilot"]
+  },
+  {
+    "id": "salifort-motors",
+    "title": { "en": "Salifort Motors Project Lab", "id": "Salifort Motors Project Lab" },
+    "certificationId": "google-advanced-data-analytics",
+    "program": null,
+    "course": "Capstone",
+    "year": "2026",
+    "status": "completed",
+    "summary": {
+      "en": "Analyzed employee data in Python (EDA, visualization, predictive modeling) to identify drivers of attrition, including overwork, and recommended retention actions.",
+      "id": "Menganalisis data karyawan dengan Python (EDA, visualisasi, pemodelan prediktif) untuk menemukan penyebab karyawan keluar, termasuk beban kerja berlebih, dan merekomendasikan langkah retensi."
+    },
+    "stack": ["Python", "Machine learning"]
+  },
+  {
+    "id": "java-desktop-application",
+    "title": { "en": "Java Desktop Application", "id": "Aplikasi Desktop Java" },
+    "certificationId": "amazon-junior-software-developer",
+    "program": null,
+    "course": "Capstone",
+    "year": "2025",
+    "status": "completed",
+    "summary": {
+      "en": "Java desktop application with integrated data handling and a graphical interface, applying object-oriented design and unit testing.",
+      "id": "Aplikasi desktop Java dengan pengolahan data terintegrasi dan antarmuka grafis, menerapkan desain berorientasi objek dan unit testing."
+    },
+    "stack": ["Java", "OOP"]
+  },
+  {
+    "id": "full-stack-application",
+    "title": { "en": "Full Stack Application", "id": "Aplikasi Full Stack" },
+    "certificationId": "ibm-full-stack-software-developer",
+    "program": null,
+    "course": "Capstone",
+    "year": "2025",
+    "status": "completed",
+    "summary": {
+      "en": "Combined React, Node.js, Express and Django into a full-stack web application deployed to the cloud with containers and CI/CD.",
+      "id": "Menggabungkan React, Node.js, Express dan Django menjadi aplikasi web full-stack yang di-deploy ke cloud dengan container dan CI/CD."
+    },
+    "stack": ["React", "Node.js", "Express", "Django", "CI/CD"]
+  },
+  {
+    "id": "business-intelligence-dashboard",
+    "title": { "en": "Business Intelligence Dashboard", "id": "Dasbor Business Intelligence" },
+    "certificationId": "google-business-intelligence",
+    "program": null,
+    "course": null,
+    "year": "2025",
+    "status": "completed",
+    "summary": {
+      "en": "Planned a BI project, built a data pipeline and designed an interactive Tableau dashboard with an executive summary.",
+      "id": "Merencanakan proyek BI, membangun pipeline data dan merancang dasbor Tableau interaktif dengan ringkasan eksekutif."
+    },
+    "stack": ["Tableau", "ETL", "BI dashboards"]
+  }
+]

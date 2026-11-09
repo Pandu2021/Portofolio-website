@@ -626,6 +626,29 @@ main:focus {
   margin: 0;
 }
 
+.languages__title {
+  margin: var(--space-2) 0 var(--space-3);
+  font-size: var(--text-base);
+}
+
+.languages__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.languages__item dt {
+  font-weight: 700;
+}
+
+.languages__item dd {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
 /* 7. Featured project ----------------------------------------------------- */
 .feature {
   padding: clamp(var(--space-5), 4vw, var(--space-7));
@@ -727,6 +750,69 @@ main:focus {
   font-weight: 700;
 }
 
+/* Course projects (sub-section of the Tech Lab) */
+.course-projects {
+  margin-top: clamp(var(--space-7), 6vw, var(--space-8));
+}
+
+.course-projects__head {
+  margin-bottom: var(--space-5);
+}
+
+.course-projects__title {
+  margin: 0;
+  font-size: var(--text-2xl);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.course-card__top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.course-card__title {
+  margin: 0;
+  font-size: var(--text-lg);
+  line-height: 1.35;
+}
+
+.course-card__top .status {
+  flex-shrink: 0;
+}
+
+.course-card__meta {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.course-card__text {
+  margin: 0;
+}
+
+.course-card__links {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
 /* 9. Skills & Experience -------------------------------------------------- */
 .skills-grid {
   display: grid;
@@ -737,6 +823,12 @@ main:focus {
 .skill-group__name {
   margin: 0 0 var(--space-4);
   font-size: var(--text-lg);
+}
+
+.skill-group__note {
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
 }
 
 .timeline {
@@ -852,6 +944,62 @@ main:focus {
 
 .edu-card__meta {
   margin: var(--space-2) 0 0;
+  color: var(--color-text-muted);
+}
+
+.edu-card__coursework {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.edu-card__subtitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-base);
+}
+
+.coursework {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.coursework__group dt {
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.coursework__group dd {
+  margin: var(--space-1) 0 0;
+  color: var(--color-text-muted);
+}
+
+.activity-list {
+  display: grid;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.activity-list__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+}
+
+.activity-list__period {
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.activity-list__text {
+  margin: var(--space-1) 0 0;
   color: var(--color-text-muted);
 }
 

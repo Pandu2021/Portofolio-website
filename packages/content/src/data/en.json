@@ -23,7 +23,8 @@
       "CI/CD",
       "Web Security",
       "E-commerce",
-      "Payment Integration"
+      "Payment Integration",
+      "AI-Assisted Development"
     ]
   },
   "nav": {
@@ -49,7 +50,22 @@
     "body": [
       "Full-stack developer with a Bachelor of Economics in Financial Management. I designed and built, as the sole developer, a production ordering and operations platform for an international food and beverage client.",
       "I care about clean architecture, accessibility and security, and I am certified by Google, IBM, Microsoft and Amazon in full-stack development and data analytics."
-    ]
+    ],
+    "languages": {
+      "title": "Languages",
+      "items": [
+        {
+          "code": "id",
+          "name": "Bahasa Indonesia",
+          "level": "Native"
+        },
+        {
+          "code": "en",
+          "name": "English",
+          "level": "Basic professional working proficiency"
+        }
+      ]
+    }
   },
   "highlights": [
     {
@@ -91,7 +107,7 @@
       "NestJS",
       "Prisma",
       "PostgreSQL",
-      "SSE",
+      "Server-Sent Events",
       "Kotlin",
       "Docker",
       "GitHub Actions"
@@ -101,6 +117,10 @@
   "techLab": {
     "title": "Tech Lab",
     "intro": "One portfolio, one link — each framework owns one complete app."
+  },
+  "courseProjects": {
+    "title": "Course projects",
+    "intro": "Hands-on projects from my certificate programs. Each one links to the official verification page."
   },
   "skills": {
     "title": "Skills",
@@ -150,19 +170,51 @@
       },
       {
         "name": "DevOps & Quality",
-        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "Git"]
+        "items": ["Docker", "GitHub Actions", "CI/CD", "Vitest", "Jest", "TDD", "Git"]
       },
       {
-        "name": "Mobile & Other",
+        "name": "AI-Assisted Development",
+        "items": ["GitHub Copilot", "Claude Code", "ChatGPT", "Google Gemini", "Microsoft Copilot"],
+        "note": "Every AI-assisted change is reviewed, tested and security-scanned."
+      },
+      {
+        "name": "Mobile",
         "items": [
           "Kotlin (Android)",
           "Swift",
           "SwiftUI",
+          "SwiftData",
           "React Native",
-          "Java",
-          "C#",
-          "ASP.NET Core"
+          "On-device AI (Apple Foundation Models)"
         ]
+      },
+      {
+        "name": "Certified coursework",
+        "items": [
+          "Java",
+          "JUnit",
+          "OOP",
+          "Data structures",
+          "C#",
+          "ASP.NET Core",
+          "Blazor",
+          "Entity Framework Core",
+          "Django",
+          "Kubernetes",
+          "Microservices",
+          "Agile",
+          "SDLC",
+          "Linux",
+          "SIEM",
+          "Network security",
+          "Threat detection",
+          "Figma",
+          "User research",
+          "Prototyping",
+          "Digital marketing",
+          "Google Analytics"
+        ],
+        "note": "Learned and assessed in the certificate programs listed below."
       },
       {
         "name": "Data & Business",
@@ -170,9 +222,19 @@
           "Python",
           "Tableau",
           "BigQuery",
+          "ETL",
+          "Data modeling",
+          "BI dashboards",
           "Data visualization",
+          "Regression",
+          "Machine learning (decision trees, random forest, XGBoost)",
+          "Statistics",
           "Financial management",
-          "Project management"
+          "Budgeting",
+          "Business planning",
+          "Market research",
+          "Project management",
+          "Stakeholder communication"
         ]
       }
     ]
@@ -190,7 +252,7 @@
           "Integrated online payments through a third-party gateway with automated reconciliation, and built a configurable pricing engine for tax, fees, promotions and delivery.",
           "Launched a B2B ordering channel with role-based access and separate retail and wholesale pricing, replacing manual ordering.",
           "Delivered real-time order tracking, live chat, back-office automation and automatic receipt printing through Android and Windows print agents.",
-          "Applied secure development practices and shipped CI/CD with Docker, GitHub Actions and automated tests."
+          "Applied secure development practices (authentication and authorization, input protection, automated security scanning) and shipped CI/CD with Docker, GitHub Actions and automated tests."
         ]
       }
     ]
@@ -206,9 +268,61 @@
         "degree": "Bachelor of Economics (S.E.), Management – Financial Management",
         "school": "Universitas Kristen Satya Wacana",
         "location": "Salatiga, Indonesia",
-        "period": "2015 – 2021"
+        "period": "2015 – 2021",
+        "coursework": [
+          {
+            "area": "Finance",
+            "courses": [
+              "Financial Management",
+              "Advanced Financial Management",
+              "International Financial Management",
+              "Banking & Financial Institutions",
+              "Budgeting",
+              "Managerial Accounting",
+              "Risk Management"
+            ]
+          },
+          {
+            "area": "Analytics",
+            "courses": [
+              "Business Statistics",
+              "Decision-Making Analysis",
+              "Corporate Performance Analysis"
+            ]
+          },
+          {
+            "area": "Business & Technology",
+            "courses": [
+              "Information Technology Applications",
+              "Project Management",
+              "Strategic Management",
+              "Marketing Management"
+            ]
+          }
+        ]
       }
-    ]
+    ],
+    "courseworkTitle": "Relevant coursework",
+    "activities": {
+      "title": "Academic experience",
+      "items": [
+        {
+          "name": "E-Business Internship",
+          "period": "Aug – Dec 2019",
+          "description": "Researched business opportunities, customer segments and target markets; contributed to business plans with financial projections and marketing approaches."
+        },
+        {
+          "name": "Business Plan Project",
+          "period": "Jan – Apr 2019",
+          "description": "Market research, financial projections and stakeholder presentations."
+        },
+        {
+          "name": "Event organizing committees",
+          "period": "2018 – 2019",
+          "description": "Handled logistics and vendor coordination, tracked expenses against the budget and coordinated volunteers."
+        }
+      ]
+    }
   },
   "contact": {
     "title": "Contact",

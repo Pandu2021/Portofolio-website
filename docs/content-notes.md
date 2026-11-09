@@ -66,3 +66,42 @@ The capital-market certificate was rendered from the original PDF with the stude
 
 - Bachelor of Economics (S.E.), Management – Financial Management, Universitas Kristen Satya Wacana,
   Salatiga, Sep 2015 – Apr 2021.
+- Relevant coursework (from the CV): Finance – Financial Management, Advanced Financial Management,
+  International Financial Management, Banking & Financial Institutions, Budgeting, Managerial Accounting,
+  Risk Management · Analytics – Business Statistics, Decision-Making Analysis, Corporate Performance Analysis ·
+  Business & Technology – Information Technology Applications, Project Management, Strategic Management,
+  Marketing Management.
+- Academic experience: E-Business Internship (Aug–Dec 2019), Business Plan Project (Jan–Apr 2019), event
+  organizing committees (2018–2019). Event and village names are deliberately **not** published (they hint at
+  a home location); the student leadership training is left out (low value for developer roles).
+
+## Course projects
+
+Nine hands-on projects from the certificate programs (CV section "Certification Projects") live in
+`packages/content/src/data/course-projects.json`. Each one references its certificate by `certificationId`
+(name, issuer and verify link come from `certifications.json`); only the unfinished Meta React Native program
+has `certificationId: null`, a `program` name and `status: "in-progress"`. Links to the matching GitHub
+repositories (e.g. Salifort-Motors-project-lab-, FullStackBlazorIntegration) are **not** added until those
+repositories have been scanned with gitleaks.
+
+## Keyword rule: one keyword, one home
+
+Every skill keyword has exactly one place on the page, so recruiters and ATS parsers never see the same skill
+twice under different spellings.
+
+| Where                                  | Role                        | Rule                                                                                            |
+| -------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Skills** (8 groups)                  | The one list of every skill | Each keyword once across all groups (case-insensitive; "Kotlin" = "Kotlin (Android)")           |
+| Featured project, course projects      | Evidence                    | Chips only use Skills keywords; at most 5 chips per course project                              |
+| Tech Lab                               | Demos in this repository    | Chips name techniques inside the demo code (e.g. "Signals", "useReducer"), exempt from the rule |
+| Certifications                         | Proof                       | No skill lists; course projects link here by id                                                 |
+| Education → coursework                 | Course names (facts)        | Written as on the transcript, not as skills                                                     |
+| `meta.keywords` (JSON-LD `knowsAbout`) | Summary for search engines  | Short list (≈20) of the most important keywords                                                 |
+
+`packages/content/src/content.test.ts` enforces the first two rows; `scripts/e2e/suites/portfolio.mjs`
+checks the rendered page for duplicate skill chips.
+
+AI tools are listed by **product name** only (GitHub Copilot, Claude Code, ChatGPT, Google Gemini,
+Microsoft Copilot), never by model version: versions change every few months, and ATS searches for product
+names. Apple Foundation Models is an AI feature the author **built** (iOS), so it belongs to the Mobile group,
+not to the AI tools.
