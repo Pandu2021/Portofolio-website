@@ -94,3 +94,6 @@ ehthumbs.db
 !.vscode/extensions.json
 !.vscode/settings.json
 .claude/settings.local.json
+
+# Promo video: generated captures, voice, music and rendered files (re-create with pnpm video)
+tools/promo-video/public/generated/

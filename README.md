@@ -26,6 +26,8 @@ packages/
   design-tokens/        Colors (light/dark), type, spacing, motion, self-hosted fonts
   config/               Shared ESLint, Prettier and tsconfig
   security/             apply-csp: strict Content-Security-Policy for every static build
+tools/
+  promo-video/          LinkedIn promo video rendered from code (Remotion) — local only, never published
 docs/                   Architecture, how to add a framework, ADRs
 scripts/                Dev gateway, site assembly/preview, E2E tests, Lighthouse, link checker
 .githooks/              pre-commit secret & privacy scan (gitleaks)
@@ -49,23 +51,24 @@ pnpm dev -- --only=react-storefront   # gateway + selected apps only
 pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 ```
 
-| Command                    | What it does                                                             |
-| -------------------------- | ------------------------------------------------------------------------ |
-| `pnpm build`               | Builds every app in `apps/`                                              |
-| `pnpm build:site`          | Builds every app and assembles `_site/`                                  |
-| `pnpm preview`             | Serves `_site/` exactly like GitHub Pages                                |
-| `pnpm lint`                | ESLint in every package                                                  |
-| `pnpm typecheck`           | TypeScript strict checks in every package                                |
-| `pnpm test`                | Unit tests (Vitest) in every package + tests of the repo scripts         |
-| `pnpm e2e`                 | Browser tests of `_site/` (run `pnpm build:site` first)                  |
-| `pnpm e2e:live`            | The same browser tests against the live site                             |
-| `pnpm e2e:dev`             | Read-only checks of a running `pnpm dev` (gateway + hot reload)          |
-| `pnpm lighthouse`          | Lighthouse (mobile + desktop) for every app; reports `.lighthouseci/`    |
-| `pnpm lighthouse --runs=3` | Same, each page 3× and the **median** reported (stable on a busy laptop) |
-| `pnpm pagespeed`           | Lighthouse of the live site on Google's servers (PageSpeed Insights)     |
-| `pnpm links`               | Checks every internal link/anchor and every external link                |
-| `pnpm format`              | Formats the repository with Prettier                                     |
-| `pnpm secrets:scan`        | Scans the working tree with gitleaks                                     |
+| Command                                      | What it does                                                                  |
+| -------------------------------------------- | ----------------------------------------------------------------------------- |
+| `pnpm build`                                 | Builds every app in `apps/`                                                   |
+| `pnpm build:site`                            | Builds every app and assembles `_site/`                                       |
+| `pnpm preview`                               | Serves `_site/` exactly like GitHub Pages                                     |
+| `pnpm lint`                                  | ESLint in every package                                                       |
+| `pnpm typecheck`                             | TypeScript strict checks in every package                                     |
+| `pnpm test`                                  | Unit tests (Vitest) in every package + tests of the repo scripts              |
+| `pnpm e2e`                                   | Browser tests of `_site/` (run `pnpm build:site` first)                       |
+| `pnpm e2e:live`                              | The same browser tests against the live site                                  |
+| `pnpm e2e:dev`                               | Read-only checks of a running `pnpm dev` (gateway + hot reload)               |
+| `pnpm lighthouse`                            | Lighthouse (mobile + desktop) for every app; reports `.lighthouseci/`         |
+| `pnpm lighthouse --runs=3`                   | Same, each page 3× and the **median** reported (stable on a busy laptop)      |
+| `pnpm pagespeed`                             | Lighthouse of the live site on Google's servers (PageSpeed Insights)          |
+| `pnpm links`                                 | Checks every internal link/anchor and every external link                     |
+| `pnpm format`                                | Formats the repository with Prettier                                          |
+| `pnpm secrets:scan`                          | Scans the working tree with gitleaks                                          |
+| `pnpm --filter @portfolio/promo-video video` | Renders the LinkedIn promo video (see [tools/promo-video](tools/promo-video)) |
 
 ### URLs
 

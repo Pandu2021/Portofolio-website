@@ -1,0 +1,34 @@
+{
+  "voice": "Microsoft Mark",
+  "fallbackVoice": "Microsoft David",
+  "scenes": [
+    {
+      "id": "intro",
+      "text": "Meet Pandu Wicaksono — a full-stack developer for e-commerce and business systems."
+    },
+    {
+      "id": "platform",
+      "text": "As the sole developer, he built a production ordering platform: a customer storefront, a B2B partner portal, an admin console and a REST API."
+    },
+    {
+      "id": "stack",
+      "text": "The stack: React, TypeScript, NestJS, Prisma and PostgreSQL — with secure payments, a pricing engine and real-time order tracking."
+    },
+    {
+      "id": "techlab",
+      "text": "His portfolio brings it together in one link, with three live demos: a React storefront, an Angular dashboard and a Vue invoice tool."
+    },
+    {
+      "id": "quality",
+      "text": "Every app is bilingual, WCAG-accessible, secured by a strict Content Security Policy and tested end to end."
+    },
+    {
+      "id": "certified",
+      "text": "Pandu is certified by Google, IBM, Microsoft and Amazon, and open to full-stack and front-end roles."
+    },
+    {
+      "id": "outro",
+      "text": "Let's connect — the portfolio link is in the comments."
+    }
+  ]
+}

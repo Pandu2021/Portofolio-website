@@ -1,0 +1,33 @@
+{
+  "name": "@portfolio/promo-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LinkedIn promo video of the portfolio, rendered from code with Remotion (local tooling, never published).",
+  "type": "module",
+  "scripts": {
+    "capture": "node scripts/capture.mjs",
+    "voice": "node scripts/voice.mjs",
+    "music": "node scripts/music.mjs",
+    "render": "node scripts/render.mjs",
+    "video": "node scripts/capture.mjs && node scripts/voice.mjs && node scripts/music.mjs && node scripts/render.mjs",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test scripts/*.test.mjs"
+  },
+  "dependencies": {
+    "@portfolio/content": "workspace:*",
+    "@portfolio/design-tokens": "workspace:*",
+    "@remotion/bundler": "catalog:",
+    "@remotion/renderer": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "remotion": "catalog:"
+  },
+  "devDependencies": {
+    "@portfolio/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "catalog:"
+  }
+}

@@ -2,10 +2,12 @@
 # pnpm-workspace.yaml — monorepo layout, shared versions and install security.
 # =============================================================================
 
-# Every folder in apps/ and packages/ is a workspace package.
+# Every folder in apps/, packages/ and tools/ is a workspace package.
+# tools/ holds local tooling (e.g. the promo video) that is never published.
 packages:
   - apps/*
   - packages/*
+  - tools/*
 
 # Single source of truth for shared dependency versions ("catalog:" protocol).
 # TypeScript stays on 6.0.x: Angular 22 and typescript-eslint require < 6.1.
@@ -36,6 +38,10 @@ catalog:
   vue: 3.5.45
   vue-router: 5.4.0
   vue-tsc: 3.3.14
+  # Promo video (tools/promo-video), rendered locally only.
+  '@remotion/bundler': 4.0.542
+  '@remotion/renderer': 4.0.542
+  remotion: 4.0.542
 
 # Supply-chain hardening: dependency install scripts are blocked by default.
 # None of these need their scripts for our build (prebuilt binaries are used).
