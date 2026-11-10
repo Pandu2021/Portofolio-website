@@ -26,6 +26,10 @@
 # Private (non-public) CV/resume variants — only *_Public.pdf may be published
 **/CV_*.pdf
 **/Resume_*.pdf
+# ANY other PDF (certificates with ID numbers, transcripts, scans) is ignored as well;
+# only the two public files below may be published. If another PDF is ever meant
+# to be committed, add it on purpose with `git add -f`.
+**/*.pdf
 !**/CV_Public.pdf
 !**/Resume_Public.pdf
 
@@ -95,5 +99,57 @@ ehthumbs.db
 !.vscode/settings.json
 .claude/settings.local.json
 
-# Promo video: generated captures, voice, music and rendered files (re-create with pnpm video)
+# ----- 8. LARGE & BINARY FILES — keep the repository small -----------------------
+# .gitignore cannot block by size, so the types that are usually big are blocked.
+# Rule of thumb: nothing above ~1 MB belongs here (today the largest tracked file
+# is the 400 KB lockfile; certificate images are 120–170 KB). Need one on purpose?
+# `git add -f <file>`.
+# Video / audio — the promo video is rendered locally into tools/promo-video/out/
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.aac
+*.flac
+# Archives and disk images
+*.zip
+*.7z
+*.rar
+*.tar
+*.tgz
+*.gz
+*.bz2
+*.iso
+# Installers and executables
+*.exe
+*.msi
+*.dmg
+*.apk
+*.aab
+# Databases, memory dumps and crash files
+*.sqlite
+*.sqlite3
+*.db
+*.dmp
+*.hprof
+*.heapsnapshot
+*.stackdump
+
+# ----- 9. TOOL ARTIFACTS & SCRATCH FILES -------------------------------------------
+# Promo video: generated captures, voice, music (re-create with `pnpm video`)
 tools/promo-video/public/generated/
+# Screenshots written by the E2E tests when E2E_SCREENSHOTS points into the repo
+e2e-screenshots/
+# Vite's temporary bundles of its own config file
+vite.config.*.timestamp-*
+# Scratch folders and editor / merge leftovers
+tmp/
+temp/
+.tmp/
+*.bak
+*.orig
+*.rej
