@@ -82,6 +82,8 @@ export interface SkillGroup {
   items: string[];
   /** Optional sentence shown under the chips (e.g. how AI tools are used). */
   note?: string;
+  /** Highlighted group: a soft light travels around its border (portfolio motion). */
+  accent?: boolean;
 }
 
 /** A spoken language and the honest proficiency level from the CV. */

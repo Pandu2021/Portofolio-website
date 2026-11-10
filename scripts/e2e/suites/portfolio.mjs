@@ -342,7 +342,152 @@ export async function run({ browser, results, base }) {
     await view.close();
   }
 
-  // 7. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
+  // 7. Footer centring, Contact without accent line, AI card border light, "Live" glow.
+  for (const width of [1280, 375]) {
+    const view = await openPage(browser, base, { width, height: 800, mobile: width < 500 });
+    const footer = await view.page.evaluate(() => {
+      const page = document.documentElement.clientWidth;
+      const centre = (el) => {
+        const r = el.getBoundingClientRect();
+        return Math.round(r.left + r.width / 2 - page / 2);
+      };
+      const built = document.querySelector('.site-footer__built');
+      const copyright = document.querySelector('.site-footer__inner > p');
+      return {
+        builtOffset: built ? centre(built) : null,
+        builtAlign: built ? getComputedStyle(built).textAlign : '',
+        copyrightOffset: copyright ? centre(copyright) : null,
+      };
+    });
+    const centred =
+      width >= 960
+        ? Math.abs(footer.builtOffset ?? 99) <= 2
+        : Math.abs(footer.builtOffset ?? 99) <= 2 &&
+          Math.abs(footer.copyrightOffset ?? 99) <= 2 &&
+          footer.builtAlign === 'center';
+    results.check(
+      centred,
+      `footer "Built with …" is centred at ${width}px`,
+      JSON.stringify(footer),
+    );
+    // At the very bottom, the floating ↑ button must not cover any footer text.
+    await view.page.evaluate(() =>
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'instant' }),
+    );
+    await sleep(400);
+    const covered = await view.page.evaluate(() => {
+      const button = document.querySelector('.back-to-top')?.getBoundingClientRect();
+      if (!button) return 'no button';
+      return [...document.querySelectorAll('.site-footer p')]
+        .map((p) => p.getBoundingClientRect())
+        .some(
+          (r) =>
+            r.left < button.right &&
+            r.right > button.left &&
+            r.top < button.bottom &&
+            r.bottom > button.top,
+        )
+        ? 'covered'
+        : '';
+    });
+    results.check(
+      covered === '',
+      `floating ↑ button does not cover footer text at ${width}px`,
+      covered,
+    );
+    if (width === 1280) {
+      const contactLine = await view.page.$eval(
+        '#contact-title',
+        (h) => getComputedStyle(h, '::after').display,
+      );
+      results.check(contactLine === 'none', 'Contact title has no accent line', contactLine);
+    }
+    await view.close();
+  }
+  {
+    const view = await openPage(browser, base, { width: 1280, height: 800 });
+    const { page } = view;
+    // AI-Assisted Development card: one turn of border light on reveal, then it stops.
+    await page.$eval('.skill-group--accent', (el) =>
+      el.scrollIntoView({ block: 'center', behavior: 'instant' }),
+    );
+    await sleep(400);
+    const glow = await page.$eval('.skill-group--accent .border-glow', (el) => {
+      const style = getComputedStyle(el, '::before');
+      return { name: style.animationName, count: style.animationIterationCount };
+    });
+    await sleep(3200);
+    const glowAfter = await page.$eval(
+      '.skill-group--accent .border-glow',
+      (el) => getComputedStyle(el, '::before').opacity,
+    );
+    results.check(
+      glow.name === 'border-light' && glow.count === '1' && glowAfter === '0',
+      'AI card border light runs once on reveal and stops',
+      `${glow.name} x${glow.count}, opacity after=${glowAfter}`,
+    );
+    // The light layer covers the card's border box exactly (inset -1px over the 1px border),
+    // and the accent card is as tall as a normal card in the same grid row.
+    const ring = await page.$eval('.skill-group--accent .border-glow', (el) => {
+      const card = el.parentElement.getBoundingClientRect();
+      const box = el.getBoundingClientRect();
+      return {
+        dx: Math.round(box.width - card.width),
+        dy: Math.round(box.height - card.height),
+        left: Math.round(box.left - card.left),
+        top: Math.round(box.top - card.top),
+      };
+    });
+    results.check(
+      Object.values(ring).every((delta) => Math.abs(delta) <= 1),
+      'AI card border light sits exactly on the card edge (card size unchanged)',
+      JSON.stringify(ring),
+    );
+
+    // "Live" glow: clearly visible (opacity > 0.3) for at least ~0.6 s per pulse.
+    await page.$eval('.lab-card', (el) =>
+      el.scrollIntoView({ block: 'center', behavior: 'instant' }),
+    );
+    const samples = [];
+    for (let i = 0; i < 20; i++) {
+      samples.push(
+        await page.$eval('.status[data-status="live"]', (el) =>
+          Number(getComputedStyle(el, '::after').opacity),
+        ),
+      );
+      await sleep(100);
+    }
+    let longest = 0;
+    let run = 0;
+    for (const value of samples) {
+      run = value > 0.3 ? run + 1 : 0;
+      longest = Math.max(longest, run);
+    }
+    results.check(
+      longest >= 6,
+      '"Live" glow is clearly visible (opacity > 0.3 for ≥ 0.6 s)',
+      `longest=${longest * 100} ms, peak=${Math.max(...samples).toFixed(2)}`,
+    );
+    // Hover replays the glow on its own layer.
+    const card = await page.$('.lab-card');
+    const box = await card.boundingBox();
+    await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+    await sleep(200);
+    const replay = await page.$eval(
+      '.lab-card .status__glow',
+      (el) => getComputedStyle(el).animationName,
+    );
+    results.check(replay === 'live-glow', '"Live" glow replays on hover', replay);
+    const csp = await view.csp();
+    results.check(
+      csp.length === 0,
+      'border light and Live glow: no CSP violations',
+      csp.join(' | '),
+    );
+    await view.close();
+  }
+
+  // 8. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
   {
     const view = await openPage(browser, `${base}does-not-exist/`);
     const heading = await view.page.$eval('h1', (el) => el.textContent ?? '');

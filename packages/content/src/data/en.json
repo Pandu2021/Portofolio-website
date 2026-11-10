@@ -175,7 +175,8 @@
       {
         "name": "AI-Assisted Development",
         "items": ["GitHub Copilot", "Claude Code", "ChatGPT", "Google Gemini", "Microsoft Copilot"],
-        "note": "Every AI-assisted change is reviewed, tested and security-scanned."
+        "note": "Every AI-assisted change is reviewed, tested and security-scanned.",
+        "accent": true
       },
       {
         "name": "Mobile",

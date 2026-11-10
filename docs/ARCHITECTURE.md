@@ -60,17 +60,18 @@
 
 Light, decorative motion that never costs content, performance, accessibility or the CSP.
 
-| Effect                     | How                                                                                            | Trigger                   |
-| -------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------- |
-| Scroll reveal (fade-up)    | CSS transition on `[data-reveal]`                                                              | `RevealObserver` (IO)     |
-| Section title accent line  | `.section__title::after`, `scaleX(0 → 1)`                                                      | reveal                    |
-| Skill chips stagger        | `nth-child` transition delays (capped at the 10th chip)                                        | reveal                    |
-| Highlight numbers count up | `RevealObserver` + `lib/motion.ts`, `requestAnimationFrame`, 1.2 s ease-out, once              | reveal                    |
-| Highlight card shine       | `.stat::after`, one sweep after the count                                                      | `.is-counted`             |
-| Card spotlight             | `Spotlight.tsx`: one delegated `pointermove` listener, rAF-throttled, sets `--spot-x/--spot-y` | mouse only (`hover/fine`) |
-| CV button shine            | `.btn--shine::after`, one sweep                                                                | hover / `:focus-visible`  |
-| "Live" status pulse        | `.status[data-status='live']::after`, 3 × 1.6 s                                                | reveal                    |
-| Hero gradient              | one 5 s drift into place, then still                                                           | page load                 |
+| Effect                     | How                                                                                               | Trigger                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------- |
+| Scroll reveal (fade-up)    | CSS transition on `[data-reveal]`                                                                 | `RevealObserver` (IO)     |
+| Section title accent line  | `.section__title::after`, `scaleX(0 → 1)`                                                         | reveal                    |
+| Skill chips stagger        | `nth-child` transition delays (capped at the 10th chip)                                           | reveal                    |
+| Highlight numbers count up | `RevealObserver` + `lib/motion.ts`, `requestAnimationFrame`, 1.2 s ease-out, once                 | reveal                    |
+| Highlight card shine       | `.stat::after`, one sweep after the count                                                         | `.is-counted`             |
+| Card spotlight             | `Spotlight.tsx`: one delegated `pointermove` listener, rAF-throttled, sets `--spot-x/--spot-y`    | mouse only (`hover/fine`) |
+| CV button shine            | `.btn--shine::after`, one sweep                                                                   | hover / `:focus-visible`  |
+| "Live" status glow         | teal halo behind the text: `::after` 3 × 1.5 s on reveal, `.status__glow` replays it              | reveal; hover / focus     |
+| AI card border light       | `.border-glow` masked to a 2 px ring; rotating conic light, one 3 s turn (`::before` / `::after`) | reveal; hover / focus     |
+| Hero gradient              | one 5 s drift into place, then still                                                              | page load                 |
 
 Rules (checked by `scripts/e2e/suites/portfolio.mjs`):
 

@@ -175,7 +175,8 @@
       {
         "name": "Pengembangan dengan Bantuan AI",
         "items": ["GitHub Copilot", "Claude Code", "ChatGPT", "Google Gemini", "Microsoft Copilot"],
-        "note": "Setiap perubahan yang dibantu AI selalu direview, dites dan dipindai keamanannya."
+        "note": "Setiap perubahan yang dibantu AI selalu direview, dites dan dipindai keamanannya.",
+        "accent": true
       },
       {
         "name": "Mobile",

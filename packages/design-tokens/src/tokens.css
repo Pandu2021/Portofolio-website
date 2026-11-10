@@ -36,6 +36,8 @@
   /* Decorative light effects (portfolio motion): translucent, so text contrast stays AA. */
   --color-spotlight: light-dark(rgb(194 65 12 / 0.1), rgb(251 146 60 / 0.14));
   --color-shine: light-dark(rgb(234 88 12 / 0.12), rgb(255 255 255 / 0.09));
+  /* Bright teal light for the "Live" glow (decorative, always behind text). */
+  --color-secondary-glow: #2dd4bf;
   --color-secondary: light-dark(#0f766e, #2dd4bf); /* teal */
   --color-secondary-soft: light-dark(#ccfbf1, rgb(45 212 191 / 0.14));
   --color-focus: light-dark(#1d4ed8, #93c5fd);

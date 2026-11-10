@@ -36,6 +36,8 @@ export function TechLab({ content }: { content: SiteContent }) {
                   {app.framework}
                 </span>
                 <span className="status" data-status={app.status}>
+                  {/* Hover/focus replay of the "Live" glow (the reveal pulse is ::after). */}
+                  {app.status === 'live' && <span className="status__glow" aria-hidden="true" />}
                   {statusLabel[app.status]}
                 </span>
               </div>
