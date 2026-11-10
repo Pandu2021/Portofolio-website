@@ -5,6 +5,7 @@
  *   apps/portfolio/out          → _site/
  *   apps/react-storefront/dist  → _site/react/
  *   apps/angular-dashboard/dist → _site/angular/
+ *   apps/vue-invoice/dist       → _site/vue/
  *
  * Run after `pnpm build`:  node scripts/assemble-site.mjs
  *

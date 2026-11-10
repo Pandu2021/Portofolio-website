@@ -56,15 +56,15 @@
     "brand": "vue",
     "path": "vue/",
     "sourcePath": "apps/vue-invoice",
-    "status": "planned",
+    "status": "live",
     "title": {
       "en": "Invoice & pricing tool",
       "id": "Alat invoice & harga"
     },
     "description": {
-      "en": "Planned: tax, discount and invoice calculator with Vue 3 and Pinia.",
-      "id": "Rencana: kalkulator pajak, diskon dan invoice dengan Vue 3 dan Pinia."
+      "en": "Invoice editor with a tested pricing engine: line discounts, service fee, tax (exclusive or inclusive) and rounding.",
+      "id": "Editor invoice dengan mesin harga yang teruji: diskon item, biaya layanan, pajak (belum/sudah termasuk) dan pembulatan."
     },
-    "stack": ["Vue 3", "Pinia", "TypeScript"]
+    "stack": ["Vue 3", "Pinia", "Vue Router", "TypeScript", "Vitest"]
   }
 ]

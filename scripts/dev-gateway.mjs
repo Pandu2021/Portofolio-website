@@ -5,6 +5,7 @@
  *   http://localhost:3000/          → Next.js portfolio   (internal :3001)
  *   http://localhost:3000/react/    → Vite React demo     (internal :5173)
  *   http://localhost:3000/angular/  → Angular dashboard   (internal :4200)
+ *   http://localhost:3000/vue/      → Vue invoice tool    (internal :5174)
  *
  * It starts every app's own dev server (from scripts/site-apps.mjs) and puts a
  * small reverse proxy in front of them, including WebSocket upgrades so hot

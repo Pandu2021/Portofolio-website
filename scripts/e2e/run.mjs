@@ -7,7 +7,7 @@
  *   pnpm e2e:dev        a running `pnpm dev` gateway on http://localhost:3000/
  *
  * Options:
- *   --suite=portfolio,react,angular,layout   run only some suites
+ *   --suite=portfolio,react,angular,vue,layout   run only some suites
  *   E2E_SCREENSHOTS=<folder>                  save screenshots there
  *   BROWSER_PATH=<path>                       use a specific browser
  *
@@ -24,9 +24,10 @@ import * as devGateway from './suites/dev-gateway.mjs';
 import * as layout from './suites/layout.mjs';
 import * as portfolio from './suites/portfolio.mjs';
 import * as react from './suites/react.mjs';
+import * as vue from './suites/vue.mjs';
 
 const LIVE_URL = `https://pandu2021.github.io${PAGES_BASE_PATH}/`;
-const SITE_SUITES = { portfolio, react, angular, layout };
+const SITE_SUITES = { portfolio, react, angular, vue, layout };
 
 const args = process.argv.slice(2);
 const mode = args.includes('--live') ? 'live' : args.includes('--dev') ? 'dev' : 'local';

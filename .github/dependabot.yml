@@ -40,6 +40,17 @@ updates:
       react-next:
         patterns:
           ['next', 'eslint-config-next', 'react', 'react-dom', 'react-router', '@types/react*']
+      vue:
+        patterns:
+          [
+            'vue',
+            'vue-router',
+            'pinia',
+            '@vue/*',
+            '@vitejs/plugin-vue',
+            'vue-tsc',
+            'eslint-plugin-vue',
+          ]
       build-and-test:
         patterns: ['vite', '@vitejs/*', 'vitest', 'jsdom', '@testing-library/*']
       lint-and-format:

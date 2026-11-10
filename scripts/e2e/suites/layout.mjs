@@ -1,6 +1,6 @@
 /**
  * @file layout.mjs
- * Cross-app keyboard and responsive checks on /, /id/, /react/, /angular/:
+ * Cross-app keyboard and responsive checks on /, /id/, /react/, /angular/, /vue/:
  *  - no sideways scrolling at 375 px (phone) and 768 px (tablet);
  *  - Tab through the first focusable elements: every focused element shows a
  *    visible focus indicator and is the top-most element at its own position
@@ -13,6 +13,7 @@ const PAGES = [
   ['portfolio-id', 'id/'],
   ['react', 'react/'],
   ['angular', 'angular/'],
+  ['vue', 'vue/'],
 ];
 const VIEWPORTS = [
   { name: '375', width: 375, height: 812, mobile: true },

@@ -53,6 +53,16 @@ export const SITE_APPS = Object.freeze([
       args: ['start', '--port', '4200', '--serve-path', '/angular/'],
     },
   },
+  {
+    id: 'vue-invoice',
+    from: 'apps/vue-invoice/dist',
+    to: 'vue',
+    dev: {
+      port: 5174,
+      package: '@portfolio/vue-invoice',
+      args: ['dev', '--port', '5174', '--strictPort'],
+    },
+  },
 ]);
 
 /** GitHub Pages project path (repository name). */

@@ -17,6 +17,7 @@ const PAGES = [
   ['portfolio (ID)', 'id/'],
   ['react', 'react/'],
   ['angular', 'angular/'],
+  ['vue', 'vue/'],
 ];
 const CATEGORIES = ['performance', 'accessibility', 'best-practices', 'seo'];
 const MIN = Number(process.env.LH_MIN ?? 90);

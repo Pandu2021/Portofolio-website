@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+  index.html — entry document of the Vue invoice and pricing demo.
+  All scripts are bundled by Vite and served from our own origin (no CDN).
+  The theme boot script is injected into the document head by vite.config.ts,
+  and a strict Content-Security-Policy is added after the build by `apply-csp`.
+  NOTE: never write a literal head or body tag in this comment — Vite matches
+  those tags as text and would inject its scripts inside the comment.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Vue 3 + Pinia invoice and pricing tool demo with tax, discounts, service fees and rounding — fictional data, by Pandu Wicaksono."
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="theme-color" content="#fff8f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0b1220" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Invoice Demo — Vue | Pandu Wicaksono</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

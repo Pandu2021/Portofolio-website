@@ -1,0 +1,38 @@
+{
+  "name": "@portfolio/vue-invoice",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vue 3 + Pinia invoice & pricing tool demo (fictional data) — served at /vue/.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && apply-csp dist",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "vue-tsc --build",
+    "test": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@portfolio/design-tokens": "workspace:*",
+    "@vue/devtools-api": "catalog:",
+    "pinia": "catalog:",
+    "vue": "catalog:",
+    "vue-router": "catalog:"
+  },
+  "devDependencies": {
+    "@portfolio/config": "workspace:*",
+    "@portfolio/security": "workspace:*",
+    "@types/node": "catalog:",
+    "@vitejs/plugin-vue": "catalog:",
+    "@vitest/coverage-v8": "5.1.0",
+    "@vue/test-utils": "catalog:",
+    "eslint": "catalog:",
+    "eslint-plugin-vue": "catalog:",
+    "jsdom": "catalog:",
+    "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
+    "vite": "8.3.6",
+    "vitest": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

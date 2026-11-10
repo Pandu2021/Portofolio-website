@@ -11,6 +11,7 @@ One repository, one GitHub Pages link, **one complete app per front-end framewor
 | `/`, `/id/` | [apps/portfolio](apps/portfolio)                 | Next.js (static export), React, TypeScript    |
 | `/react/`   | [apps/react-storefront](apps/react-storefront)   | React, Vite, React Router, Vitest             |
 | `/angular/` | [apps/angular-dashboard](apps/angular-dashboard) | Angular (standalone, zoneless, Signals), RxJS |
+| `/vue/`     | [apps/vue-invoice](apps/vue-invoice)             | Vue 3, Pinia, Vue Router, Vitest              |
 
 ## Repository layout
 
@@ -19,6 +20,7 @@ apps/
   portfolio/            Next.js main site (EN + ID)            → /
   react-storefront/     React + Vite demo                      → /react/
   angular-dashboard/    Angular demo                           → /angular/
+  vue-invoice/          Vue 3 + Pinia invoice & pricing demo   → /vue/
 packages/
   content/              Bilingual content (JSON) + Tech Lab registry + privacy tests
   design-tokens/        Colors (light/dark), type, spacing, motion, self-hosted fonts
@@ -42,6 +44,7 @@ pnpm dev              # every app behind one URL (same layout as the live site):
                       #   http://localhost:3000/          portfolio (EN), /id/ (ID)
                       #   http://localhost:3000/react/    React storefront
                       #   http://localhost:3000/angular/  Angular dashboard
+                      #   http://localhost:3000/vue/      Vue invoice tool
 pnpm dev -- --only=react-storefront   # gateway + selected apps only
 pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 ```
@@ -66,11 +69,11 @@ pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 
 ### URLs
 
-| Where   | Command                           | URL                                                                                                                                                                                                                                                           |
-| ------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Dev     | `pnpm dev`                        | http://localhost:3000/ · `/id/` · `/react/` · `/angular/`                                                                                                                                                                                                     |
-| Preview | `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/ (same paths as production)                                                                                                                                                                                          |
-| Live    | push to `main` → Deploy workflow  | [portfolio](https://pandu2021.github.io/Portofolio-website/) · [ID](https://pandu2021.github.io/Portofolio-website/id/) · [react](https://pandu2021.github.io/Portofolio-website/react/) · [angular](https://pandu2021.github.io/Portofolio-website/angular/) |
+| Where   | Command                           | URL                                                                                                                                                                                                                                                                                                                        |
+| ------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dev     | `pnpm dev`                        | http://localhost:3000/ · `/id/` · `/react/` · `/angular/` · `/vue/`                                                                                                                                                                                                                                                        |
+| Preview | `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/ (same paths as production)                                                                                                                                                                                                                                                       |
+| Live    | push to `main` → Deploy workflow  | [portfolio](https://pandu2021.github.io/Portofolio-website/) · [ID](https://pandu2021.github.io/Portofolio-website/id/) · [react](https://pandu2021.github.io/Portofolio-website/react/) · [angular](https://pandu2021.github.io/Portofolio-website/angular/) · [vue](https://pandu2021.github.io/Portofolio-website/vue/) |
 
 ## Testing
 
@@ -84,7 +87,8 @@ pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 The E2E suites check, among other things: no console errors and **no CSP violations**, theme toggle and stored
 theme, certificate dialog (Esc closes, focus returns), mobile menu, skip link, 404 page; the storefront cart,
 promo code, checkout validation and confirmation; the dashboard login guard, filters, paging, live announcements,
-settings validation and sign-out. In CI the `e2e` job runs after `build` on the runner's Chrome, and Deploy waits
+settings validation and sign-out; the invoice tool totals (tax rate, rounding), validation, print view,
+persistence, delete dialog and USD display. In CI the `e2e` job runs after `build` on the runner's Chrome, and Deploy waits
 for it.
 
 ### Lighthouse scores
@@ -94,14 +98,15 @@ laptop it varies by ±20 points between identical runs, so compare **medians** (
 The reliable numbers are the ones from the CI job (clean runner, median of 3) — open a run → _Summary_ →
 **Lighthouse** table, or download the `lighthouse-reports` artifact.
 
-`pnpm lighthouse` on `_site/` (Lighthouse 13, 2026-11-10) — Performance / Accessibility / Best Practices / SEO:
+`pnpm lighthouse --runs=3` on `_site/` (Lighthouse 13, 2026-11-10, median of 3) — Performance / Accessibility / Best Practices / SEO:
 
 | Page                          | Mobile                | Desktop               |
 | ----------------------------- | --------------------- | --------------------- |
-| Portfolio EN `/`              | 92 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
-| Portfolio ID `/id/`           | 96 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
-| React storefront `/react/`    | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| Portfolio EN `/`              | 95 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
+| Portfolio ID `/id/`           | 95 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
+| React storefront `/react/`    | 99 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
 | Angular dashboard `/angular/` | 100 / 100 / 100 / 100 | 100 / 100 / 100 / 100 |
+| Vue invoice tool `/vue/`      | 99 / 100 / 100 / 100  | 100 / 100 / 100 / 100 |
 
 ## Quality & security
 

@@ -30,6 +30,7 @@ const PAGES = [
   ['portfolio (ID)', 'id/'],
   ['react', 'react/'],
   ['angular', 'angular/'],
+  ['vue', 'vue/'],
 ];
 const MIN = Number(process.env.LH_MIN ?? 90);
 const live = process.argv.includes('--live');

@@ -13,9 +13,9 @@
                          GitHub Pages (static hosting)
            https://pandu2021.github.io/Portofolio-website/
  ┌──────────────────────────────┬──────────────────────┬─────────────────────────┐
- │ /  and  /id/                 │ /react/              │ /angular/               │
- │ apps/portfolio               │ apps/react-storefront│ apps/angular-dashboard  │
- │ Next.js static export (SSG)  │ Vite SPA, hash router│ Angular SPA, hash router│
+ │ /  and  /id/                 │ /react/              │ /angular/               │ (+ /vue/: apps/vue-invoice,
+ │ apps/portfolio               │ apps/react-storefront│ apps/angular-dashboard  │  Vue 3 + Pinia SPA,
+ │ Next.js static export (SSG)  │ Vite SPA, hash router│ Angular SPA, hash router│  hash router)
  └──────────────┬───────────────┴──────────┬───────────┴────────────┬────────────┘
                 │ imports                  │ imports                │ imports
         ┌───────▼────────┐        ┌────────▼─────────────────────────▼───┐
@@ -28,10 +28,10 @@
 
 ## Page model
 
-| App                  | Model                                        | Why                                                                                   |
-| -------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Portfolio            | **One-page** site, pre-rendered per language | Fast to scan in 30 s; full text in HTML for ATS, search engines and screen readers.   |
-| React / Angular demo | **SPA** with **hash routing** (`#/orders`)   | GitHub Pages has one global 404 page and no rewrites; hash URLs never 404 on refresh. |
+| App                        | Model                                        | Why                                                                                   |
+| -------------------------- | -------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Portfolio                  | **One-page** site, pre-rendered per language | Fast to scan in 30 s; full text in HTML for ATS, search engines and screen readers.   |
+| React / Angular / Vue demo | **SPA** with **hash routing** (`#/orders`)   | GitHub Pages has one global 404 page and no rewrites; hash URLs never 404 on refresh. |
 
 ## Internationalization (EN / ID)
 
@@ -94,11 +94,13 @@ Rules (checked by `scripts/e2e/suites/portfolio.mjs`):
 pnpm build
   ├─ apps/portfolio          → apps/portfolio/out/
   ├─ apps/react-storefront   → apps/react-storefront/dist/
-  └─ apps/angular-dashboard  → apps/angular-dashboard/dist/
+  ├─ apps/angular-dashboard  → apps/angular-dashboard/dist/
+  └─ apps/vue-invoice        → apps/vue-invoice/dist/
 pnpm assemble  (scripts/assemble-site.mjs, app list in scripts/site-apps.mjs)
   → _site/              (portfolio)
   → _site/react/        (storefront)
   → _site/angular/      (dashboard)
+  → _site/vue/          (invoice tool)
   → _site/.nojekyll
 GitHub Actions → actions/deploy-pages → GitHub Pages
 ```
@@ -111,11 +113,11 @@ GitHub Actions → actions/deploy-pages → GitHub Pages
 
 ### URLs in development vs. production
 
-| Command                           | URL                                               | Base path                                       |
-| --------------------------------- | ------------------------------------------------- | ----------------------------------------------- |
-| `pnpm dev`                        | http://localhost:3000/ (+ `/react/`, `/angular/`) | none (fast local work)                          |
-| `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/         | `/Portofolio-website` — identical to production |
-| Live                              | https://pandu2021.github.io/Portofolio-website/   | `/Portofolio-website`                           |
+| Command                           | URL                                                        | Base path                                       |
+| --------------------------------- | ---------------------------------------------------------- | ----------------------------------------------- |
+| `pnpm dev`                        | http://localhost:3000/ (+ `/react/`, `/angular/`, `/vue/`) | none (fast local work)                          |
+| `pnpm build:site && pnpm preview` | http://localhost:4173/Portofolio-website/                  | `/Portofolio-website` — identical to production |
+| Live                              | https://pandu2021.github.io/Portofolio-website/            | `/Portofolio-website`                           |
 
 `pnpm dev` runs `scripts/dev-gateway.mjs`: it starts each app's own dev server on an internal port (from
 `scripts/site-apps.mjs`) and a small reverse proxy on port 3000 that also forwards WebSocket upgrades, so hot
@@ -131,6 +133,20 @@ A GitHub **project site** always lives under `/<repository-name>/`. The domain r
   SHA-256 hash; `unsafe-inline` is never used, and the build fails if an inline `style` attribute or an inline event
   handler (`onload="…"`) appears.
 - Demos use **relative** asset URLs (`base: './'` in Vite, `baseHref: "./"` in Angular), so they work under any path.
+
+### Vue-specific rules
+
+- **Templates are compiled at build time** (`@vitejs/plugin-vue`), so the runtime-only Vue build ships — no
+  `new Function`, nothing the CSP has to allow. `__VUE_OPTIONS_API__` and production devtools are compiled out.
+- **No `vue-i18n`**: its message compiler can use `new Function`; a small typed EN/ID dictionary is used instead
+  (TypeScript enforces identical keys).
+- **No component `<style>` blocks, no `:style`, no `v-html`** (ESLint rules): all styles live in
+  `src/styles/app.css`, an external file the strict `style-src 'self'` allows.
+- **Money is integer sen, percentages are basis points**; products that could exceed 2^53 use BigInt, and totals
+  that would lose precision throw instead of returning a wrong number (`src/lib/pricing.ts`, 100 % covered).
+- **localStorage is untrusted input**: `src/lib/storage.ts` validates every field when reading; malformed
+  invoices are dropped.
+- `vue-tsc` type-checks `.vue` files with the pinned TypeScript 6.0.3.
 
 ### Angular-specific rules
 
@@ -161,7 +177,7 @@ scripts/lib/site-server.mjs   static server that behaves like GitHub Pages (base
 scripts/e2e/browser.mjs       finds an installed Chrome/Edge (or BROWSER_PATH) for puppeteer-core
 scripts/e2e/harness.mjs       per-test isolated browser context; collects console errors, failed requests
                               and CSP violations
-scripts/e2e/suites/*.mjs      portfolio, react, angular, layout (375/768 px + keyboard), dev-gateway
+scripts/e2e/suites/*.mjs      portfolio, react, angular, vue, layout (375/768 px + keyboard), dev-gateway
 scripts/e2e/run.mjs           `pnpm e2e` (_site/), `--live` (GitHub Pages), `--dev` (localhost:3000, read-only)
 scripts/lighthouse.mjs        `pnpm lighthouse [--runs=N] [--live]` — mobile + desktop, median of N runs,
                               HTML reports in .lighthouseci/
