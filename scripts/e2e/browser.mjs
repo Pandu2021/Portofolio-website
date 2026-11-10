@@ -67,5 +67,16 @@ export function findBrowser() {
  */
 export function launchBrowser() {
   const args = process.platform === 'linux' && process.env.CI ? ['--no-sandbox'] : [];
+  // Behave like a desktop with a mouse everywhere. A CI server has no pointing
+  // device, so Chrome would report `(hover: none)` and `(pointer: none)` there and
+  // mouse-only features (the card spotlight) would be off only in CI.
+  // (Blink values: pointer fine = 4, hover = 2.)
+  args.push(
+    '--blink-settings=primaryPointerType=4,primaryHoverType=2,availablePointerTypes=4,availableHoverTypes=2',
+  );
+  // Extra Chromium flags for debugging; they win over the defaults above, e.g. to
+  // mimic a machine without a mouse:
+  // E2E_BROWSER_ARGS="--blink-settings=primaryPointerType=1,primaryHoverType=1"
+  if (process.env.E2E_BROWSER_ARGS) args.push(...process.env.E2E_BROWSER_ARGS.split(' '));
   return puppeteer.launch({ executablePath: findBrowser(), headless: true, args });
 }

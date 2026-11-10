@@ -85,6 +85,19 @@ const failed = results.failures;
 console.log(
   `\n[e2e] ${results.items.length - failed.length}/${results.items.length} checks passed`,
 );
-for (const failure of failed)
+/** Escapes text for a GitHub Actions workflow command (%, CR, LF). */
+const escapeCommand = (text) =>
+  text.replace(/%/g, '%25').replace(/\r/g, '%0D').replace(/\n/g, '%0A');
+
+for (const failure of failed) {
   console.log(`[e2e] FAIL ${failure.suite}: ${failure.name} ${failure.detail}`);
+  // In GitHub Actions, also report each failure as an annotation: it appears on the
+  // run's summary page (and in the public check-run API) without opening the logs.
+  if (process.env.GITHUB_ACTIONS) {
+    const detail = failure.detail ? ` — ${failure.detail.slice(0, 300)}` : '';
+    console.log(
+      `::error title=E2E ${escapeCommand(failure.suite)}::${escapeCommand(failure.name + detail)}`,
+    );
+  }
+}
 process.exit(failed.length ? 1 : 0);

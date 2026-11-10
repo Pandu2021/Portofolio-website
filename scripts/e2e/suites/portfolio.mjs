@@ -429,16 +429,24 @@ export async function run({ browser, results, base }) {
     await page.$eval('.skill-group--accent', (el) =>
       el.scrollIntoView({ block: 'center', behavior: 'instant' }),
     );
-    await sleep(400);
+    // Wait for the reveal instead of a fixed delay (CI runners are slower).
+    await page.waitForSelector('.skill-group--accent.is-visible', { timeout: 5000 });
     const glow = await page.$eval('.skill-group--accent .border-glow', (el) => {
       const style = getComputedStyle(el, '::before');
       return { name: style.animationName, count: style.animationIterationCount };
     });
-    await sleep(3200);
-    const glowAfter = await page.$eval(
-      '.skill-group--accent .border-glow',
-      (el) => getComputedStyle(el, '::before').opacity,
-    );
+    // The single 3 s turn must end with the light faded out (allow up to 8 s on a slow machine).
+    const glowAfter = await page
+      .waitForFunction(
+        () =>
+          getComputedStyle(document.querySelector('.skill-group--accent .border-glow'), '::before')
+            .opacity === '0',
+        { timeout: 8000, polling: 200 },
+      )
+      .then(
+        () => '0',
+        () => 'still visible after 8 s',
+      );
     results.check(
       glow.name === 'border-light' && glow.count === '1' && glowAfter === '0',
       'AI card border light runs once on reveal and stops',
