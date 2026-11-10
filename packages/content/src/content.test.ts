@@ -129,11 +129,17 @@ describe('keywords: one keyword, one home', () => {
   });
 
   // Chips are technology names (English on both pages), so they are checked
-  // against the English Skills list. Tech Lab chips are exempt on purpose:
-  // they name techniques inside this repository's demos (e.g. "Signals").
+  // against the English Skills list — for every project card, Tech Lab included.
   const englishSkills = new Set(
     getContent('en').skills.groups.flatMap((group) => group.items.map(skillKey)),
   );
+
+  it.each(showcase)('$id (Tech Lab): at most 4 chips, all Skills keywords', (app) => {
+    expect(app.stack.length).toBeLessThanOrEqual(4);
+    for (const chip of app.stack) {
+      expect(englishSkills.has(skillKey(chip)), `"${chip}" is not in Skills`).toBe(true);
+    }
+  });
 
   it.each(locales)('%s: featured-project chips are Skills keywords', (locale) => {
     for (const chip of getContent(locale).featuredProject.stack) {

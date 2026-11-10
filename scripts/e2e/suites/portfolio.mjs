@@ -194,8 +194,26 @@ export async function run({ browser, results, base }) {
         headerDownloadName:
           document.querySelector('.site-header a[download]')?.getAttribute('download') ?? '',
         skipped,
+        labChips: text('.lab-card .chip').map((chip) =>
+          chip.replace(/\s*\([^)]*\)\s*$/, '').toLowerCase(),
+        ),
+        tagline: document.querySelector('.hero')?.textContent?.replace(/\s+/g, ' ') ?? '',
       };
     });
+    const strayChips = facts.labChips.filter((chip) => !facts.skills.includes(chip));
+    results.check(
+      strayChips.length === 0 && facts.labChips.length > 0,
+      `${label} every Tech Lab chip is a Skills keyword (no overlap)`,
+      strayChips.join(', '),
+    );
+    const frameworks =
+      path === ''
+        ? 'React, Next.js, Angular, Vue and TypeScript'
+        : 'React, Next.js, Angular, Vue dan TypeScript';
+    results.check(
+      facts.tagline.includes(frameworks),
+      `${label} hero tagline names React, Next.js, Angular, Vue and TypeScript`,
+    );
     results.check(facts.groups === 8, `${label} Skills has 8 groups`, `groups=${facts.groups}`);
     const duplicates = facts.skills.filter((skill, i) => facts.skills.indexOf(skill) !== i);
     results.check(
@@ -478,6 +496,37 @@ export async function run({ browser, results, base }) {
       (el) => getComputedStyle(el).animationName,
     );
     results.check(replay === 'live-glow', '"Live" glow replays on hover', replay);
+
+    // Hero "Open to roles" dot: same glow, clearly visible while the pill is hovered.
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    await sleep(200);
+    const pill = await page.$('.hero .pill');
+    const pillBox = await pill.boundingBox();
+    await page.mouse.move(pillBox.x + pillBox.width / 2, pillBox.y + pillBox.height / 2);
+    const dotSamples = [];
+    for (let i = 0; i < 16; i++) {
+      dotSamples.push(
+        await page.$eval('.hero .pill__dot', (el) =>
+          Number(getComputedStyle(el, '::before').opacity),
+        ),
+      );
+      await sleep(100);
+    }
+    let dotLongest = 0;
+    let dotRun = 0;
+    for (const value of dotSamples) {
+      dotRun = value > 0.3 ? dotRun + 1 : 0;
+      dotLongest = Math.max(dotLongest, dotRun);
+    }
+    const dotLoad = await page.$eval('.hero .pill__dot', (el) => {
+      const style = getComputedStyle(el, '::after');
+      return `${style.animationName} x${style.animationIterationCount}`;
+    });
+    results.check(
+      dotLongest >= 6 && dotLoad === 'live-glow x3',
+      'hero "open to roles" dot glows like "Live" (3 pulses on load, visible on hover)',
+      `${dotLoad}, longest=${dotLongest * 100} ms`,
+    );
     const csp = await view.csp();
     results.check(
       csp.length === 0,

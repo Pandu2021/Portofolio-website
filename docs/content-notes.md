@@ -90,17 +90,21 @@ repositories have been scanned with gitleaks.
 Every skill keyword has exactly one place on the page, so recruiters and ATS parsers never see the same skill
 twice under different spellings.
 
-| Where                                  | Role                        | Rule                                                                                            |
-| -------------------------------------- | --------------------------- | ----------------------------------------------------------------------------------------------- |
-| **Skills** (8 groups)                  | The one list of every skill | Each keyword once across all groups (case-insensitive; "Kotlin" = "Kotlin (Android)")           |
-| Featured project, course projects      | Evidence                    | Chips only use Skills keywords; at most 5 chips per course project                              |
-| Tech Lab                               | Demos in this repository    | Chips name techniques inside the demo code (e.g. "Signals", "useReducer"), exempt from the rule |
-| Certifications                         | Proof                       | No skill lists; course projects link here by id                                                 |
-| Education → coursework                 | Course names (facts)        | Written as on the transcript, not as skills                                                     |
-| `meta.keywords` (JSON-LD `knowsAbout`) | Summary for search engines  | Short list (≈20) of the most important keywords                                                 |
+| Where                                  | Role                        | Rule                                                                                                                                                                                                                              |
+| -------------------------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Skills** (8 groups)                  | The one list of every skill | Each keyword once across all groups (case-insensitive; "Kotlin" = "Kotlin (Android)")                                                                                                                                             |
+| Featured project, course projects      | Evidence                    | Chips only use Skills keywords; at most 5 chips per course project                                                                                                                                                                |
+| Tech Lab                               | Demos in this repository    | Chips only use Skills keywords; at most 4 (framework + key tools). Libraries and techniques that only one demo uses (Pinia, Vue Router, React Router, Signals, useReducer…) stay in the demo's description and code, not in chips |
+| Certifications                         | Proof                       | No skill lists; course projects link here by id                                                                                                                                                                                   |
+| Education → coursework                 | Course names (facts)        | Written as on the transcript, not as skills                                                                                                                                                                                       |
+| `meta.keywords` (JSON-LD `knowsAbout`) | Summary for search engines  | Short list (≈20) of the most important keywords                                                                                                                                                                                   |
 
-`packages/content/src/content.test.ts` enforces the first two rows; `scripts/e2e/suites/portfolio.mjs`
+`packages/content/src/content.test.ts` enforces the first three rows; `scripts/e2e/suites/portfolio.mjs`
 checks the rendered page for duplicate skill chips.
+
+Skills only list what a recruiter needs and what is backed by real work: the client project, a certificate, or a
+demo in this repository. "Vue" is in Skills (the Vue demo proves it); companion libraries such as Pinia are not
+added, because "Vue" already covers the ATS keyword and Pinia is used in one small demo only.
 
 AI tools are listed by **product name** only (GitHub Copilot, Claude Code, ChatGPT, Google Gemini,
 Microsoft Copilot), never by model version: versions change every few months, and ATS searches for product

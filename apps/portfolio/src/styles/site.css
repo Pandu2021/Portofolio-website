@@ -373,14 +373,37 @@ main:focus {
   background: var(--color-surface);
   font-size: var(--text-sm);
   font-weight: 600;
+  isolation: isolate; /* the dot glow (z-index -1) stays behind the text */
 }
 
 .pill__dot {
+  position: relative;
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
   background: var(--color-secondary);
   box-shadow: 0 0 0 4px var(--color-secondary-soft);
+}
+
+/*
+ * "Open to roles" dot glow, the same light as the "Live" status:
+ * ::after pulses 3 times when the page opens, ::before replays it on hover
+ * (two layers, so leaving the pill never restarts the first pulse). Section 14.
+ */
+.pill__dot::before,
+.pill__dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin: -0.65rem 0 0 -0.65rem;
+  border-radius: 50%;
+  background: radial-gradient(circle closest-side, var(--color-secondary-glow) 0 25%, transparent);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .note {
@@ -1384,7 +1407,9 @@ main:focus {
  */
 .js .lab-card.is-visible .status[data-status='live']::after,
 .lab-card:hover .status__glow,
-.lab-card:focus-within .status__glow {
+.lab-card:focus-within .status__glow,
+.js .pill__dot::after,
+.pill:hover .pill__dot::before {
   animation: live-glow 1.5s ease-in-out 3;
 }
 
@@ -1501,6 +1526,8 @@ main:focus {
   .hero::before,
   .status[data-status='live']::after,
   .status__glow,
+  .pill__dot::before,
+  .pill__dot::after,
   .border-glow::before,
   .border-glow::after,
   .stat::after {
@@ -1508,7 +1535,8 @@ main:focus {
   }
 
   /* Still light instead of moving light. */
-  .status[data-status='live']::after {
+  .status[data-status='live']::after,
+  .pill__dot::after {
     opacity: 0.45;
     transform: none;
   }
@@ -1545,6 +1573,8 @@ main:focus {
   .card--spotlight::before,
   .border-glow,
   .status__glow,
+  .pill__dot::before,
+  .pill__dot::after,
   .stat::after,
   .btn--shine::after {
     display: none;

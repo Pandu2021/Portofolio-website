@@ -14,7 +14,7 @@
       "en": "Statically generated, bilingual and accessible site with light/dark themes.",
       "id": "Situs statis dua bahasa yang aksesibel dengan tema terang/gelap."
     },
-    "stack": ["Next.js", "React", "TypeScript", "Static export", "i18n"]
+    "stack": ["Next.js", "React", "TypeScript", "i18n"]
   },
   {
     "id": "react-storefront",
@@ -31,7 +31,7 @@
       "en": "Café menu with search, filters, a saved cart, promo codes and an accessible demo checkout.",
       "id": "Menu kafe dengan pencarian, filter, keranjang tersimpan, kode promo dan checkout demo yang aksesibel."
     },
-    "stack": ["React", "TypeScript", "Vite", "React Router", "useReducer", "Vitest"]
+    "stack": ["React", "Vite", "TypeScript", "Vitest"]
   },
   {
     "id": "angular-dashboard",
@@ -48,7 +48,7 @@
       "en": "Order back office with mock sign-in, live RxJS order feed, typed reactive forms and accessible SVG charts.",
       "id": "Back office pesanan dengan login tiruan, feed pesanan RxJS real-time, reactive forms bertipe dan grafik SVG yang aksesibel."
     },
-    "stack": ["Angular", "Signals", "RxJS", "Reactive Forms", "Zoneless", "Vitest"]
+    "stack": ["Angular", "RxJS", "TypeScript", "Vitest"]
   },
   {
     "id": "vue-invoice",
@@ -65,6 +65,6 @@
       "en": "Invoice editor with a tested pricing engine: line discounts, service fee, tax (exclusive or inclusive) and rounding.",
       "id": "Editor invoice dengan mesin harga yang teruji: diskon item, biaya layanan, pajak (belum/sudah termasuk) dan pembulatan."
     },
-    "stack": ["Vue 3", "Pinia", "Vue Router", "TypeScript", "Vitest"]
+    "stack": ["Vue", "TypeScript", "Vitest"]
   }
 ]
