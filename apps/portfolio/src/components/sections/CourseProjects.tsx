@@ -26,7 +26,7 @@ export function CourseProjects({ content }: { content: SiteContent }) {
           const source = cert?.name ?? project.program;
           const title = project.title[locale];
           return (
-            <li key={project.id} className="card course-card" data-reveal>
+            <li key={project.id} className="card card--spotlight course-card" data-reveal>
               <div className="course-card__top">
                 <h4 className="course-card__title">{title}</h4>
                 {project.status === 'in-progress' && (

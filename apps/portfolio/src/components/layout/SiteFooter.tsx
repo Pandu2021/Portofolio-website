@@ -1,6 +1,7 @@
 /**
  * @file SiteFooter.tsx
  * Footer: copyright, how the site is built, link to the source code.
+ * (Going back to the top is handled by the floating BackToTop button.)
  */
 import type { SiteContent } from '@portfolio/content';
 import { ExternalLink } from '@/components/ui/ExternalLink';
@@ -23,9 +24,6 @@ export function SiteFooter({ content }: { content: SiteContent }) {
           <ExternalLink href={REPO_URL} newTabHint={ui.opensInNewTab}>
             {ui.sourceCode}
           </ExternalLink>
-        </p>
-        <p>
-          <a href="#top">{ui.backToTop}</a>
         </p>
       </div>
     </footer>

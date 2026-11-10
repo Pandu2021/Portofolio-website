@@ -12,7 +12,7 @@ export function FeaturedProject({ content }: { content: SiteContent }) {
   const project = content.featuredProject;
   return (
     <Section id="projects" title={project.title} intro={project.intro} alt>
-      <article className="card feature" data-reveal>
+      <article className="card card--spotlight feature" data-reveal>
         <div className="feature__head">
           <h3 className="feature__name">{project.name}</h3>
           <p className="feature__meta">

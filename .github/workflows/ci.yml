@@ -169,7 +169,7 @@ jobs:
       - name: Lighthouse audit (informational — performance varies between runs)
         id: lighthouse
         continue-on-error: true
-        run: pnpm lighthouse
+        run: pnpm lighthouse --runs=3 # median of 3 runs per page and device
 
       - name: Upload Lighthouse reports
         if: ${{ always() }}

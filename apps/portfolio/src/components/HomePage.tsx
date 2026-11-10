@@ -2,7 +2,7 @@
  * @file HomePage.tsx
  * The one-page portfolio for one language. Rendered to static HTML at build
  * time; only the small interactive pieces (menu, theme, dialogs, back-to-top,
- * scroll reveal) hydrate as client components.
+ * scroll reveal with count-up, card spotlight) hydrate as client components.
  */
 import { getContent, type Locale } from '@portfolio/content';
 import { SiteFooter } from './layout/SiteFooter';
@@ -20,6 +20,7 @@ import { TechLab } from './sections/TechLab';
 import { JsonLd } from './seo/JsonLd';
 import { BackToTop } from './ui/BackToTop';
 import { RevealObserver } from './ui/RevealObserver';
+import { Spotlight } from './ui/Spotlight';
 
 /** Renders the complete home page in the given language. */
 export function HomePage({ locale }: { locale: Locale }) {
@@ -45,6 +46,7 @@ export function HomePage({ locale }: { locale: Locale }) {
       <SiteFooter content={content} />
       <BackToTop label={content.ui.backToTop} />
       <RevealObserver />
+      <Spotlight />
       <JsonLd locale={locale} />
     </>
   );

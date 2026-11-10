@@ -50,7 +50,7 @@ export function SiteHeader({ content }: { content: SiteContent }) {
           <a
             href={withBasePath(CV_FILE)}
             download={CV_DOWNLOAD_NAME}
-            className="btn btn--primary btn--sm"
+            className="btn btn--primary btn--sm btn--shine"
           >
             <Icon name="download" size={16} />
             {nav.cv}

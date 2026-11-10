@@ -42,14 +42,22 @@ export async function run({ browser, results, base }) {
       await page.evaluate(() => document.activeElement?.classList.contains('error-summary')),
       'error summary receives focus after an invalid submit',
     );
-    results.check(
-      await page.evaluate(() => {
-        const header = document.querySelector('.header')?.getBoundingClientRect();
-        const summary = document.querySelector('.error-summary')?.getBoundingClientRect();
-        return Boolean(header && summary && summary.top >= header.bottom);
-      }),
-      'focused error summary is not hidden behind the sticky header',
-    );
+    // The page scrolls smoothly to the focused summary; on a busy machine that
+    // can take longer than a fixed sleep, so wait (max 3 s) for the final position.
+    const unobscured = await page
+      .waitForFunction(
+        () => {
+          const header = document.querySelector('.header')?.getBoundingClientRect();
+          const summary = document.querySelector('.error-summary')?.getBoundingClientRect();
+          return Boolean(header && summary && summary.top >= header.bottom);
+        },
+        { timeout: 3000, polling: 100 },
+      )
+      .then(
+        () => true,
+        () => false,
+      );
+    results.check(unobscured, 'focused error summary is not hidden behind the sticky header');
     await page.type('#checkout-name', 'Budi Santoso');
     await page.type('#checkout-email', 'budi@example.com');
     await page.type('#checkout-address', 'Jl. Contoh No. 1, Jakarta');

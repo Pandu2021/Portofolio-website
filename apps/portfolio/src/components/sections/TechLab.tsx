@@ -26,7 +26,11 @@ export function TechLab({ content }: { content: SiteContent }) {
           const isHome = app.path === '';
           const isPlanned = app.status === 'planned';
           return (
-            <li key={app.id} className="card card--interactive lab-card" data-reveal>
+            <li
+              key={app.id}
+              className="card card--interactive card--spotlight lab-card"
+              data-reveal
+            >
               <div className="lab-card__top">
                 <span className="badge" data-brand={app.brand}>
                   {app.framework}

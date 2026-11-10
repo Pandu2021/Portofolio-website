@@ -46,22 +46,23 @@ pnpm dev -- --only=react-storefront   # gateway + selected apps only
 pnpm dev:portfolio    # Next.js alone at http://localhost:3000/ (no demos)
 ```
 
-| Command             | What it does                                                          |
-| ------------------- | --------------------------------------------------------------------- |
-| `pnpm build`        | Builds every app in `apps/`                                           |
-| `pnpm build:site`   | Builds every app and assembles `_site/`                               |
-| `pnpm preview`      | Serves `_site/` exactly like GitHub Pages                             |
-| `pnpm lint`         | ESLint in every package                                               |
-| `pnpm typecheck`    | TypeScript strict checks in every package                             |
-| `pnpm test`         | Unit tests (Vitest) in every package + tests of the repo scripts      |
-| `pnpm e2e`          | Browser tests of `_site/` (run `pnpm build:site` first)               |
-| `pnpm e2e:live`     | The same browser tests against the live site                          |
-| `pnpm e2e:dev`      | Read-only checks of a running `pnpm dev` (gateway + hot reload)       |
-| `pnpm lighthouse`   | Lighthouse (mobile + desktop) for every app; reports `.lighthouseci/` |
-| `pnpm pagespeed`    | Lighthouse of the live site on Google's servers (PageSpeed Insights)  |
-| `pnpm links`        | Checks every internal link/anchor and every external link             |
-| `pnpm format`       | Formats the repository with Prettier                                  |
-| `pnpm secrets:scan` | Scans the working tree with gitleaks                                  |
+| Command                    | What it does                                                             |
+| -------------------------- | ------------------------------------------------------------------------ |
+| `pnpm build`               | Builds every app in `apps/`                                              |
+| `pnpm build:site`          | Builds every app and assembles `_site/`                                  |
+| `pnpm preview`             | Serves `_site/` exactly like GitHub Pages                                |
+| `pnpm lint`                | ESLint in every package                                                  |
+| `pnpm typecheck`           | TypeScript strict checks in every package                                |
+| `pnpm test`                | Unit tests (Vitest) in every package + tests of the repo scripts         |
+| `pnpm e2e`                 | Browser tests of `_site/` (run `pnpm build:site` first)                  |
+| `pnpm e2e:live`            | The same browser tests against the live site                             |
+| `pnpm e2e:dev`             | Read-only checks of a running `pnpm dev` (gateway + hot reload)          |
+| `pnpm lighthouse`          | Lighthouse (mobile + desktop) for every app; reports `.lighthouseci/`    |
+| `pnpm lighthouse --runs=3` | Same, each page 3× and the **median** reported (stable on a busy laptop) |
+| `pnpm pagespeed`           | Lighthouse of the live site on Google's servers (PageSpeed Insights)     |
+| `pnpm links`               | Checks every internal link/anchor and every external link                |
+| `pnpm format`              | Formats the repository with Prettier                                     |
+| `pnpm secrets:scan`        | Scans the working tree with gitleaks                                     |
 
 ### URLs
 
@@ -89,8 +90,9 @@ for it.
 ### Lighthouse scores
 
 Accessibility, Best Practices and SEO are **100** on every page. Performance depends on the machine: on a busy
-laptop it varies by ±20 points between identical runs. The reliable numbers are the ones from the CI job
-(clean runner) — open a run → _Summary_ → **Lighthouse** table, or download the `lighthouse-reports` artifact.
+laptop it varies by ±20 points between identical runs, so compare **medians** (`pnpm lighthouse --runs=3`).
+The reliable numbers are the ones from the CI job (clean runner, median of 3) — open a run → _Summary_ →
+**Lighthouse** table, or download the `lighthouse-reports` artifact.
 
 `pnpm lighthouse` on `_site/` (Lighthouse 13, 2026-11-10) — Performance / Accessibility / Best Practices / SEO:
 

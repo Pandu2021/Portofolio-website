@@ -24,7 +24,11 @@ export function Certifications({ content }: { content: SiteContent }) {
     <Section id="certifications" title={section.title} intro={section.intro} alt>
       <ul className="cert-grid">
         {certifications.map((cert) => (
-          <li key={cert.id} className="card card--interactive cert-card" data-reveal>
+          <li
+            key={cert.id}
+            className="card card--interactive card--spotlight cert-card"
+            data-reveal
+          >
             <span className="cert-card__badge" aria-hidden="true">
               {issuerInitial(cert.issuer)}
             </span>

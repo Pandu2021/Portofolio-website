@@ -56,6 +56,37 @@
   dark: `#0B1220`, `#E2E8F0`, `#FB923C`, `#2DD4BF`. All text pairs pass WCAG 2.2 AA (≥ 4.5:1).
 - Motion tokens drop to `0ms` when the visitor prefers reduced motion.
 
+## Motion & animation (portfolio)
+
+Light, decorative motion that never costs content, performance, accessibility or the CSP.
+
+| Effect                     | How                                                                                            | Trigger                   |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------- |
+| Scroll reveal (fade-up)    | CSS transition on `[data-reveal]`                                                              | `RevealObserver` (IO)     |
+| Section title accent line  | `.section__title::after`, `scaleX(0 → 1)`                                                      | reveal                    |
+| Skill chips stagger        | `nth-child` transition delays (capped at the 10th chip)                                        | reveal                    |
+| Highlight numbers count up | `RevealObserver` + `lib/motion.ts`, `requestAnimationFrame`, 1.2 s ease-out, once              | reveal                    |
+| Highlight card shine       | `.stat::after`, one sweep after the count                                                      | `.is-counted`             |
+| Card spotlight             | `Spotlight.tsx`: one delegated `pointermove` listener, rAF-throttled, sets `--spot-x/--spot-y` | mouse only (`hover/fine`) |
+| CV button shine            | `.btn--shine::after`, one sweep                                                                | hover / `:focus-visible`  |
+| "Live" status pulse        | `.status[data-status='live']::after`, 3 × 1.6 s                                                | reveal                    |
+| Hero gradient              | one 5 s drift into place, then still                                                           | page load                 |
+
+Rules (checked by `scripts/e2e/suites/portfolio.mjs`):
+
+- **Performance** — only `transform` and `opacity` are animated (GPU-composited, no layout), no animation library,
+  `will-change` only while hovering. The two client components add well under 2 KB gzip.
+- **Content first** — the real highlight values are in the static HTML (ATS, search engines, no-JS). During the
+  count-up the real text is only visually hidden and an `aria-hidden` copy counts, so screen readers always read
+  the final value; `tabular-nums` keeps the width constant (no layout shift).
+- **Reduced motion** — nothing moves: no count-up, no spotlight tracking, no sweeps or pulses; everything is shown
+  in its final state.
+- **WCAG 2.2.2 / 2.3.1** — no animation loops forever (the longest runs ≈ 5 s) and nothing flashes.
+- **CSP** — no `style="…"` attributes and no runtime `<style>`: effects are CSS classes; the spotlight position is
+  written with `style.setProperty` (CSSOM), which the strict `style-src` allows.
+- **Focus** — glows sit behind the card content (`z-index: -1` inside an isolated card), so focus rings and text
+  are never covered; translucent colors (`--color-spotlight`, `--color-shine`) keep text contrast AA.
+
 ## Build & deploy
 
 ```
@@ -131,7 +162,8 @@ scripts/e2e/harness.mjs       per-test isolated browser context; collects consol
                               and CSP violations
 scripts/e2e/suites/*.mjs      portfolio, react, angular, layout (375/768 px + keyboard), dev-gateway
 scripts/e2e/run.mjs           `pnpm e2e` (_site/), `--live` (GitHub Pages), `--dev` (localhost:3000, read-only)
-scripts/lighthouse.mjs        `pnpm lighthouse` — mobile + desktop, HTML reports in .lighthouseci/
+scripts/lighthouse.mjs        `pnpm lighthouse [--runs=N] [--live]` — mobile + desktop, median of N runs,
+                              HTML reports in .lighthouseci/
 scripts/check-links.mjs       `pnpm links` — internal files/anchors + external URLs
 ```
 

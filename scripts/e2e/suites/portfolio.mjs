@@ -3,7 +3,8 @@
  * E2E checks for the Next.js portfolio: both languages, strict CSP, fonts,
  * theme (toggle + restore before paint), scroll reveal, certificate dialog,
  * mobile menu, skip link, CV content sections (skills without duplicates,
- * languages, course projects, coursework) and the 404 page.
+ * languages, course projects, coursework), motion (count-up, reduced motion,
+ * spotlight, no endless loops), the footer and the 404 page.
  */
 import { horizontalOverflow, openPage, screenshot, sleep } from '../harness.mjs';
 
@@ -235,7 +236,113 @@ export async function run({ browser, results, base }) {
     await view.close();
   }
 
-  // 6. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
+  // 6. Motion: count-up, reduced motion, spotlight, no endless loops, footer.
+  //    A short viewport keeps the highlights below the fold, so the count-up
+  //    starts only when the test scrolls them into view.
+  for (const reducedMotion of [false, true]) {
+    const mode = reducedMotion ? 'reduced motion' : 'motion';
+    const view = await openPage(browser, base, { width: 1280, height: 420, reducedMotion });
+    const { page } = view;
+    const original = await page.$$eval('[data-count]', (els) => els.map((el) => el.textContent));
+    // Record every number the animated copy shows, and what screen readers get meanwhile.
+    await page.evaluate(() => {
+      window.__ticks = [];
+      new MutationObserver(() => {
+        for (const ticker of document.querySelectorAll('.stat__ticker')) {
+          const real = ticker.previousElementSibling;
+          window.__ticks.push({
+            text: ticker.textContent,
+            hidden: ticker.getAttribute('aria-hidden') === 'true',
+            realText: real?.textContent,
+            realHidden: real?.classList.contains('is-counting'),
+          });
+        }
+      }).observe(document.body, { subtree: true, childList: true, characterData: true });
+    });
+    await page.$eval('.highlights', (el) => el.scrollIntoView({ block: 'center' }));
+    await sleep(1800);
+    const after = await page.evaluate(() => ({
+      final: [...document.querySelectorAll('[data-count]')].map((el) => el.textContent),
+      tickersLeft: document.querySelectorAll('.stat__ticker').length,
+      counted: document.querySelectorAll('.stat.is-counted').length,
+      ticks: window.__ticks,
+    }));
+    results.check(
+      JSON.stringify(after.final) === JSON.stringify(original) && after.tickersLeft === 0,
+      `${mode}: highlight numbers end exactly on the original text`,
+      after.final.join(' | '),
+    );
+    if (reducedMotion) {
+      results.check(
+        after.ticks.length === 0 && after.counted === 0,
+        'reduced motion: numbers do not move (final value at once)',
+        `ticks=${after.ticks.length}`,
+      );
+    } else {
+      const values = new Set(after.ticks.map((tick) => tick.text));
+      results.check(
+        values.size > 4 && after.counted === original.length,
+        'highlight numbers count up once when they scroll into view',
+        `distinct frames=${values.size} counted=${after.counted}`,
+      );
+      results.check(
+        after.ticks.every(
+          (tick) => tick.hidden && tick.realHidden && original.includes(tick.realText ?? ''),
+        ),
+        'while counting, screen readers keep the real value (moving digits are aria-hidden)',
+      );
+      // Spotlight follows the mouse on a Tech Lab card (CSSOM, so no CSP violation).
+      const card = await page.$('.lab-card');
+      // `instant`: the page uses smooth scrolling, and the box must be measured at rest.
+      await card.evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }));
+      await sleep(100);
+      const box = await card.boundingBox();
+      await page.mouse.move(box.x + 40, box.y + 30);
+      await page.mouse.move(box.x + box.width - 40, box.y + box.height / 2, { steps: 5 });
+      await sleep(450);
+      const spot = await card.evaluate((el) => ({
+        x: el.style.getPropertyValue('--spot-x'),
+        opacity: getComputedStyle(el, '::before').opacity,
+      }));
+      results.check(
+        Number.parseInt(spot.x, 10) > 0 && spot.opacity === '1',
+        'card spotlight follows the mouse',
+        `--spot-x=${spot.x} opacity=${spot.opacity}`,
+      );
+      await screenshot(page, 'portfolio-spotlight');
+    }
+    // No animation may loop forever (WCAG 2.2.2), with or without reduced motion.
+    const loops = await page.evaluate(() =>
+      [...document.querySelectorAll('*')].flatMap((el) =>
+        [null, '::before', '::after']
+          .filter((pseudo) => getComputedStyle(el, pseudo).animationIterationCount === 'infinite')
+          .map((pseudo) => `${el.tagName.toLowerCase()}.${el.className}${pseudo ?? ''}`),
+      ),
+    );
+    results.check(loops.length === 0, `${mode}: no endless animation`, loops.join(', '));
+    const csp = await view.csp();
+    results.check(csp.length === 0, `${mode}: no CSP violations`, csp.join(' | '));
+    results.check(
+      view.errors.length === 0,
+      `${mode}: no console or HTTP errors`,
+      view.errors.join(' | '),
+    );
+    await view.close();
+  }
+  {
+    const view = await openPage(browser, base);
+    const footer = await view.page.evaluate(() => ({
+      footerLink: document.querySelectorAll('.site-footer a[href="#top"]').length,
+      floating: document.querySelectorAll('a.back-to-top[href="#top"]').length,
+    }));
+    results.check(
+      footer.footerLink === 0 && footer.floating === 1,
+      'footer has no "Back to top" text link; the floating ↑ button remains',
+    );
+    await view.close();
+  }
+
+  // 7. Unknown URL shows the bilingual 404 page (the 404 status itself is expected).
   {
     const view = await openPage(browser, `${base}does-not-exist/`);
     const heading = await view.page.$eval('h1', (el) => el.textContent ?? '');
