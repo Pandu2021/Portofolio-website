@@ -38,7 +38,7 @@
     "cv": "CV"
   },
   "hero": {
-    "eyebrow": "Terbuka untuk posisi full-stack, front-end & software engineering",
+    "eyebrow": "Terbuka untuk posisi Full Stack Developer & Software Engineering",
     "name": "Pandu Wicaksono",
     "role": "Full-Stack Developer · E-commerce & Sistem Bisnis",
     "tagline": "Saya membangun aplikasi web yang cepat dan aman dengan React, Next.js, Angular, Vue dan TypeScript — didukung latar belakang keuangan yang menjaga fokus pada tujuan bisnis.",
@@ -328,10 +328,6 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
-      },
-      {
-        "label": "Kaggle",
-        "href": "https://www.kaggle.com/panduwicaksono2025"
       }
     ],
     "resumeLabel": "Unduh resume (1 halaman)",

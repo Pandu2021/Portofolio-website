@@ -12,11 +12,8 @@ describe('JSON-LD', () => {
     expect(data['name']).toBe('Pandu Wicaksono');
     expect(data['knowsAbout']).toContain('React');
     expect(data['knowsAbout']).toContain('Angular');
-    // Public profiles only: LinkedIn and Kaggle (no GitHub profile link).
-    expect(data['sameAs']).toEqual([
-      'https://www.linkedin.com/in/pandu-wicaksono-2b8430335/',
-      'https://www.kaggle.com/panduwicaksono2025',
-    ]);
+    // Public profile: LinkedIn only (no GitHub or Kaggle profile links).
+    expect(data['sameAs']).toEqual(['https://www.linkedin.com/in/pandu-wicaksono-2b8430335/']);
     expect(Array.isArray(data['hasCredential'])).toBe(true);
     expect(data['url']).toBe('https://pandu2021.github.io/Portofolio-website/');
     expect(data['knowsLanguage']).toEqual([

@@ -1209,6 +1209,58 @@ main:focus {
   color: var(--color-text);
 }
 
+/*
+ * LinkedIn button: a soft orange halo behind it pulses twice when the card
+ * appears (::before) and once more on hover or keyboard focus (::after, a
+ * separate layer so leaving the button does not replay the first one). Only
+ * opacity and transform change, and the halo sits behind the button, so text
+ * contrast is unchanged.
+ */
+.contact-card__links li {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact-card__links li::before,
+.contact-card__links li::after {
+  content: '';
+  position: absolute;
+  inset: -14px -26px;
+  z-index: -1;
+  border-radius: var(--radius-pill);
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--color-accent) 60%, transparent),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+}
+
+.js .contact-card.is-visible .contact-card__links li::before {
+  animation: button-glow 1.8s ease-in-out 2;
+}
+
+.contact-card__links li:hover::after,
+.contact-card__links li:focus-within::after {
+  animation: button-glow 1.8s ease-in-out 1;
+}
+
+@keyframes button-glow {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  45% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.08);
+  }
+}
+
 /* 12. Footer & back-to-top ------------------------------------------------ */
 .site-footer {
   padding-block: var(--space-6);
@@ -1530,7 +1582,12 @@ main:focus {
   .pill__dot::after,
   .border-glow::before,
   .border-glow::after,
-  .stat::after {
+  .stat::after,
+  .contact-card__links li::before,
+  .contact-card__links li::after,
+  .js .contact-card.is-visible .contact-card__links li::before,
+  .contact-card__links li:hover::after,
+  .contact-card__links li:focus-within::after {
     animation: none;
   }
 
@@ -1576,7 +1633,9 @@ main:focus {
   .pill__dot::before,
   .pill__dot::after,
   .stat::after,
-  .btn--shine::after {
+  .btn--shine::after,
+  .contact-card__links li::before,
+  .contact-card__links li::after {
     display: none;
   }
 

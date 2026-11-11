@@ -12,8 +12,8 @@
 - Name: Pandu Wicaksono
 - Headline: Full-Stack Developer | E-commerce & Business Systems (front-end focus on this site)
 - Location: Indonesia (open to remote)
-- Links: LinkedIn `linkedin.com/in/pandu-wicaksono-2b8430335`, Kaggle `kaggle.com/panduwicaksono2025`
-  (no GitHub profile link on the site; "Source code" links point to this repository only)
+- Links: LinkedIn `linkedin.com/in/pandu-wicaksono-2b8430335` only (no GitHub or Kaggle profile
+  link on the site; "Source code" links point to this repository only)
 - Languages: Bahasa Indonesia (native), English (basic professional working proficiency)
 
 ## Featured project — Restaurant Ordering & Operations Platform (confidential client)

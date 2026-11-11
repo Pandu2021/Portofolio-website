@@ -38,7 +38,7 @@
     "cv": "CV"
   },
   "hero": {
-    "eyebrow": "Open to full-stack, front-end & software engineering roles",
+    "eyebrow": "Open to Full Stack Developer & Software Engineering roles",
     "name": "Pandu Wicaksono",
     "role": "Full-Stack Developer · E-commerce & Business Systems",
     "tagline": "I build fast, secure web apps with React, Next.js, Angular, Vue and TypeScript — backed by a finance background that keeps business goals in focus.",
@@ -328,10 +328,6 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
-      },
-      {
-        "label": "Kaggle",
-        "href": "https://www.kaggle.com/panduwicaksono2025"
       }
     ],
     "resumeLabel": "Download resume (1 page)",

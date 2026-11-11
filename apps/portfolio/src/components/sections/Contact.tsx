@@ -32,7 +32,7 @@ export function Contact({ content }: { content: SiteContent }) {
                 <ExternalLink
                   href={link.href}
                   newTabHint={ui.opensInNewTab}
-                  className={index === 0 ? 'btn btn--primary' : 'btn btn--secondary'}
+                  className={index === 0 ? 'btn btn--primary btn--shine' : 'btn btn--secondary'}
                 >
                   {link.label}
                 </ExternalLink>
