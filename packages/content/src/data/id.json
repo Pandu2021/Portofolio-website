@@ -38,7 +38,7 @@
     "cv": "CV"
   },
   "hero": {
-    "eyebrow": "Terbuka untuk posisi full-stack & front-end",
+    "eyebrow": "Terbuka untuk posisi full-stack, front-end & software engineering",
     "name": "Pandu Wicaksono",
     "role": "Full-Stack Developer · E-commerce & Sistem Bisnis",
     "tagline": "Saya membangun aplikasi web yang cepat dan aman dengan React, Next.js, Angular, Vue dan TypeScript — didukung latar belakang keuangan yang menjaga fokus pada tujuan bisnis.",
@@ -92,13 +92,8 @@
     "context": "Klien rahasia · Industri makanan & minuman",
     "role": "Freelance Full-Stack Developer (satu-satunya developer)",
     "period": "2025 – Sekarang",
-    "summary": "Platform pemesanan end-to-end: toko online pelanggan, portal mitra B2B, konsol admin 20 halaman, REST API serta agen printer Android/Windows.",
-    "bullets": [
-      "Mengintegrasikan pembayaran QR dan kartu melalui payment gateway pihak ketiga dengan webhook, rekonsiliasi otomatis dan refund.",
-      "Membangun mesin harga yang dapat dikonfigurasi untuk pajak, biaya, promo dan ongkir berbasis jarak.",
-      "Menghadirkan pelacakan pesanan real-time dengan Server-Sent Events, live chat dan antarmuka React dua bahasa.",
-      "Memperkuat keamanan dengan rotasi JWT, OAuth 2.0, proteksi CSRF, rate limiting dan akses berbasis peran; CI/CD dengan tes otomatis dan pemindaian keamanan."
-    ],
+    "summary": "Platform pemesanan end-to-end: toko online pelanggan, portal mitra B2B, konsol admin, REST API serta agen printer Android/Windows.",
+    "bullets": [],
     "stack": [
       "React",
       "TypeScript",
@@ -163,8 +158,6 @@
         "name": "Keamanan & Pembayaran",
         "items": [
           "Autentikasi & otorisasi",
-          "JWT",
-          "OAuth 2.0",
           "Integrasi pembayaran yang aman",
           "Secure coding",
           "Pemindaian keamanan otomatis"
@@ -251,11 +244,11 @@
         "location": "Remote",
         "period": "2025 – Sekarang",
         "bullets": [
-          "Merancang dan membangun, sebagai satu-satunya developer, platform pemesanan dan operasional produksi: toko online pelanggan, portal mitra B2B, konsol admin dan REST API (React, TypeScript, NestJS, Prisma, PostgreSQL).",
+          "Merancang dan membangun, sebagai satu-satunya developer, platform pemesanan dan operasional produksi: toko online pelanggan, portal mitra B2B, konsol admin dan REST API, mencakup 45+ halaman (React, TypeScript, NestJS, Prisma, PostgreSQL).",
           "Mengintegrasikan pembayaran online melalui payment gateway pihak ketiga dengan rekonsiliasi otomatis, serta membangun mesin harga untuk pajak, biaya, promo dan pengiriman.",
           "Meluncurkan kanal pemesanan B2B dengan akses berbasis peran serta harga eceran dan grosir terpisah, menggantikan pemesanan manual.",
           "Menghadirkan pelacakan pesanan real-time, live chat, otomasi back-office dan cetak struk otomatis melalui agen printer Android dan Windows.",
-          "Menerapkan praktik pengembangan yang aman (autentikasi dan otorisasi, perlindungan input, pemindaian keamanan otomatis) serta CI/CD dengan Docker, GitHub Actions dan tes otomatis."
+          "Menerapkan praktik pengembangan yang aman (autentikasi dan otorisasi, perlindungan input, pemindaian keamanan otomatis) serta CI/CD dengan Docker, GitHub Actions dan sekitar 95 file tes otomatis."
         ]
       }
     ]
@@ -271,7 +264,7 @@
         "degree": "Sarjana Ekonomi (S.E.), Manajemen – Manajemen Keuangan",
         "school": "Universitas Kristen Satya Wacana",
         "location": "Salatiga, Indonesia",
-        "period": "2015 – 2021",
+        "period": "Sep 2015 – Apr 2021",
         "coursework": [
           {
             "area": "Keuangan",
@@ -335,10 +328,6 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/Pandu2021"
       },
       {
         "label": "Kaggle",

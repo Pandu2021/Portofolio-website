@@ -60,6 +60,16 @@
     "height": 928
   },
   {
+    "id": "google-business-intelligence",
+    "name": "Google Business Intelligence",
+    "issuer": "Google",
+    "date": "2025-06-25",
+    "verifyUrl": "https://coursera.org/verify/professional-cert/A6HI34IB1S4U",
+    "image": "certificates/google-business-intelligence.jpg",
+    "width": 1188,
+    "height": 928
+  },
+  {
     "id": "google-cybersecurity",
     "name": "Google Cybersecurity",
     "issuer": "Google",
@@ -86,16 +96,6 @@
     "date": "2025-06-26",
     "verifyUrl": "https://coursera.org/verify/professional-cert/LZW4EHP26GUL",
     "image": "certificates/google-digital-marketing-ecommerce.jpg",
-    "width": 1188,
-    "height": 928
-  },
-  {
-    "id": "google-business-intelligence",
-    "name": "Google Business Intelligence",
-    "issuer": "Google",
-    "date": "2025-06-25",
-    "verifyUrl": "https://coursera.org/verify/professional-cert/A6HI34IB1S4U",
-    "image": "certificates/google-business-intelligence.jpg",
     "width": 1188,
     "height": 928
   },

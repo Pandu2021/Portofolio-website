@@ -78,9 +78,13 @@ export function getContent(locale: Locale): SiteContent {
   return siteContent[locale];
 }
 
-/** Professional certificates, newest first. */
+/**
+ * Professional certificates, newest MONTH first (the site shows month + year).
+ * Within the same month the order of certifications.json is kept, so it can
+ * match the CV exactly; the real issue dates are never changed for this.
+ */
 export const certifications: readonly Certification[] = [...certificationsRaw].sort((a, b) =>
-  b.date.localeCompare(a.date),
+  b.date.slice(0, 7).localeCompare(a.date.slice(0, 7)),
 );
 
 /** Framework apps listed in the Tech Lab (registry — see docs/ADDING-A-FRAMEWORK.md). */

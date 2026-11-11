@@ -24,14 +24,17 @@ export function FeaturedProject({ content }: { content: SiteContent }) {
           </p>
         </div>
         <p className="feature__summary">{project.summary}</p>
-        <ul className="check-list">
-          {project.bullets.map((bullet) => (
-            <li key={bullet}>
-              <Icon name="check" size={18} />
-              <span>{bullet}</span>
-            </li>
-          ))}
-        </ul>
+        {/* Optional detail bullets (the public version keeps only the summary). */}
+        {project.bullets.length > 0 && (
+          <ul className="check-list">
+            {project.bullets.map((bullet) => (
+              <li key={bullet}>
+                <Icon name="check" size={18} />
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        )}
         <ul className="chips">
           {project.stack.map((tech) => (
             <li key={tech} className="chip">

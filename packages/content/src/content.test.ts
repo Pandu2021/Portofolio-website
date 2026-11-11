@@ -82,11 +82,21 @@ describe('translations', () => {
 });
 
 describe('certifications', () => {
-  it('have unique ids and are sorted newest first', () => {
+  it('have unique ids and are sorted by month, newest first', () => {
     const ids = certifications.map((c) => c.id);
     expect(new Set(ids).size).toBe(ids.length);
-    const dates = certifications.map((c) => c.date);
-    expect(dates).toEqual([...dates].sort().reverse());
+    const months = certifications.map((c) => c.date.slice(0, 7));
+    expect(months).toEqual([...months].sort().reverse());
+  });
+
+  it('June 2025 follows the CV order', () => {
+    const june2025 = certifications.filter((c) => c.date.startsWith('2025-06')).map((c) => c.id);
+    expect(june2025).toEqual([
+      'google-business-intelligence',
+      'google-cybersecurity',
+      'google-ux-design',
+      'google-digital-marketing-ecommerce',
+    ]);
   });
 
   it.each(certifications)('$id has an existing image and a safe verify link', (cert) => {

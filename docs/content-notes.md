@@ -12,30 +12,28 @@
 - Name: Pandu Wicaksono
 - Headline: Full-Stack Developer | E-commerce & Business Systems (front-end focus on this site)
 - Location: Indonesia (open to remote)
-- Links: LinkedIn `linkedin.com/in/pandu-wicaksono-2b8430335`, GitHub `github.com/Pandu2021`,
-  Kaggle `kaggle.com/panduwicaksono2025`
+- Links: LinkedIn `linkedin.com/in/pandu-wicaksono-2b8430335`, Kaggle `kaggle.com/panduwicaksono2025`
+  (no GitHub profile link on the site; "Source code" links point to this repository only)
 - Languages: Bahasa Indonesia (native), English (basic professional working proficiency)
 
 ## Featured project — Restaurant Ordering & Operations Platform (confidential client)
 
+Same level of detail as the public CV — nothing more is published, on purpose.
+
 - Role: Freelance Full-Stack Developer, sole developer, 2025 – present, remote.
-- Applications: customer web storefront (bilingual React SPA), B2B partner ordering portal,
-  20-page role-protected admin console, NestJS REST API (~15 domain modules),
-  Kotlin Android print agent, Windows print agent with installer.
-- Highlights (approximate figures, counted from the codebase):
-  - ~26 Prisma data models on PostgreSQL; ~45 pages in total (≈25 customer/partner + 20 admin).
-  - ~95 automated test files (back-end, front-end, Android).
-  - QR-code and card payments via a third-party gateway: webhooks, reconciliation, refunds with guardrails.
-  - Configurable pricing engine: tax, service/card fees, promotions, distance-based delivery fee.
-  - Real-time order tracking over Server-Sent Events (SSE); customer–admin live chat.
-  - Print pipeline: server queue with claim → download → print → acknowledge, heartbeats, retries; ESC/POS and IPP.
-  - Security: JWT access/refresh rotation, Argon2, OAuth 2.0, CSRF, CORS allowlist, Helmet/CSP,
-    rate limiting, CAPTCHA, XSS sanitization, RBAC, audit logs, security-monitoring dashboard.
-  - CI/CD: GitHub Actions with lint, type check, tests, dependency audit/review, CodeQL, Trivy, malware scan.
-- Front-end stack: React 19, TypeScript, Vite, React Router, TanStack Query, Zustand, React Hook Form,
-  Zod, Tailwind CSS, Framer Motion, i18next, Vitest, Testing Library.
-- Back-end stack: Node.js, NestJS, Prisma, PostgreSQL, SSE, Pino, PDFKit.
-- Mobile/desktop: Kotlin, Android foreground service, Windows installer.
+- Scope: customer storefront, B2B partner portal, admin console and REST API, spanning 45+ pages;
+  Android and Windows print agents.
+- Online payments through a third-party gateway with automated reconciliation; configurable pricing
+  engine for tax, fees, promotions and delivery.
+- B2B ordering channel with role-based access and separate retail and wholesale pricing, replacing
+  manual ordering.
+- Real-time order tracking, live chat, back-office automation and automatic receipt printing.
+- Secure development practices (authentication and authorization, input protection, automated
+  security scanning); CI/CD with Docker, GitHub Actions and about 95 automated test files.
+- Stack shown on the site: React, TypeScript, Vite, TanStack Query, Zustand, NestJS, Prisma,
+  PostgreSQL, Server-Sent Events, Kotlin, Docker, GitHub Actions.
+- Never published: client name, screenshots, internal architecture, detailed security mechanisms,
+  payment flows or provider names.
 
 ## Certifications (Coursera verify IDs; verify URL = `https://coursera.org/verify/<type>/<id>`)
 

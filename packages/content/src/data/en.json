@@ -38,7 +38,7 @@
     "cv": "CV"
   },
   "hero": {
-    "eyebrow": "Open to full-stack & front-end roles",
+    "eyebrow": "Open to full-stack, front-end & software engineering roles",
     "name": "Pandu Wicaksono",
     "role": "Full-Stack Developer · E-commerce & Business Systems",
     "tagline": "I build fast, secure web apps with React, Next.js, Angular, Vue and TypeScript — backed by a finance background that keeps business goals in focus.",
@@ -92,13 +92,8 @@
     "context": "Confidential client · Food & beverage industry",
     "role": "Freelance Full-Stack Developer (sole developer)",
     "period": "2025 – Present",
-    "summary": "End-to-end ordering platform: customer storefront, B2B partner portal, 20-page admin console, REST API and Android/Windows print agents.",
-    "bullets": [
-      "Integrated QR-code and card payments through a third-party gateway with webhooks, automated reconciliation and refunds.",
-      "Built a configurable pricing engine for tax, fees, promotions and distance-based delivery.",
-      "Delivered real-time order tracking with Server-Sent Events, live chat and a bilingual React interface.",
-      "Hardened security with JWT rotation, OAuth 2.0, CSRF protection, rate limiting and role-based access; shipped CI/CD with automated tests and security scans."
-    ],
+    "summary": "End-to-end ordering platform: customer storefront, B2B partner portal, admin console, REST API and Android/Windows print agents.",
+    "bullets": [],
     "stack": [
       "React",
       "TypeScript",
@@ -163,8 +158,6 @@
         "name": "Security & Payments",
         "items": [
           "Authentication & authorization",
-          "JWT",
-          "OAuth 2.0",
           "Secure payment integration",
           "Secure coding",
           "Automated security scanning"
@@ -251,11 +244,11 @@
         "location": "Remote",
         "period": "2025 – Present",
         "bullets": [
-          "Designed and built, as the sole developer, a production ordering and operations platform: customer storefront, B2B partner portal, admin console and REST API (React, TypeScript, NestJS, Prisma, PostgreSQL).",
+          "Designed and built, as the sole developer, a production ordering and operations platform: customer storefront, B2B partner portal, admin console and REST API, spanning 45+ pages (React, TypeScript, NestJS, Prisma, PostgreSQL).",
           "Integrated online payments through a third-party gateway with automated reconciliation, and built a configurable pricing engine for tax, fees, promotions and delivery.",
           "Launched a B2B ordering channel with role-based access and separate retail and wholesale pricing, replacing manual ordering.",
           "Delivered real-time order tracking, live chat, back-office automation and automatic receipt printing through Android and Windows print agents.",
-          "Applied secure development practices (authentication and authorization, input protection, automated security scanning) and shipped CI/CD with Docker, GitHub Actions and automated tests."
+          "Applied secure development practices (authentication and authorization, input protection, automated security scanning) and shipped CI/CD with Docker, GitHub Actions and about 95 automated test files."
         ]
       }
     ]
@@ -271,7 +264,7 @@
         "degree": "Bachelor of Economics (S.E.), Management – Financial Management",
         "school": "Universitas Kristen Satya Wacana",
         "location": "Salatiga, Indonesia",
-        "period": "2015 – 2021",
+        "period": "Sep 2015 – Apr 2021",
         "coursework": [
           {
             "area": "Finance",
@@ -335,10 +328,6 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/pandu-wicaksono-2b8430335/"
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/Pandu2021"
       },
       {
         "label": "Kaggle",
