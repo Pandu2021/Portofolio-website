@@ -128,10 +128,17 @@ export const courseProjects: readonly CourseProject[] = courseProjectsRaw.map((p
  * trailing qualifier, so "Kotlin" and "Kotlin (Android)" count as one keyword.
  */
 export function skillKey(keyword: string): string {
-  return keyword
-    .replace(/\s*\([^)]*\)\s*$/, '')
-    .trim()
-    .toLowerCase();
+  let text = keyword.trim();
+  // Drop one trailing "(…)" group. Plain string search instead of a regular
+  // expression like /\s*\([^)]*\)\s*$/, which can take quadratic time on long
+  // input (CodeQL rule js/polynomial-redos).
+  if (text.endsWith(')')) {
+    // The group starts at the first "(" after the previous ")" (if any).
+    const previousClose = text.lastIndexOf(')', text.length - 2);
+    const open = text.indexOf('(', previousClose + 1);
+    if (open !== -1) text = text.slice(0, open);
+  }
+  return text.trim().toLowerCase();
 }
 
 /**

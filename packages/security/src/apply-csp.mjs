@@ -20,12 +20,113 @@ import { readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const INLINE_SCRIPT = /<script(?![^>]*\ssrc=)[^>]*>([\s\S]*?)<\/script>/gi;
-const INLINE_STYLE = /<style[^>]*>([\s\S]*?)<\/style>/gi;
-const STYLE_ATTRIBUTE = /<[a-z][^>]*\sstyle="/i;
-const EVENT_HANDLER = /<[a-z][^>]*\son[a-z]+="/i;
-const EXISTING_CSP = /<meta http-equiv="Content-Security-Policy"[^>]*>/i;
+const TAG_START = /<[a-z]/i;
+const STYLE_ATTRIBUTE = /\sstyle="/i;
+const EVENT_HANDLER = /\son[a-z]+="/i;
+const EXISTING_CSP_START = /<meta http-equiv="Content-Security-Policy"/i;
+const HEAD_START = /<head(?=[\s/>])/i;
 const CHARSET_META = /<meta charset="utf-8"\s*\/?>/i;
+
+/**
+ * Finds every inline `<tag …>body</tag>` element (one without a `src`
+ * attribute), scanning the document once from left to right.
+ *
+ * Plain regular expressions such as `<script[^>]*>([\s\S]*?)<\/script>` can
+ * take quadratic time on a document with many unterminated tags (CodeQL rule
+ * js/polynomial-redos). Here every search moves forward only, and stops as
+ * soon as a search finds nothing, because no later search can succeed either.
+ * @param {string} html
+ * @param {'script' | 'style'} tag
+ * @returns {{ start: number, end: number, body: string }[]}
+ */
+function findInlineElements(html, tag) {
+  const open = new RegExp(`<${tag}(?=[\\s/>])`, 'gi');
+  const close = new RegExp(`</${tag}>`, 'gi');
+  /** @type {{ start: number, end: number, body: string }[]} */
+  const found = [];
+  let from = 0;
+  for (;;) {
+    open.lastIndex = from;
+    const opening = open.exec(html);
+    if (!opening) break;
+    const tagEnd = html.indexOf('>', opening.index);
+    if (tagEnd === -1) break;
+    const attributes = html.slice(opening.index + opening[0].length, tagEnd);
+    if (/\ssrc=/.test(attributes)) {
+      from = tagEnd + 1; // external script: nothing to hash or hide
+      continue;
+    }
+    close.lastIndex = tagEnd + 1;
+    const closing = close.exec(html);
+    if (!closing) break;
+    const end = closing.index + closing[0].length;
+    found.push({ start: opening.index, end, body: html.slice(tagEnd + 1, closing.index) });
+    from = end;
+  }
+  return found;
+}
+
+/**
+ * True if some tag carries an attribute matching `attribute` (same result as
+ * `/<[a-z][^>]*ATTRIBUTE/i`, but in linear time).
+ *
+ * The text is cut at every ">". A match must lie inside one such piece,
+ * after its first "<letter": if the first one does not lead to the attribute,
+ * a later one in the same piece cannot either.
+ * @param {string} html
+ * @param {RegExp} attribute Pattern for the attribute (no `g` flag).
+ * @returns {boolean}
+ */
+function hasTagAttribute(html, attribute) {
+  let from = 0;
+  while (from <= html.length) {
+    const found = html.indexOf('>', from);
+    const end = found === -1 ? html.length : found;
+    const piece = html.slice(from, end);
+    const tag = TAG_START.exec(piece);
+    if (tag && attribute.test(piece.slice(tag.index + 2))) return true;
+    from = end + 1;
+  }
+  return false;
+}
+
+/**
+ * The document without its inline `<script>` elements, removed in one pass
+ * over the original text. Text that only turns into a tag after a removal
+ * (`<scr<script></script>ipt>`) stays visible to the checks below, so such a
+ * document fails the build instead of being hidden from them.
+ * @param {string} html
+ * @returns {string}
+ */
+function withoutInlineScripts(html) {
+  let result = '';
+  let position = 0;
+  for (const { start, end } of findInlineElements(html, 'script')) {
+    result += html.slice(position, start);
+    position = end;
+  }
+  return result + html.slice(position);
+}
+
+/**
+ * Replaces the first `<tag …>` match of `start` (everything up to the next `>`)
+ * with `replacement`. Returns `null` if there is no complete tag.
+ * @param {string} html
+ * @param {RegExp} start Matches the beginning of the tag (no `g` flag).
+ * @param {(tag: string) => string} replacement
+ * @returns {string | null}
+ */
+function replaceTag(html, start, replacement) {
+  const opening = start.exec(html);
+  if (!opening) return null;
+  const tagEnd = html.indexOf('>', opening.index);
+  if (tagEnd === -1) return null;
+  return (
+    html.slice(0, opening.index) +
+    replacement(html.slice(opening.index, tagEnd + 1)) +
+    html.slice(tagEnd + 1)
+  );
+}
 
 /**
  * CSP source expression for the SHA-256 hash of `text`.
@@ -37,15 +138,14 @@ export function sha256Source(text) {
 }
 
 /**
- * Unique hash sources for every match of `pattern` (capture group 1 = body).
+ * Unique hash sources for the body of every inline `<tag>` element.
  * @param {string} html
- * @param {RegExp} pattern
+ * @param {'script' | 'style'} tag
  * @returns {string[]}
  */
-function hashesOf(html, pattern) {
+function hashesOf(html, tag) {
   const sources = new Set();
-  for (const match of html.matchAll(pattern)) {
-    const body = match[1] ?? '';
+  for (const { body } of findInlineElements(html, tag)) {
     if (body.trim()) sources.add(sha256Source(body));
   }
   return [...sources];
@@ -82,27 +182,27 @@ export function buildPolicy(scriptHashes, styleHashes) {
  * @throws {Error} If the document contains inline style attributes or event handlers.
  */
 export function applyCsp(html) {
-  const withoutScripts = html.replace(INLINE_SCRIPT, '');
-  if (STYLE_ATTRIBUTE.test(withoutScripts)) {
+  const withoutScripts = withoutInlineScripts(html);
+  if (hasTagAttribute(withoutScripts, STYLE_ATTRIBUTE)) {
     throw new Error('Inline style attribute found — it would be blocked by the CSP.');
   }
-  if (EVENT_HANDLER.test(withoutScripts)) {
+  if (hasTagAttribute(withoutScripts, EVENT_HANDLER)) {
     throw new Error('Inline event handler (on…="") found — it would be blocked by the CSP.');
   }
 
-  const scripts = hashesOf(html, INLINE_SCRIPT);
-  const styles = hashesOf(html, INLINE_STYLE);
+  const scripts = hashesOf(html, 'script');
+  const styles = hashesOf(html, 'style');
   const meta = `<meta http-equiv="Content-Security-Policy" content="${buildPolicy(scripts, styles)}"/>`;
 
-  let output;
-  if (EXISTING_CSP.test(html)) {
-    output = html.replace(EXISTING_CSP, meta);
-  } else if (CHARSET_META.test(html)) {
-    // Right after <meta charset>, i.e. before any script in <head>.
-    output = html.replace(CHARSET_META, (charset) => `${charset}${meta}`);
-  } else {
-    output = html.replace(/<head[^>]*>/i, (head) => `${head}${meta}`);
-  }
+  const output =
+    // Replace a policy that is already there ...
+    replaceTag(html, EXISTING_CSP_START, () => meta) ??
+    // ... else right after <meta charset>, i.e. before any script in <head> ...
+    (CHARSET_META.test(html)
+      ? html.replace(CHARSET_META, (charset) => `${charset}${meta}`)
+      : // ... else right after <head>.
+        replaceTag(html, HEAD_START, (head) => `${head}${meta}`)) ??
+    html;
   return { html: output, scripts: scripts.length, styles: styles.length };
 }
 

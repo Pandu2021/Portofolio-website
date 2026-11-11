@@ -50,6 +50,27 @@ describe('apply-csp', () => {
     );
   });
 
+  it('fails closed when a script tag only appears after removing another one', () => {
+    const html = page('<scr<script>x</script>ipt><div style="color:red">y</div></script>');
+    expect(() => applyCsp(html)).toThrow(/Inline style/);
+  });
+
+  it('leaves external scripts and header-like tags alone', () => {
+    const { html, scripts } = applyCsp(
+      '<html><head><title>t</title></head><body><header>h</header><script src="/a.js"></script></body></html>',
+    );
+    expect(scripts).toBe(0);
+    expect(html.indexOf('Content-Security-Policy')).toBeLessThan(html.indexOf('<title>'));
+    expect(html).toContain('<header>h</header>');
+  });
+
+  it('stays fast on a document with many unterminated tags', () => {
+    const started = performance.now();
+    const { scripts } = applyCsp(`<head>${'<script '.repeat(20_000)}`);
+    expect(scripts).toBe(0);
+    expect(performance.now() - started).toBeLessThan(1000);
+  });
+
   it('ignores style="…" text inside script bodies', () => {
     const html = page('<script>var s=\'<b style="x">\';</script>');
     expect(() => applyCsp(html)).not.toThrow();

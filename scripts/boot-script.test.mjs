@@ -16,7 +16,12 @@ describe('theme boot script copies', () => {
       new URL('../apps/angular-dashboard/src/index.html', import.meta.url),
       'utf8',
     );
-    const withoutComments = html.replace(/<!--[\s\S]*?-->/g, '');
+    // Remove comments until none are left (a removal can expose a new "<!--").
+    let withoutComments = html;
+    for (let before = ''; before !== withoutComments;) {
+      before = withoutComments;
+      withoutComments = withoutComments.replace(/<!--[\s\S]*?-->/g, '');
+    }
     assert.ok(withoutComments.includes(`<script>${themeBootScript}</script>`));
   });
 });

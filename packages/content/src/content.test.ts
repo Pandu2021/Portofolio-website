@@ -125,6 +125,20 @@ describe('keywords: one keyword, one home', () => {
   it('normalizes keywords case-insensitively and without a trailing qualifier', () => {
     expect(skillKey('Kotlin (Android)')).toBe('kotlin');
     expect(skillKey('  REST APIs ')).toBe('rest apis');
+    // Same results as the former regular expression, also for unusual input.
+    expect(skillKey('Accessibility (WCAG)')).toBe('accessibility');
+    expect(skillKey('a (b (c)')).toBe('a');
+    expect(skillKey('a (b) c')).toBe('a (b) c');
+    expect(skillKey('a (b) (c)')).toBe('a (b)');
+    expect(skillKey('plain)')).toBe('plain)');
+    expect(skillKey('(only)')).toBe('');
+  });
+
+  it('skillKey stays fast on very long input', () => {
+    const started = performance.now();
+    skillKey(`x${' '.repeat(50_000)}(`);
+    skillKey(`(${'('.repeat(50_000)}`);
+    expect(performance.now() - started).toBeLessThan(500);
   });
 
   it.each(locales)('%s: no keyword appears twice in the Skills section', (locale) => {

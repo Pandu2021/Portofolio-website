@@ -53,6 +53,14 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
 
+# Security fixes for transitive dependencies whose parents still ask for an
+# affected range (Dependabot alerts GHSA-g3hv-75wg-m249 and GHSA-3g3m-2fjr-6pw4).
+# Both targets are already in the lockfile through other packages. Remove an
+# entry once every parent requires the fixed version itself.
+overrides:
+  'minimatch@^10': 11.0.5 # affected: >= 7.0.0, < 11.0.1
+  'glob@^13': 14.0.4 # affected: >= 9.0.0, <= 14.0.1
+
 # Supply-chain hardening: ignore package versions published less than 24 h ago
 # (most malicious releases are detected and pulled within hours).
 minimumReleaseAge: 1440
