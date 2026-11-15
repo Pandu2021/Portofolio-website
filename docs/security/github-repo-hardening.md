@@ -10,13 +10,13 @@ adalah **tahap 2** dan belum dibahas di sini.
 
 ## 1. Konsep dasar: siapa bisa clone, commit, dan push?
 
-| Aksi                      | Siapa yang bisa?                                                                                                       | Cara mengendalikannya                                                    |
-| ------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| **Clone / lihat kode**    | Repo **public**: semua orang. Repo **private**: hanya kamu dan collaborator.                                           | _Settings → General → Danger Zone → Change visibility_                   |
-| **Commit**                | Siapa pun bisa commit di **komputernya sendiri** (itu tidak bisa dicegah). Yang penting: commit itu tidak masuk ke repo kamu. | —                                                                        |
-| **Push ke repo kamu**     | Hanya akun dengan izin _Write_ ke atas (kamu + collaborator). Orang lain **tidak bisa push**.                          | _Settings → Collaborators_                                               |
-| **Fork + Pull Request**   | Semua orang (repo public). PR hanyalah **usulan**; tidak masuk tanpa kamu klik merge.                                  | Rulesets + persetujuan workflow untuk kontributor luar                   |
-| **Force-push / hapus `main`** | Kamu sendiri (bisa tidak sengaja) atau collaborator.                                                               | _Settings → Rules → Rulesets_                                            |
+| Aksi                          | Siapa yang bisa?                                                                                                              | Cara mengendalikannya                                  |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| **Clone / lihat kode**        | Repo **public**: semua orang. Repo **private**: hanya kamu dan collaborator.                                                  | _Settings → General → Danger Zone → Change visibility_ |
+| **Commit**                    | Siapa pun bisa commit di **komputernya sendiri** (itu tidak bisa dicegah). Yang penting: commit itu tidak masuk ke repo kamu. | —                                                      |
+| **Push ke repo kamu**         | Hanya akun dengan izin _Write_ ke atas (kamu + collaborator). Orang lain **tidak bisa push**.                                 | _Settings → Collaborators_                             |
+| **Fork + Pull Request**       | Semua orang (repo public). PR hanyalah **usulan**; tidak masuk tanpa kamu klik merge.                                         | Rulesets + persetujuan workflow untuk kontributor luar |
+| **Force-push / hapus `main`** | Kamu sendiri (bisa tidak sengaja) atau collaborator.                                                                          | _Settings → Rules → Rulesets_                          |
 
 > **Kesimpulan:** orang asing **sudah tidak bisa** push atau mengubah kode kamu. Yang perlu dikunci
 > adalah: (1) branch `main` agar tidak bisa dihapus / di-force-push, (2) GitHub Actions agar tidak
@@ -38,28 +38,28 @@ rahasia di dalamnya" — keduanya sudah/akan diatur di bawah.
 
 ## 2. Hasil audit (read-only)
 
-| #  | Pengaturan                                             | Status sekarang                        | Penilaian            |
-| -- | ------------------------------------------------------ | -------------------------------------- | -------------------- |
-| 1  | Visibility                                             | Public                                 | ✅ OK (lihat alasan) |
-| 2  | Collaborator                                           | Hanya kamu (admin), tidak ada undangan | ✅ Aman              |
-| 3  | 2FA akun                                               | Aktif                                  | ✅ Aman              |
-| 4  | Deploy key / webhook                                   | Tidak ada                              | ✅ Aman              |
-| 5  | Secret scanning + push protection                      | Aktif                                  | ✅ Aman              |
-| 6  | Dependabot alerts + security updates                   | Aktif                                  | ✅ Aman              |
-| 7  | CodeQL code scanning                                   | Aktif, 0 alert terbuka                 | ✅ Aman              |
-| 8  | Private vulnerability reporting + `SECURITY.md`        | Aktif                                  | ✅ Aman              |
-| 9  | Token default GitHub Actions                           | Read-only, tidak boleh approve PR      | ✅ Aman              |
-| 10 | Environment `github-pages`                             | Hanya boleh deploy dari `main`         | ✅ Aman              |
-| 11 | Actions dipin ke commit SHA                            | Semua sudah dipin                      | ✅ Aman              |
-| 12 | **Perlindungan branch `main`**                         | **Tidak ada** (bisa dihapus/force-push) | ❌ **Prioritas 1**   |
-| 13 | **Perlindungan tag**                                   | Tidak ada                              | ⚠️ Perlu             |
-| 14 | **Actions yang diizinkan**                             | Semua action dari mana saja            | ⚠️ Perlu dibatasi    |
-| 15 | **Wajib SHA pinning untuk Actions**                    | Tidak diwajibkan                       | ⚠️ Perlu             |
-| 16 | **Approval workflow dari PR fork**                     | Hanya kontributor pertama kali         | ⚠️ Perlu diperketat  |
-| 17 | Secret scanning pola non-provider & validity check     | Nonaktif                               | ⚠️ Aktifkan bila bisa |
-| 18 | Wiki & Projects                                        | Aktif tapi tidak dipakai               | ⚠️ Matikan           |
-| 19 | Hapus branch otomatis setelah merge                    | Nonaktif                               | ⚠️ Aktifkan          |
-| 20 | Commit bertanda tangan (signed)                        | Kunci SSH sudah diunggah 15 Nov; commit terakhir masih unsigned | ⏳ Tunggu verifikasi (sudah diterapkan, lihat status) |
+| #   | Pengaturan                                         | Status sekarang                                                 | Penilaian                                             |
+| --- | -------------------------------------------------- | --------------------------------------------------------------- | ----------------------------------------------------- |
+| 1   | Visibility                                         | Public                                                          | ✅ OK (lihat alasan)                                  |
+| 2   | Collaborator                                       | Hanya kamu (admin), tidak ada undangan                          | ✅ Aman                                               |
+| 3   | 2FA akun                                           | Aktif                                                           | ✅ Aman                                               |
+| 4   | Deploy key / webhook                               | Tidak ada                                                       | ✅ Aman                                               |
+| 5   | Secret scanning + push protection                  | Aktif                                                           | ✅ Aman                                               |
+| 6   | Dependabot alerts + security updates               | Aktif                                                           | ✅ Aman                                               |
+| 7   | CodeQL code scanning                               | Aktif, 0 alert terbuka                                          | ✅ Aman                                               |
+| 8   | Private vulnerability reporting + `SECURITY.md`    | Aktif                                                           | ✅ Aman                                               |
+| 9   | Token default GitHub Actions                       | Read-only, tidak boleh approve PR                               | ✅ Aman                                               |
+| 10  | Environment `github-pages`                         | Hanya boleh deploy dari `main`                                  | ✅ Aman                                               |
+| 11  | Actions dipin ke commit SHA                        | Semua sudah dipin                                               | ✅ Aman                                               |
+| 12  | **Perlindungan branch `main`**                     | **Tidak ada** (bisa dihapus/force-push)                         | ❌ **Prioritas 1**                                    |
+| 13  | **Perlindungan tag**                               | Tidak ada                                                       | ⚠️ Perlu                                              |
+| 14  | **Actions yang diizinkan**                         | Semua action dari mana saja                                     | ⚠️ Perlu dibatasi                                     |
+| 15  | **Wajib SHA pinning untuk Actions**                | Tidak diwajibkan                                                | ⚠️ Perlu                                              |
+| 16  | **Approval workflow dari PR fork**                 | Hanya kontributor pertama kali                                  | ⚠️ Perlu diperketat                                   |
+| 17  | Secret scanning pola non-provider & validity check | Nonaktif                                                        | ⚠️ Aktifkan bila bisa                                 |
+| 18  | Wiki & Projects                                    | Aktif tapi tidak dipakai                                        | ⚠️ Matikan                                            |
+| 19  | Hapus branch otomatis setelah merge                | Nonaktif                                                        | ⚠️ Aktifkan                                           |
+| 20  | Commit bertanda tangan (signed)                    | Kunci SSH sudah diunggah 15 Nov; commit terakhir masih unsigned | ⏳ Tunggu verifikasi (sudah diterapkan, lihat status) |
 
 ---
 
@@ -84,15 +84,15 @@ Semua perubahan bisa dibatalkan (lihat bagian 6).
 
 ### Status penerapan — 16 November 2026
 
-| Langkah | Hasil |
-| ------- | ----- |
-| 1. Ruleset `Protect main` | ✅ Aktif (bypass: Admin) |
-| 2. Ruleset `Protect tags` | ✅ Aktif (bypass: Admin) |
-| 3. Actions dibatasi + wajib SHA | ✅ Aktif — uji CI manual: 4/4 job lulus |
-| 4. Approval PR fork untuk semua kontributor luar | ✅ Aktif |
+| Langkah                                           | Hasil                                                                                                                              |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 1. Ruleset `Protect main`                         | ✅ Aktif (bypass: Admin)                                                                                                           |
+| 2. Ruleset `Protect tags`                         | ✅ Aktif (bypass: Admin)                                                                                                           |
+| 3. Actions dibatasi + wajib SHA                   | ✅ Aktif — uji CI manual: 4/4 job lulus                                                                                            |
+| 4. Approval PR fork untuk semua kontributor luar  | ✅ Aktif                                                                                                                           |
 | 5. Secret scanning non-provider & validity checks | ❌ Tidak tersedia di akun Free (butuh GitHub Secret Protection berbayar); fitur inti secret scanning + push protection tetap aktif |
-| 6. Wiki & Projects off, hapus branch otomatis | ✅ Aktif |
-| 7. Signed commits | ✅ Aktif di `Protect main` — commit pertama dengan kunci baru sudah "Verified" |
+| 6. Wiki & Projects off, hapus branch otomatis     | ✅ Aktif                                                                                                                           |
+| 7. Signed commits                                 | ✅ Aktif di `Protect main` — commit pertama dengan kunci baru sudah "Verified"                                                     |
 
 ---
 
@@ -176,9 +176,9 @@ Ini menyangkut keamanan akun, jadi lakukan sendiri ±5 menit, sebulan sekali:
 
 ## 6. Cara membatalkan (rollback)
 
-| Perubahan              | Cara membatalkan                                                                 |
-| ---------------------- | -------------------------------------------------------------------------------- |
-| Ruleset                | _Settings → Rules → Rulesets_ → pilih → ubah ke **Disabled** atau hapus          |
-| Actions yang diizinkan | _Settings → Actions → General_ → **Allow all actions**                           |
+| Perubahan              | Cara membatalkan                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------- |
+| Ruleset                | _Settings → Rules → Rulesets_ → pilih → ubah ke **Disabled** atau hapus             |
+| Actions yang diizinkan | _Settings → Actions → General_ → **Allow all actions**                              |
 | Approval PR fork       | _Settings → Actions → General_ → _Approval for running fork pull request workflows_ |
-| Wiki / Projects        | _Settings → General → Features_ → centang kembali                                 |
+| Wiki / Projects        | _Settings → General → Features_ → centang kembali                                   |
