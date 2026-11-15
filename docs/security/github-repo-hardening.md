@@ -59,7 +59,7 @@ rahasia di dalamnya" — keduanya sudah/akan diatur di bawah.
 | 17 | Secret scanning pola non-provider & validity check     | Nonaktif                               | ⚠️ Aktifkan bila bisa |
 | 18 | Wiki & Projects                                        | Aktif tapi tidak dipakai               | ⚠️ Matikan           |
 | 19 | Hapus branch otomatis setelah merge                    | Nonaktif                               | ⚠️ Aktifkan          |
-| 20 | Commit bertanda tangan (signed)                        | Kunci SSH sudah diunggah 15 Nov; commit terakhir masih unsigned | ⏳ Tunggu verifikasi |
+| 20 | Commit bertanda tangan (signed)                        | Kunci SSH sudah diunggah 15 Nov; commit terakhir masih unsigned | ⏳ Tunggu verifikasi (sudah diterapkan, lihat status) |
 
 ---
 
@@ -92,7 +92,7 @@ Semua perubahan bisa dibatalkan (lihat bagian 6).
 | 4. Approval PR fork untuk semua kontributor luar | ✅ Aktif |
 | 5. Secret scanning non-provider & validity checks | ❌ Tidak tersedia di akun Free (butuh GitHub Secret Protection berbayar); fitur inti secret scanning + push protection tetap aktif |
 | 6. Wiki & Projects off, hapus branch otomatis | ✅ Aktif |
-| 7. Signed commits | ⏳ Menunggu commit pertama yang "Verified" |
+| 7. Signed commits | ✅ Aktif di `Protect main` — commit pertama dengan kunci baru sudah "Verified" |
 
 ---
 
