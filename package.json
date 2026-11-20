@@ -44,6 +44,6 @@
     "@portfolio/config": "workspace:*",
     "lighthouse": "13.6.0",
     "prettier": "catalog:",
-    "puppeteer-core": "25.16.0"
+    "puppeteer-core": "25.18.1"
   }
 }
