@@ -7,6 +7,7 @@
  *   /Portofolio-website/id     → 301 to /Portofolio-website/id/   (trailing slash)
  *   /Portofolio-website/id/    → id/index.html
  *   unknown paths              → 404.html with status 404
+ *   malformed URLs (%E0%A4%A)  → 400 (instead of crashing the server)
  *
  * Read-only and path-traversal safe; listens on 127.0.0.1 only.
  */
@@ -42,9 +43,17 @@ export function createSiteServer({ root, basePath }) {
     throw new Error(`${siteRoot}/index.html not found. Run "pnpm build:site" first.`);
   }
 
-  /** Maps a URL path below the base path to a file, or null if it escapes the root. */
+  /**
+   * Maps a URL path below the base path to a file; null if it escapes the root,
+   * undefined if its percent-encoding is malformed (decodeURIComponent throws).
+   */
   const resolveFile = (urlPath) => {
-    const relative = decodeURIComponent(urlPath.slice(basePath.length)) || '/';
+    let relative;
+    try {
+      relative = decodeURIComponent(urlPath.slice(basePath.length)) || '/';
+    } catch {
+      return undefined;
+    }
     const absolute = normalize(join(siteRoot, relative));
     return absolute === siteRoot || absolute.startsWith(siteRoot + sep) ? absolute : null;
   };
@@ -61,6 +70,10 @@ export function createSiteServer({ root, basePath }) {
       return res.end();
     }
     const file = url.pathname.startsWith(`${basePath}/`) ? resolveFile(url.pathname) : null;
+    if (file === undefined) {
+      res.writeHead(400, { 'content-type': 'text/plain; charset=utf-8' });
+      return res.end('400 Bad Request: malformed URL');
+    }
     if (file && existsSync(file)) {
       if (statSync(file).isDirectory()) {
         if (!url.pathname.endsWith('/')) {
